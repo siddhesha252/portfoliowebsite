@@ -103,5 +103,6 @@
     });
   };
   var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(fitWide,150); });
-  if(document.readyState==='complete') fitWide(); else window.addEventListener('load',fitWide);
+  // run as soon as the layout exists (sizes come from CSS, not from loaded images), and again once everything has loaded
+  fitWide(); window.addEventListener('load',fitWide);
 })();
