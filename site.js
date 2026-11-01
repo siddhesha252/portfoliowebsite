@@ -35,7 +35,7 @@
     while(side.firstChild) wrap.appendChild(side.firstChild);
     side.appendChild(wrap);
     var back=wrap.querySelector('[data-name="Go back"]');
-    if(back){ var a=document.createElement('a'); a.href='/#work'; a.setAttribute('aria-label','Go back to work'); back.parentNode.insertBefore(a,back); a.appendChild(back); }
+    if(back){ var a=document.createElement('a'); a.href='./#work'; a.setAttribute('aria-label','Go back to work'); back.parentNode.insertBefore(a,back); a.appendChild(back); }
     var secs=[].slice.call(list.children);
     var names=secs.map(function(s){return s.dataset.name});
     // index rows share their name with the section they point at; sub-lists and the marker are skipped
