@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sidd Portfolio Preview</title>
+<title>Siddhesha Pawade, Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -552,6 +552,7 @@ analyze()</p>
   function show(){
     var hash=(location.hash||'#work').slice(1), id=hash==='about'?'about':'work';
     document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
+    document.title=id==='about'?'About, Siddhesha Pawade':'Siddhesha Pawade, Product Designer';
     window.scrollTo(0,0); onShow.forEach(function(f){f(id)});
     if(hash==='playground'){ var m=document.getElementById('more'); if(m) m.scrollIntoView({block:'start'}); }
   }
