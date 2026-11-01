@@ -62,4 +62,13 @@
     },{rootMargin:'-35% 0px -60% 0px'});
     secs.forEach(function(s){ io.observe(s); });
   }
+
+  // sticky header: a 1px marker at the very top tells us when the page has scrolled away from it
+  var head=document.querySelector('.head');
+  if(head){
+    var mark=document.createElement('div'); mark.setAttribute('aria-hidden','true');
+    mark.style.cssText='position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none';
+    document.body.prepend(mark);
+    new IntersectionObserver(function(es){ head.classList.toggle('stuck',!es[0].isIntersecting); }).observe(mark);
+  }
 })();

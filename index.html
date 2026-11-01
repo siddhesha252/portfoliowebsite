@@ -56,14 +56,19 @@
   a{color:inherit;text-decoration:none}
   a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:6px}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .page{display:none;position:relative;isolation:isolate;max-width:1536px;margin:0 auto;overflow:hidden;background:url(img/v2/dots.png) 0 0/22px 22px,var(--bg)}
+  .page{display:none;position:relative;isolation:isolate;max-width:1536px;margin:0 auto;overflow:clip;background:url(img/v2/dots.png) 0 0/22px 22px,var(--bg)}
   .page.on{display:block}
   .dot-fade{position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none}
   #work .dot-fade{top:824px;background:linear-gradient(transparent,var(--bg) 36.875%,var(--bg))}
   #about .dot-fade{top:1181px;background:linear-gradient(transparent,var(--bg) 83.814%,var(--bg))}
 
   /* header */
-  .head{height:94px;display:flex;align-items:center;justify-content:space-between;padding:23px 80px 23px 19px}
+  /* the header stays at the top while scrolling; once the page moves it gets a frosted backing and slims down */
+  .head{position:sticky;top:0;z-index:50;height:94px;display:flex;align-items:center;justify-content:space-between;padding:23px 80px 23px 19px;
+    transition:height .3s cubic-bezier(.16,1,.3,1),background-color .3s,box-shadow .3s}
+  .head.stuck{height:72px;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 8%,transparent)}
+  section[id],[data-scroll-target]{scroll-margin-top:84px}
   .brand{position:relative;display:block;width:120px;height:48px}
   .brand .logo{position:absolute;left:0;top:0;width:50px;height:48px;overflow:hidden}
   .brand .logo img{position:absolute;width:150%;height:157.89%;left:-20%;top:-28.95%;max-width:none}
@@ -187,7 +192,7 @@
   /* ===== ABOUT ===== */
   .a-hero{display:flex;align-items:flex-start;padding:18px 60px 110px 80px}
   .a-intro{width:876px;flex:none;padding-top:47px;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
-  .a-eyebrow{font-family:Mansalva,cursive;font-size:32px;color:var(--blue)}
+  .a-eyebrow{font-family:Mansalva,cursive;font-size:32px;color:var(--hello2)} /* same apricot as "Siddhesha" on Home */
   .statement{width:800px;font-weight:700;font-size:32px;line-height:49.4px;letter-spacing:-.57px;color:var(--muted)}
   .statement b{color:var(--ink);font-weight:700}
   .twocol{display:flex;gap:40px;padding-top:26px;width:100%}
@@ -224,14 +229,14 @@
 
   /* "click here" with a hand-drawn circle and an arrow into the card; both draw themselves in */
   .fc-hint{position:absolute;inset:0;pointer-events:none;color:var(--blue)}
-  .fc-hint p{position:absolute;left:392px;top:300px;font-family:Mansalva,cursive;font-size:28px;line-height:1;white-space:nowrap;
+  .fc-hint p{position:absolute;left:418px;top:334px;font-family:Mansalva,cursive;font-size:22px;line-height:1;white-space:nowrap;
     opacity:0;transition:opacity .4s .1s}
   .fc-hint svg{position:absolute;left:0;top:0;width:520px;height:480px;overflow:visible}
   .fc-hint path{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
   .fc-hint.drawn p{opacity:1}
   .fc-hint.drawn .ring{stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.65,0,.35,1) .25s}
   .fc-hint.drawn .arrow{stroke-dashoffset:0;transition:stroke-dashoffset .55s cubic-bezier(.65,0,.35,1) .9s}
-  .fc-hint.drawn .head{stroke-dashoffset:0;transition:stroke-dashoffset .2s ease-out 1.4s}
+  .fc-hint.drawn .tip{stroke-dashoffset:0;transition:stroke-dashoffset .2s ease-out 1.4s}
   .strip{height:346px;overflow:hidden;position:relative}
   /* marquee: two identical sets, padding-right = gap so -50% lands exactly on the second set */
   .strip-row{position:absolute;left:0;top:0;height:346px;display:flex;align-items:center;gap:15px;padding-right:15px;width:max-content;
@@ -470,9 +475,9 @@ analyze()</p>
       </div>
       <div class="fc-hint" aria-hidden="true">
         <svg viewBox="0 0 520 480">
-          <path class="ring" pathLength="1" d="M496 304 C478 288 418 286 392 296 C368 306 370 336 398 344 C430 352 496 348 506 326 C514 308 486 290 452 290"/>
-          <path class="arrow" pathLength="1" d="M398 292 C406 258 398 222 378 208"/>
-          <path class="head" pathLength="1" d="M386 222 L376 207 L393 203"/>
+          <path class="ring" pathLength="1" d="M508 328 C492 316 436 316 414 326 C398 334 400 360 424 366 C450 372 512 368 518 348 C522 334 502 320 478 320"/>
+          <path class="arrow" pathLength="1" d="M426 320 C432 290 418 262 394 250"/>
+          <path class="tip" pathLength="1" d="M400 261 L394 250 L406 248"/>
         </svg>
         <p>click here</p>
       </div>
@@ -734,6 +739,17 @@ analyze()</p>
       });
     },{threshold:[0,.6]}).observe(board);
     onShow.push(reset);
+  })();
+
+  // sticky header: a 1px marker at the very top tells us when the page has scrolled away from it
+  (function(){
+    var mark=document.createElement('div'); mark.setAttribute('aria-hidden','true');
+    mark.style.cssText='position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none';
+    document.body.prepend(mark);
+    var heads=[].slice.call(document.querySelectorAll('.page > .head'));
+    new IntersectionObserver(function(es){
+      var away=!es[0].isIntersecting; heads.forEach(function(h){h.classList.toggle('stuck',away)});
+    }).observe(mark);
   })();
 
   // about flip card: click turns the color photo into the 0101 portrait and back
