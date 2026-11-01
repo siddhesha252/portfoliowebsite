@@ -71,4 +71,37 @@
     document.body.prepend(mark);
     new IntersectionObserver(function(es){ head.classList.toggle('stuck',!es[0].isIntersecting); }).observe(mark);
   }
+
+  // phones and tablets: anything still wider than the screen (covers, phone mockups, diagrams) is scaled down to fit
+  var small=matchMedia('(max-width:1023px)'), fitted=[];
+  var fitWide=function(){
+    fitted.forEach(function(f){ f.el.style.zoom=''; f.el.style.width=f.w; f.el.style.flexWrap=f.fw; }); fitted=[];
+    if(!small.matches) return;
+    var all=[].slice.call(document.querySelectorAll('.site [data-name]')), over=[];
+    // read pass: find boxes that overflow their parent (or hold an absolutely placed artwork wider than themselves)
+    all.forEach(function(el){
+      var cs=getComputedStyle(el); if(cs.position==='absolute'||cs.display==='none') return;
+      // pieces inside a positioned artwork (cover, diagram) scale with the artwork, not on their own
+      for(var a=el.parentElement;a&&!a.classList.contains('site');a=a.parentElement){ if(getComputedStyle(a).position==='absolute') return; }
+      var par=el.parentElement, ps=getComputedStyle(par);
+      var avail=par.clientWidth-parseFloat(ps.paddingLeft)-parseFloat(ps.paddingRight);
+      var absW=0; [].forEach.call(el.children,function(c){ if(getComputedStyle(c).position==='absolute') absW=Math.max(absW,c.offsetWidth); });
+      var w=Math.max(el.offsetWidth,el.scrollWidth,absW>el.offsetWidth+2?absW:0);
+      if(w>avail+2) over.push({el:el,w:w,avail:avail,frame:absW>el.offsetWidth+2?absW:0});
+    });
+    // keep only the innermost overflowing boxes, so text around them stays full size
+    var set=over.map(function(o){return o.el});
+    over=over.filter(function(o){ return !set.some(function(e){ return e!==o.el&&o.el.contains(e); }); });
+    // write pass
+    over.forEach(function(o){
+      var el=o.el, rec={el:el,w:el.style.width,fw:el.style.flexWrap}; fitted.push(rec);
+      var kids=[].slice.call(el.children), cs=getComputedStyle(el);
+      var chips=cs.display.indexOf('flex')>-1&&cs.flexDirection==='row'&&kids.length>1&&kids.every(function(k){return k.offsetWidth<170&&!k.querySelector('img')});
+      if(chips){ el.style.flexWrap='wrap'; return; }
+      if(o.frame) el.style.width=o.frame+'px';
+      el.style.zoom=(o.avail/o.w).toFixed(4);
+    });
+  };
+  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(fitWide,150); });
+  if(document.readyState==='complete') fitWide(); else window.addEventListener('load',fitWide);
 })();

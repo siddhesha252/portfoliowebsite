@@ -85,3 +85,53 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   html{scroll-behavior:auto}
   .cursor .tag.pop{animation:none}
 }
+
+/* ===== RESPONSIVE (project pages) ===== */
+/* tablet and phone: one column, the section index is hidden, text reflows, and wide visuals are scaled to fit by site.js */
+@media (max-width:1023px){
+  :root{--gut:clamp(20px,5vw,48px)}
+  .head{height:64px;padding:10px var(--gut);gap:8px}
+  .head.stuck{height:58px}
+  .brand{width:auto;height:40px;flex:none}
+  .brand .name{position:static;display:block;font-size:30px;line-height:40px}
+  .head nav{gap:2px}
+  .head nav a{height:36px;padding:0 10px;font-size:14px}
+
+  [data-name="Hero"],[data-name="Case study"],[data-name="Next project"]{padding-left:var(--gut) !important;padding-right:var(--gut) !important}
+  [data-name="Hero"]{padding-top:28px !important;padding-bottom:48px !important;gap:20px !important}
+  [data-name="Sidebar"]{display:none !important}
+  [data-name="Sections"] [data-name="Section label"],[data-name="Sections"] [data-name="Content"]{padding-left:0 !important;padding-right:0 !important}
+  [data-name="Sections"] [data-name="Content"]{gap:28px !important}
+  [data-name="Next project"]{flex-direction:column;align-items:flex-start !important;gap:24px !important;padding-top:44px !important;padding-bottom:56px !important}
+  [data-name="Next project"] [data-name="Title"]{flex:none !important;width:100%}
+
+  /* text: let fixed-width paragraphs and single-line labels wrap, and step the type scale down */
+  .site p{max-width:100%}
+  /* fixed-width text blocks and headings from the Figma export reflow instead of being clipped */
+  .site [class*="break-word"][class*="w-["],.site [class*="font-['Manrope']"][class*="w-["]{width:auto !important;max-width:100%}
+  .site .flex-col[class*="w-["]:not([class*="h-["]){width:auto !important;max-width:100%} /* text columns without a fixed height */
+  [data-name="Project meta"]{flex-wrap:wrap;row-gap:8px !important;column-gap:20px !important}
+  .site p[class*="w-["]{width:auto !important}
+  .site p.whitespace-nowrap,.site .whitespace-nowrap > p{white-space:normal !important}
+  .site [class*="text-[96px]"]{font-size:46px !important;letter-spacing:-1.6px !important}
+  .site [class*="text-[60px]"]{font-size:32px !important;letter-spacing:-.8px !important}
+  .site [class*="text-[48px]"]{font-size:32px !important;letter-spacing:-.8px !important}
+  .site [class*="text-[40px]"]{font-size:27px !important;letter-spacing:-.5px !important}
+  .site [class*="text-[26px]"],.site [class*="text-[24px]"]{font-size:21px !important}
+  .site [class*="text-[22px]"]{font-size:19px !important}
+  .site [class*="text-[20px]"]{font-size:17px !important}
+  .site [class*="text-[19px]"],.site [class*="text-[18px]"],.site [class*="text-[17px]"]{font-size:16px !important}
+
+  /* rows of equal columns (cards, two-up text) stack */
+  .site .flex:not(.flex-col):has(> [class*="flex-[1_0_0]"]){flex-direction:column !important;align-items:stretch !important}
+  .site .flex:not(.flex-col) > [class*="flex-[1_0_0]"]{flex:none !important;width:100% !important}
+
+  .foot{flex-direction:column;gap:28px;padding:44px var(--gut) 56px}
+  .foot > div:first-child p{width:auto}
+  .mail{font-size:clamp(18px,5.2vw,26px)}
+  .credits{width:auto;align-items:flex-start;text-align:left}
+}
+@media (max-width:380px){
+  .head nav a{padding:0 7px;font-size:13px}
+  .brand .name{font-size:26px}
+}

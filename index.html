@@ -232,6 +232,7 @@
   .fc-hint p{position:absolute;left:418px;top:334px;font-family:Mansalva,cursive;font-size:22px;line-height:1;white-space:nowrap;
     opacity:0;transition:opacity .4s .1s}
   .fc-hint svg{position:absolute;left:0;top:0;width:520px;height:480px;overflow:visible}
+  .fc-hint .hint-mob{display:none;width:200px;height:92px}
   .fc-hint path{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
   .fc-hint.drawn p{opacity:1}
   .fc-hint.drawn .ring{stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.65,0,.35,1) .25s}
@@ -284,6 +285,116 @@
     .cursor .tag.pop{animation:none}
     .pcard,.cover img,.strip figure img{transition:none}
     .strip-row{animation:none}
+  }
+
+  /* ===== RESPONSIVE ===== */
+  /* the design is drawn at 1536px; below that, pin the right-hand pieces to the right edge instead of a fixed left offset */
+  @media (max-width:1535px){
+    .photo{left:auto;right:56px}
+    .intro{width:calc(100% - 700px)}
+    .fact{font-size:clamp(40px,4vw,62px);line-height:1.38}
+    .a-intro{width:auto;flex:1;min-width:0}
+    .statement{width:auto;max-width:800px;font-size:clamp(26px,2.3vw,32px);line-height:1.55}
+    .a-hero{gap:40px}
+  }
+  @media (max-width:1439px){ .gallery{zoom:.66} }
+  @media (min-width:1024px) and (max-width:1279px){
+    .photo{zoom:.78;right:30px}
+    .intro{width:calc(100% - 600px)}
+    .cover{width:min(680px,54%);height:auto;aspect-ratio:680/410}
+    .cover.tall{aspect-ratio:680/420}
+    .gallery{display:none}
+    .a-photo{zoom:.8}
+    .resume{padding-right:80px}
+  }
+
+  /* tablet and phone: one column, fluid gutters */
+  @media (max-width:1023px){
+    :root{--gut:clamp(20px,5vw,48px)}
+    .head{height:64px;padding:10px var(--gut)}
+    .head.stuck{height:58px}
+    .brand{width:auto;height:40px;flex:none}
+    .brand .name{position:static;display:block;font-size:30px;line-height:40px}
+    nav{gap:2px}
+    nav a{height:36px;padding:0 10px;font-size:14px}
+    section[id]{scroll-margin-top:66px}
+
+    .hero{height:auto;padding-bottom:40px}
+    .intro{position:static;width:auto;padding:24px var(--gut) 0;gap:28px}
+    .hello{font-size:30px;line-height:1.4}
+    .fact{font-size:clamp(28px,7.4vw,46px);line-height:1.22}
+    .photo{position:relative;left:auto;right:auto;top:auto;margin:20px auto 0;zoom:.66}
+    .clients{flex-direction:column;align-items:flex-start;gap:14px;height:auto;padding:18px 0 18px var(--gut)}
+    .clients p{font-size:13px;letter-spacing:1.6px}
+    .logo-viewport{width:100%}
+
+    .sec{padding-left:var(--gut);padding-right:var(--gut)}
+    .sec-h h2{font-size:28px}
+    .sec-h h2 small{font-size:18px}
+    .work{padding-top:64px;padding-bottom:48px}
+    .projects{gap:44px;margin-top:32px}
+    .proj{flex-direction:column;gap:18px}
+    .cover,.cover.tall{width:100%;height:auto;aspect-ratio:680/410;border-radius:12px}
+    .details{padding-top:0;gap:10px}
+    .details h3{font-size:26px}
+    .details p{font-size:16px}
+    .tags{flex-wrap:wrap;padding-top:6px}
+
+    .more{padding-bottom:72px}
+    .cards{width:100%;margin-top:28px;gap:14px}
+    .pcard{height:auto;min-height:96px;padding:14px;gap:14px}
+    .thumb{width:64px;height:64px}
+    .pcard b{font-size:16px}
+    .pcard span{font-size:14px;line-height:1.4}
+    .gallery{display:none} /* hover-only extra photos; no hover on touch screens */
+
+    /* what I bring: the floating board becomes a heading with the pills wrapped underneath */
+    .bring{padding-bottom:72px}
+    .board{width:auto;height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 10px;zoom:1 !important}
+    .center{position:static;width:100%;height:auto;text-align:center;margin-bottom:14px}
+    .center .face{position:static;width:150px;height:105px;margin:0 auto}
+    .center h2{position:static;transform:none;font-size:32px;white-space:normal;margin-top:6px}
+    .center p{position:static;transform:none;width:auto;max-width:440px;margin:6px auto 0;font-size:16px}
+    .pill{position:static;transform:rotate(calc(var(--r) * .4));padding:10px 18px;font-size:15px;opacity:0;translate:0 10px;transition:opacity .45s,translate .55s cubic-bezier(.16,1,.3,1)}
+    .board.shown .pill{opacity:1;translate:0 0}
+
+    .foot{flex-direction:column;gap:28px;padding:44px var(--gut) 56px}
+    .foot > div:first-child p{width:auto}
+    .mail{font-size:clamp(18px,5.2vw,26px)}
+    .credits{width:auto;align-items:flex-start;text-align:left}
+
+    /* about */
+    .a-hero{flex-direction:column;gap:8px;padding:8px var(--gut) 56px}
+    .a-intro{width:auto;padding-top:24px}
+    .a-eyebrow{font-size:26px}
+    .statement{max-width:none;font-size:22px;line-height:1.5;letter-spacing:-.3px}
+    .twocol{flex-direction:column;gap:24px;padding-top:12px}
+    .twocol p{font-size:15px;line-height:1.75}
+    .twocol p[style]{max-width:none !important}
+    .a-intro .btn{margin-top:8px}
+    .a-photo{width:100%;height:auto;margin-top:32px;display:flex;flex-direction:column;align-items:center;zoom:1}
+    .fc{position:relative;left:auto;width:min(340px,100%)}
+    .fc-hint{position:relative;inset:auto;width:200px;height:92px;margin-top:8px}
+    .fc-hint .hint-desk{display:none}
+    .fc-hint .hint-mob{display:block}
+    .fc-hint p{left:50%;top:44px;transform:translateX(-50%)}
+    .resume{padding:56px var(--gut) 72px;gap:56px}
+    .r-title{font-size:28px}
+    .entry{flex-direction:column;gap:8px;padding:20px 0}
+    .entry time{width:auto;padding-top:0;font-size:14px}
+    .entry ul{width:auto}
+    .entry li{font-size:16px}
+    .chips span{height:34px;padding:0 14px;font-size:14px}
+  }
+  @media (max-width:1023px){ .photo{height:410px} } /* the box only needs room for the polaroid, card and girl */
+  @media (max-width:480px){
+    .photo{zoom:.6}
+    nav a{padding:0 8px}
+    .head{gap:8px}
+  }
+  @media (max-width:380px){
+    nav a{padding:0 7px;font-size:13px}
+    .brand .name{font-size:26px}
   }
 </style>
 </head>
@@ -474,7 +585,13 @@ analyze()</p>
         </div>
       </div>
       <div class="fc-hint" aria-hidden="true">
-        <svg viewBox="0 0 520 480">
+        <!-- phone layout: the hint sits under the card and points up at it -->
+        <svg class="hint-mob" viewBox="0 0 200 92">
+          <path class="ring" pathLength="1" d="M140 42 C124 32 70 32 52 42 C38 50 42 72 66 76 C92 80 146 76 152 60 C156 48 136 36 112 36"/>
+          <path class="arrow" pathLength="1" d="M82 38 C86 24 80 12 70 4"/>
+          <path class="tip" pathLength="1" d="M73 14 L70 4 L80 5"/>
+        </svg>
+        <svg class="hint-desk" viewBox="0 0 520 480">
           <path class="ring" pathLength="1" d="M508 328 C492 316 436 316 414 326 C398 334 400 360 424 366 C450 372 512 368 518 348 C522 334 502 320 478 320"/>
           <path class="arrow" pathLength="1" d="M426 320 C432 290 418 262 394 250"/>
           <path class="tip" pathLength="1" d="M400 261 L394 250 L406 248"/>
@@ -702,8 +819,22 @@ analyze()</p>
     var board=document.getElementById('board'), center=board.querySelector('.center');
     var pills=[].slice.call(board.querySelectorAll('.pill')), shown=false, NEAR=280;
     var cx=687.5, cy=368; // middle of the logo + heading block, in board coordinates
+    var small=matchMedia('(max-width:1023px)');
+    // laptops narrower than the 1536px design: shrink the whole board to fit instead of clipping its right side
+    function fitBoard(){
+      if(small.matches){ board.style.zoom=''; return; }
+      var sec=board.parentElement, cs=getComputedStyle(sec);
+      var avail=sec.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+      board.style.zoom=avail<1376?(avail/1376).toFixed(3):'';
+    }
+    fitBoard(); window.addEventListener('resize',fitBoard); onShow.push(fitBoard);
     function reveal(){
       if(shown) return; shown=true;
+      // phones: the pills sit in a wrapped list, so they simply fade up one after another
+      if(small.matches){
+        pills.forEach(function(p,i){ p.style.transitionDelay=(still?0:i*60)+'ms'; });
+        board.classList.add('shown'); return;
+      }
       pills.forEach(function(p,i){
         var x=parseFloat(p.style.left), y=parseFloat(p.style.top), r=p.style.getPropertyValue('--r');
         var dx=cx-x, dy=cy-y, a=-70*Math.PI/180, c=Math.cos(a), s=Math.sin(a);
