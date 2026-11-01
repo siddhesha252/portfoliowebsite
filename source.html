@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidd Portfolio Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* ===== tokens: defaults are the Figma "home (final)" / "about (final)" colors ===== */
+  :root{
+    --bg:#fbfaf8; --ink:#242424; --muted:#62625e; --soft:#8f8e89; --blue:#3838eb; --yellow:#e6d811; --line:#e2e0d8; --ph:#e8e6df;
+    --frame:#ededed; --name:#1a1ac4; --hello2:var(--yellow); --on-yellow:var(--ink); --tint:rgba(230,216,17,.28); --foot:var(--tint);
+    --about-foot:#f1edb2; --tag-bg:#eceff6; --card-bg:#fcf7f2; --card-line:#ebe5da; --title:#171310; --body:#3e3e42; --label:rgba(54,54,54,.84);
+    --card-fill:#e6d811; --date:#5b78b0; --org:#3f5f96; --cur-dark:#3b3b3e;
+  }
+  [data-theme="lux"]{--bg:#fcfbfb;--ink:#192a56;--muted:#4c5878;--blue:#192a56;--yellow:#f7d794;--hello2:#e0918d;--frame:#ecebf0;--name:#192a56;
+    --tint:rgba(237,166,163,.30);--foot:rgba(247,215,148,.45);--about-foot:#f7e6c4;--tag-bg:#f6e9e8;--card-bg:#fdf6f0;--card-line:#efe3d6;
+    --title:#192a56;--body:#3a4466;--label:#192a56;--card-fill:#eda6a3;--line:#eee6e0;--date:#4c5f8f;--org:#192a56}
+  [data-theme="lime"]{--bg:#ffffff;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#cdd21e;--hello2:#a3a80c;--frame:#ececf4;--name:#6363b0;
+    --tint:rgba(205,210,30,.26);--foot:rgba(99,99,176,.14);--about-foot:#eef0a8;--tag-bg:#ededf8;--card-bg:#f8f8fc;--card-line:#e6e6f0;
+    --title:#2a2a4f;--body:#45456a;--label:#3f3f86;--card-fill:#cdd21e;--line:#e6e6f0;--date:#5656a0;--org:#3f3f86}
+  [data-theme="cobalt"]{--bg:#f8f7f3;--ink:#1b1f2e;--muted:#5a5a56;--blue:#1546d9;--yellow:#f9b318;--hello2:#f9b318;--frame:#e2e1da;--name:#1546d9;
+    --tint:rgba(249,179,24,.28);--foot:rgba(249,179,24,.28);--about-foot:#fde2a1;--tag-bg:#e1e7fa;--card-bg:#f5f4ef;--card-line:#dfddd4;
+    --title:#1b1f2e;--body:#3c3f4a;--label:#1b1f2e;--card-fill:#f9b318;--line:#dcdad2;--date:#1546d9;--org:#1b3fa8}
+  [data-theme="burgundy"]{--bg:#fff8ec;--ink:#2b1e2c;--muted:#6b5049;--blue:#3e469e;--yellow:#7d1f28;--hello2:#7d1f28;--on-yellow:#fff;--frame:#efd6ad;--name:#3e469e;
+    --tint:rgba(125,31,40,.12);--foot:rgba(62,70,158,.12);--about-foot:#f3d2a0;--tag-bg:#f2d6c9;--card-bg:#fbecd2;--card-line:#ecd1aa;
+    --title:#2b1e2c;--body:#4a3a3e;--label:#7d1f28;--card-fill:#7d1f28;--line:#e8cda4;--date:#7d1f28;--org:#3e469e}
+  [data-theme="oxford"]{--bg:#fffaeb;--ink:#14263f;--muted:#4f5a6b;--blue:#123e6b;--yellow:#f2d25b;--hello2:#e0873a;--frame:#f1e3b6;--name:#123e6b;
+    --tint:rgba(242,210,91,.38);--foot:rgba(236,146,72,.20);--about-foot:#fbe39a;--tag-bg:#f6e3b0;--card-bg:#fef7e0;--card-line:#efdfac;
+    --title:#14263f;--body:#3d4757;--label:#123e6b;--card-fill:#ec9248;--line:#eedc9f;--date:#b8641f;--org:#123e6b}
+  [data-theme="cornflower"]{--bg:#faf9f6;--ink:#121318;--muted:#4f5158;--blue:#4a73b0;--yellow:#8faedc;--hello2:#121318;--frame:#e3dfd7;--name:#4a73b0;
+    --tint:rgba(143,174,220,.32);--foot:rgba(143,174,220,.26);--about-foot:#dde6f4;--tag-bg:#e2e8f2;--card-bg:#f7f5f1;--card-line:#e1ddd4;
+    --title:#121318;--body:#3b3d44;--label:#121318;--card-fill:#8faedc;--line:#dfdbd2;--date:#3d63a0;--org:#2c4f86}
+  [data-theme="oxwhite"]{--bg:#ffffff;--ink:#14263f;--muted:#4f5a6b;--blue:#123e6b;--yellow:#ec9248;--hello2:#e0873a;--on-yellow:#14263f;--frame:#ecedf0;--name:#123e6b;
+    --tint:rgba(236,146,72,.16);--foot:rgba(18,62,107,.06);--about-foot:#fdeedf;--tag-bg:#eaeff5;--card-bg:#fafafa;--card-line:#e8e9ec;
+    --title:#14263f;--body:#3d4757;--label:#123e6b;--card-fill:#ec9248;--line:#e8e9ec;--date:#b8641f;--org:#123e6b}
+  [data-theme="periapricot"]{--bg:#ffffff;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#ec9248;--hello2:#e0873a;--on-yellow:#2a2a4f;--frame:#ececf4;--name:#6363b0;
+    --tint:rgba(236,146,72,.16);--foot:var(--tint);--about-foot:var(--tint);--tag-bg:#ededf8;--card-bg:#f8f8fc;--card-line:#e6e6f0;
+    --title:#2a2a4f;--body:#45456a;--label:#3f3f86;--card-fill:#ec9248;--line:#e6e6f0;--date:#5656a0;--org:#3f3f86}
+  [data-theme="periapricot-off"]{--bg:#f6f5f1;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#ec9248;--hello2:#e0873a;--on-yellow:#2a2a4f;--frame:#ececf4;--name:#6363b0;
+    --tint:rgba(236,146,72,.16);--foot:rgba(99,99,176,.08);--about-foot:#fdeedf;--tag-bg:#ededf8;--card-bg:#fcf7f2;--card-line:#ebe5da;
+    --title:#2a2a4f;--body:#45456a;--label:#3f3f86;--card-fill:#ec9248;--line:#e2e0d8;--date:#5656a0;--org:#3f3f86}
+  [data-theme="trio"]{--bg:#ffffff;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#f2d25b;--hello2:#e0873a;--on-yellow:#2a2a4f;--frame:#ececf4;--name:#6363b0;
+    --tint:rgba(242,210,91,.30);--foot:rgba(236,146,72,.14);--about-foot:#fdeedf;--tag-bg:#ededf8;--card-bg:#f8f8fc;--card-line:#e6e6f0;
+    --title:#2a2a4f;--body:#45456a;--label:#3f3f86;--card-fill:#ec9248;--line:#e6e6f0;--date:#5656a0;--org:#3f3f86}
+  /* background toggle: overrides whichever palette is active */
+  html[data-bg="white"]{--bg:#ffffff}
+  html[data-bg="off"]{--bg:#f6f5f1}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scrollbar-color:color-mix(in srgb,var(--blue) 45%,var(--bg)) var(--bg)}
+  body{background:var(--bg);font-family:Manrope,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;transition:background-color .4s}
+  ::selection{background:color-mix(in srgb,var(--yellow) 70%,transparent);color:var(--ink)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:6px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .page{display:none;position:relative;isolation:isolate;max-width:1536px;margin:0 auto;overflow:hidden;background:url(img/v2/dots.png) 0 0/22px 22px,var(--bg)}
+  .page.on{display:block}
+  .dot-fade{position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none}
+  #work .dot-fade{top:824px;background:linear-gradient(transparent,var(--bg) 36.875%,var(--bg))}
+  #about .dot-fade{top:1181px;background:linear-gradient(transparent,var(--bg) 83.814%,var(--bg))}
+
+  /* header */
+  .head{height:94px;display:flex;align-items:center;justify-content:space-between;padding:23px 80px 23px 19px}
+  .brand{position:relative;display:block;width:120px;height:48px}
+  .brand .logo{position:absolute;left:0;top:0;width:50px;height:48px;overflow:hidden}
+  .brand .logo img{position:absolute;width:150%;height:157.89%;left:-20%;top:-28.95%;max-width:none}
+  .brand .name{position:absolute;left:8px;top:20px;font-family:Sacramento,cursive;font-size:36px;line-height:19.8px;letter-spacing:-.18px;color:var(--name);white-space:nowrap}
+  nav{display:flex;gap:8px}
+  nav a{height:40px;padding:0 16px;display:flex;align-items:center;border-radius:100px;font-weight:700;font-size:18px;color:var(--muted);transition:background-color .2s,color .2s}
+  nav a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+  nav a.on{background:var(--blue);color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:14px 26px;border-radius:100px;background:var(--blue);color:#fff;font-weight:700;font-size:16px;filter:drop-shadow(0 10px 6.55px rgba(51,104,160,.14));transition:transform .2s}
+  .btn:active{transform:translateY(1px) scale(.98)}
+
+  /* ===== HOME ===== */
+  .hero{position:relative;height:664px}
+  .intro{position:absolute;left:80px;top:48px;width:860px;padding-top:32px;display:flex;flex-direction:column;gap:72px;align-items:flex-start}
+  .intro h1{display:flex;flex-direction:column;letter-spacing:-1.44px;font-weight:inherit}
+  .hello{font-family:Mansalva,cursive;font-size:48px;line-height:86.4px;color:var(--blue)}
+  .hello span{color:var(--hello2)}
+  .facts{display:grid}
+  .fact{grid-area:1/1;font-weight:700;font-size:62px;line-height:86.4px;color:var(--muted);opacity:0;visibility:hidden}
+  .fact.on{opacity:1;visibility:visible}
+
+  /* photo: the girl and yellow card rest behind the polaroid and pop out on hover */
+  .photo{position:absolute;left:912px;top:80px;width:560px;height:520px}
+  .polaroid{position:absolute;left:134.13px;top:6.7px;width:300px;height:374.6px;z-index:3;background:#f6f5f1;filter:drop-shadow(0 4px 4.7px rgba(0,0,0,.25));transform:rotate(.66deg);transition:transform .45s cubic-bezier(.34,1.56,.64,1);outline:none}
+  .polaroid:focus-visible{outline:3px solid var(--blue);outline-offset:6px}
+  .shot{position:absolute;left:13.8px;right:13.8px;top:13.8px;height:316px;background:#fbfbfb;overflow:hidden}
+  .shot img{position:absolute;width:123%;height:446px;left:-11.82%;top:-9.66%;max-width:none;object-fit:cover;transform:rotate(-.63deg)}
+  .polaroid figcaption{position:absolute;left:13.8px;right:13.8px;top:329.8px;height:44px;padding:10px 0 12px;text-align:center;font-family:Mansalva,cursive;font-size:20px;line-height:21.6px;letter-spacing:-.324px;color:#505054}
+  .card-pop{position:absolute;left:211.37px;top:23.79px;width:252.372px;height:356.742px;z-index:1;
+    transform:translate(-60px,-14px) rotate(.8deg);transition:transform .26s cubic-bezier(.5,0,.75,0)}
+  .card-pop svg{position:absolute;inset:-.86% -2.8% -3.11% -2.8%;width:105.6%;height:103.97%;overflow:visible;filter:drop-shadow(0 4px 3.55px rgba(0,0,0,.25))}
+  .card-pop svg path{fill:var(--card-fill)}
+  .about-tag{position:absolute;left:206px;top:58px;width:44px;height:80px;opacity:0;transition:opacity .2s;color:#505054;pointer-events:none}
+  .about-tag img{position:absolute;left:12px;top:12px;width:16px;height:16px;transform:rotate(-129.03deg) scaleY(-1)}
+  .about-tag span{position:absolute;left:18.6px;top:51.2px;transform:translate(-50%,-50%) rotate(-91.53deg);font-family:Mansalva,cursive;font-size:20px;line-height:21.6px;letter-spacing:-.324px;white-space:nowrap}
+  .girl{position:absolute;left:28.29px;top:60.39px;width:207.463px;height:339.615px;z-index:2;overflow:hidden;
+    transform:translateX(128px) rotate(.77deg) scale(.92);transform-origin:100% 70%;transition:transform .26s cubic-bezier(.5,0,.75,0)}
+  .girl img{position:absolute;height:100%;width:163.7%;left:-63.7%;top:0;max-width:none}
+  .photo.popped .polaroid{transform:rotate(-1.2deg) translateY(-4px)}
+  .photo.popped .card-pop{transform:rotate(9.75deg);transition:transform .55s cubic-bezier(.34,1.56,.64,1) 40ms}
+  .card-pop{display:block;cursor:pointer}
+  .photo.popped .about-tag{opacity:1;transition:opacity .3s .35s}
+  .photo.popped .girl{transform:rotate(.77deg);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+
+  .clients{display:flex;align-items:center;gap:72px;height:66px;padding:22px 0 22px 80px;background:var(--tint);white-space:nowrap;overflow:hidden}
+  .clients p{font-weight:500;font-size:20px;letter-spacing:2.4px;color:var(--label)}
+  .clients ul{display:flex;align-items:center;gap:72px;list-style:none;opacity:.63}
+  /* logos drift right to left; the track holds two identical halves so -50% loops seamlessly */
+  .logo-viewport{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .logo-track{width:max-content;padding-right:72px;animation:logo-drift 40s linear infinite}
+  .clients:hover .logo-track{animation-play-state:paused}
+  @keyframes logo-drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.logo-track{animation:none}}
+  .clients li{position:relative;overflow:hidden;flex:none}
+  .clients li img{position:absolute;max-width:none;mix-blend-mode:multiply}
+
+  .sec{padding-left:80px;padding-right:80px}
+  .sec-h{display:flex;flex-direction:column;gap:20px}
+  .sec-h i{width:52px;height:4px;border-radius:3px;background:var(--blue)}
+  .sec-h h2{font-weight:500;font-size:34px;color:var(--ink)}
+  .sec-h h2 small{font-size:24px}
+  .work{padding-top:104px;padding-bottom:78px}
+  .projects{display:flex;flex-direction:column;gap:45px;margin-top:56px}
+  .proj{display:flex;gap:56px;align-items:flex-start}
+  .cover{position:relative;flex:none;width:680px;height:410px;border-radius:14px;overflow:hidden}
+  .cover.tall{height:420px}
+  .cover img{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .proj:hover .cover img{transform:scale(1.025)}
+  .details{flex:1;min-width:0;padding-top:8px;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+  .details h3{font-weight:700;font-size:32px;color:var(--title)}
+  .details p{max-width:569px;font-size:20px;line-height:1.6;color:var(--body)}
+  .details p b{display:block;font-weight:700}
+  .tags{display:flex;gap:8px;padding-top:12px}
+  .tags span{padding:8px 14px;border-radius:4px;background:var(--tag-bg);font-weight:700;font-size:13px;letter-spacing:.52px;color:var(--body);white-space:nowrap}
+
+  /* more projects: hovering a card throws its thumbnails into the empty space on the right */
+  .more{position:relative;padding-bottom:160px}
+  .cards{display:flex;flex-direction:column;gap:20px;width:676px;margin-top:48px}
+  .pcard{display:flex;align-items:center;gap:20px;height:120px;padding:20px 24px 20px 20px;background:var(--card-bg);border:1px solid var(--card-line);border-radius:16px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .35s}
+  .pcard:hover,.pcard:focus-visible{transform:translateX(6px);border-color:color-mix(in srgb,var(--blue) 30%,var(--card-line));box-shadow:0 10px 24px -14px color-mix(in srgb,var(--blue) 35%,transparent)}
+  .thumb{flex:none;width:80px;height:80px;border-radius:10px;background:var(--ph);overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .pcard b{display:block;font-weight:700;font-size:18px;color:var(--body)}
+  .pcard span{display:block;margin-top:6px;font-size:16px;color:#69645e}
+  .gallery{position:absolute;left:836px;top:0;width:600px;height:0;pointer-events:none;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  /* the Figma exports include their white frame; the figure adds the rounded corners and shadow */
+  .gallery figure{position:absolute;opacity:0;visibility:hidden;border-radius:12px;overflow:hidden;
+    box-shadow:0 18px 30px -16px rgba(30,30,60,.35),0 2px 6px rgba(30,30,60,.08)}
+  .gallery figure img{display:block;width:auto;height:auto;max-width:none}
+  .g1{left:0;top:-150px;--r:-5deg}
+  .g2{left:250px;top:-90px;--r:4deg}
+  .g3{left:450px;top:-175px;--r:-2deg}
+
+  /* what I bring: pills wait out of sight until the cursor reaches the middle */
+  .bring{padding-bottom:160px}
+  .board{position:relative;width:1376px;height:780px}
+  .center{position:absolute;left:412px;top:180px;width:551px;height:376px}
+  .center .face{position:absolute;left:174px;top:43px;width:225px;height:158px;border-radius:75px;object-fit:cover}
+  .center h2{position:absolute;left:287px;top:201px;transform:translateX(-50%);font-family:Mansalva,cursive;font-weight:400;font-size:48px;letter-spacing:-.48px;color:var(--blue);white-space:nowrap}
+  .center p{position:absolute;left:288px;top:269px;transform:translateX(-50%);width:551px;text-align:center;font-size:20px;line-height:1.5;color:var(--muted)}
+  .pill{position:absolute;transform:translate(-50%,-50%) rotate(var(--r));padding:16px 32px;border-radius:100px;font-weight:700;font-size:20px;letter-spacing:-.2px;white-space:nowrap;
+    filter:drop-shadow(0 8px 10px rgba(56,56,235,.14));opacity:0}
+  .pill.b{background:var(--blue);color:#fff}
+  .pill.y{background:var(--yellow);color:var(--on-yellow)}
+  .board.shown .pill{opacity:1}
+
+  .foot{display:flex;justify-content:space-between;padding:72px 80px 80px 56px;background:var(--foot);border-top:1px solid var(--line);color:var(--ink)}
+  .foot > div:first-child{display:flex;flex-direction:column;gap:14px}
+  .foot > div:first-child p{width:400px;font-size:16px;line-height:1.55}
+  .mail{font-weight:700;font-size:26px;letter-spacing:-.26px}
+  .mail:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+  .credits{width:400px;display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:right;font-size:16px}
+  .credits b{font-weight:700}
+  .credits hr{width:100%;border:0;border-top:1px solid #dedcd4;margin-top:14px}
+  .socials{display:flex;gap:12px;padding-top:14px}
+  .socials a{width:68px;height:68px;border-radius:24px;display:grid;place-items:center;transition:background-color .2s}
+  .socials a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+  .socials .be{font-weight:800;font-size:16px;color:#2f5c9a}
+
+  /* ===== ABOUT ===== */
+  .a-hero{display:flex;align-items:flex-start;padding:18px 60px 110px 80px}
+  .a-intro{width:876px;flex:none;padding-top:47px;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  .a-eyebrow{font-family:Mansalva,cursive;font-size:32px;color:var(--blue)}
+  .statement{width:800px;font-weight:700;font-size:32px;line-height:49.4px;letter-spacing:-.57px;color:var(--muted)}
+  .statement b{color:var(--ink);font-weight:700}
+  .twocol{display:flex;gap:40px;padding-top:26px;width:100%}
+  .twocol > div{flex:1;min-width:0}
+  .twocol h2{font-weight:800;font-size:20px;color:var(--ink)}
+  .twocol p{padding-top:8px;font-weight:600;font-size:16px;line-height:29.7px;color:var(--muted)}
+  .twocol p b{color:var(--ink);font-weight:700}
+  .a-intro .btn{margin-top:26px}
+  .a-intro .btn img{transform:rotate(90deg)}
+  .a-photo{position:relative;width:520px;height:480px;flex:none;margin-top:20px}
+
+  /* flip card: color photo (EXPERIENCE) turns into the 0101 portrait (SYSTEMS) on click */
+  .fc{position:absolute;left:8px;top:0;width:360px;aspect-ratio:3/4;perspective:1600px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+    rotate:-1.5deg;transition:rotate .45s cubic-bezier(.16,1,.3,1),translate .45s cubic-bezier(.16,1,.3,1)}
+  .fc:hover{rotate:0deg;translate:0 -4px}
+  .fc:focus-visible{outline:2px solid var(--blue);outline-offset:6px;border-radius:22px}
+  .fc-inner{position:relative;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+  .fc.on .fc-inner{transform:rotateY(180deg)}
+  .fc:active .fc-inner{scale:.985}
+  .fc-face{position:absolute;inset:0;border-radius:20px;overflow:hidden;background:#0b0b0c;color:#fff;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    isolation:isolate;container-type:inline-size;box-shadow:0 22px 40px -24px rgba(42,42,79,.55),0 4px 10px rgba(42,42,79,.12)}
+  .fc-back{transform:rotateY(180deg)}
+  .fc-waves{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+  .fc-waves path{fill:none;stroke:rgba(255,255,255,.13);stroke-width:1}
+  /* the cut-out keeps a thin white outline (four 0.6px shadows) */
+  .fc-shot{position:absolute;right:-10%;bottom:0;height:86%;width:auto;z-index:1;
+    filter:saturate(1.08) contrast(1.04) drop-shadow(.6px 0 0 #fff) drop-shadow(-.6px 0 0 #fff) drop-shadow(0 .6px 0 #fff) drop-shadow(0 -.6px 0 #fff)}
+  .fc-copy{position:absolute;left:8%;top:7%;z-index:4;max-width:56%}
+  .fc-copy .t{font-weight:500;font-size:6.4cqw;letter-spacing:-.02em;line-height:1.3;margin-bottom:1.4cqw}
+  .fc-copy .l{font-weight:700;font-size:max(12px,3.4cqw);letter-spacing:-.01em;line-height:1.3;margin-bottom:1.4cqw}
+  .fc-copy .s{font-size:max(12px,3.2cqw);line-height:1.5;color:rgba(255,255,255,.78)}
+  .fc-back canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block}
+  .fc-ghost{position:absolute;left:8%;bottom:6%;z-index:0;font-weight:700;font-size:5cqw;line-height:1.3;color:rgba(255,255,255,.07);white-space:pre;pointer-events:none;user-select:none}
+
+  /* "click here" with a hand-drawn circle and an arrow into the card; both draw themselves in */
+  .fc-hint{position:absolute;inset:0;pointer-events:none;color:var(--blue)}
+  .fc-hint p{position:absolute;left:392px;top:300px;font-family:Mansalva,cursive;font-size:28px;line-height:1;white-space:nowrap;
+    opacity:0;transition:opacity .4s .1s}
+  .fc-hint svg{position:absolute;left:0;top:0;width:520px;height:480px;overflow:visible}
+  .fc-hint path{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+  .fc-hint.drawn p{opacity:1}
+  .fc-hint.drawn .ring{stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.65,0,.35,1) .25s}
+  .fc-hint.drawn .arrow{stroke-dashoffset:0;transition:stroke-dashoffset .55s cubic-bezier(.65,0,.35,1) .9s}
+  .fc-hint.drawn .head{stroke-dashoffset:0;transition:stroke-dashoffset .2s ease-out 1.4s}
+  .strip{height:346px;overflow:hidden;position:relative}
+  /* marquee: two identical sets, padding-right = gap so -50% lands exactly on the second set */
+  .strip-row{position:absolute;left:0;top:0;height:346px;display:flex;align-items:center;gap:15px;padding-right:15px;width:max-content;
+    animation:strip-marquee 55s linear infinite;will-change:transform}
+  .strip:hover .strip-row{animation-play-state:paused}
+  @keyframes strip-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .strip figure{width:220px;flex:none}
+  .strip figure img{width:220px;object-fit:cover;margin-bottom:3.6px;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  .strip figure:hover img{transform:translateY(-6px)}
+  .strip figcaption{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px;line-height:12px;text-transform:uppercase;color:#363636;white-space:nowrap}
+  .strip figcaption i{width:5px;height:5px;border-radius:50%;background:#363636}
+  .resume{display:flex;flex-direction:column;gap:96px;padding:120px 376px 140px 80px}
+  .r-title{padding-bottom:16px;border-bottom:1px solid #c9cdd6;font-weight:500;font-size:36px;letter-spacing:-.54px;color:var(--ink)}
+  .entry{display:flex;gap:24px;align-items:flex-start;padding:26px 0;border-bottom:1px solid #d9dce3}
+  .entry time{flex:none;width:200px;padding-top:5px;font-weight:600;font-size:16px;color:var(--date)}
+  .entry > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+  .entry h3{font-weight:600;font-size:20px;color:#1d2433}
+  .entry .org{font-weight:600;font-size:16px;color:var(--org)}
+  .entry ul{width:640px;padding-top:8px;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .entry li{display:flex;gap:10px;font-size:18px;line-height:1.6;color:#4a4f5c}
+  .entry li::before{content:"•";font-weight:700;color:var(--date)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;padding-top:24px}
+  .chips span{height:36px;padding:0 16px;border-radius:100px;border:1px solid #c9cdd6;background:#fbfaf7;display:inline-flex;align-items:center;font-weight:600;font-size:16px;color:var(--org)}
+  #about .foot{background:var(--about-foot);border-top:0}
+  #about .foot > div:first-child p{color:#5c5b56}
+  #about .socials a{width:48px;height:48px;border:2px solid #b4bdc8;border-radius:24px}
+
+  /* custom cursor: arrow + name tag. Only on mouse/trackpad devices. */
+  .cursor{position:fixed;left:0;top:0;z-index:100;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
+  .has-cursor .cursor.live{opacity:1}
+  .has-cursor, .has-cursor *{cursor:none !important}
+  .cursor svg{display:block;width:22px;height:24px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+  .cursor svg path{fill:var(--c,var(--cur-dark));transition:fill .25s}
+  .cursor .tag{position:absolute;left:16px;top:22px;padding:6px 12px;border-radius:100px;background:var(--c,var(--cur-dark));color:#fff;
+    font-weight:700;font-size:13px;line-height:1;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);transition:background-color .25s;transform-origin:0 0}
+  .cursor.me{--c:var(--blue)}
+  .cursor .tag.pop{animation:pop .32s cubic-bezier(.16,1,.3,1)}
+  @keyframes pop{from{transform:scale(.82);opacity:.4}to{transform:scale(1);opacity:1}}
+
+  /* preview-only controls */
+  .switch{position:fixed;right:20px;bottom:20px;z-index:10;background:#242424;border-radius:100px;padding:6px;display:flex;gap:4px;font-size:13px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .switch a{padding:8px 14px;border-radius:100px;color:#fff;cursor:pointer}
+  .switch a.on{background:var(--blue)}
+
+  @media (prefers-reduced-motion:reduce){
+    .polaroid,.card-pop,.girl,.photo.popped .card-pop,.photo.popped .girl{transition:opacity .2s}
+    .card-pop,.girl{opacity:0}
+    .photo.popped .card-pop,.photo.popped .girl{opacity:1}
+    .photo.popped .polaroid{transform:rotate(.66deg)}
+    .cursor .tag.pop{animation:none}
+    .pcard,.cover img,.strip figure img{transition:none}
+    .strip-row{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HOME (Figma "home (final)" 146:2) ================= -->
+<div class="page" id="work">
+  <div class="dot-fade"></div>
+  <header class="head">
+    <a class="brand" href="#work" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+    <nav><a class="on" href="#work">Work</a><a href="#about">About</a><a href="#playground">Playground</a><a href="/resume_siddhesha.pdf" download>Resume</a></nav>
+  </header>
+
+  <section class="hero">
+    <div class="intro">
+      <h1><span class="hello">Hello, I’m <span>Siddhesha</span></span>
+        <span class="sr-only">I used to Debug Code, now I Debug Experiences.</span>
+        <span class="facts" aria-hidden="true">
+          <span class="fact on">I used to Debug Code<br>Now I Debug Experiences</span>
+          <span class="fact">Connecting dots between how things work and how people experience them</span>
+          <span class="fact">I look for the human side of every system</span>
+          <span class="fact">A curious observer of people, places, and plot twists</span>
+          <span class="fact">Now I focus less on if-else and more on “How might we”</span>
+        </span></h1>
+      <a class="btn" href="#about">About/CV <img src="img/v2/arrow.svg" width="16" height="16" alt=""></a>
+    </div>
+
+    <div class="photo" id="photo">
+      <a class="card-pop" href="#about" data-cursor="me" tabindex="-1" aria-label="About me">
+        <svg viewBox="0 0 266.527 370.898" aria-hidden="true"><path d="M9.02553 8.38058C9.03768 6.18851 10.8119 4.41458 13.004 4.4028L255.405 3.10006C257.632 3.08809 259.439 4.89599 259.427 7.12217L257.501 354.518C257.489 356.71 255.715 358.484 253.523 358.495L11.1215 359.798C8.89532 359.81 7.08772 358.002 7.10006 355.776L9.02553 8.38058Z"/></svg>
+        <span class="about-tag"><img src="img/final/about-arrow.svg" alt=""><span>about</span></span>
+      </a>
+      <div class="girl" data-cursor="me" aria-hidden="true"><img src="img/v2/peeking-girl.png" alt=""></div>
+      <figure class="polaroid" data-cursor="me" tabindex="0" aria-label="Photo of Siddhesha">
+        <div class="shot"><img src="img/v2/portrait.jpg" alt="Siddhesha smiling"></div>
+        <figcaption>sidd.jpeg</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="clients">
+    <p>PREVIOUSLY WORKED WITH</p>
+    <div class="logo-viewport">
+      <!-- one set of logos repeated so the loop always fills the strip; the second half is a copy for the seamless wrap -->
+      <ul class="logo-track">
+      <li style="width:147px;height:40px"><img src="img/final/siemens.png" alt="Siemens Digital" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="Cognizant" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li style="width:100px;height:32px"><img src="img/final/obladi.png" alt="Obladi Creatives" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li aria-hidden="true" style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li aria-hidden="true" style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li aria-hidden="true" style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li aria-hidden="true" style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li aria-hidden="true" style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li aria-hidden="true" style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li aria-hidden="true" style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li aria-hidden="true" style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li aria-hidden="true" style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      <li aria-hidden="true" style="width:147px;height:40px"><img src="img/final/siemens.png" alt="" style="width:116.73%;height:283.69%;left:-8.68%;top:-92.34%"></li>
+      <li aria-hidden="true" style="width:146px;height:44px"><img src="img/final/cognizant.png" alt="" style="width:117.83%;height:261.78%;left:-9.19%;top:-80.89%"></li>
+      <li aria-hidden="true" style="width:100px;height:32px"><img src="img/final/obladi.png" alt="" style="inset:0;width:100%;height:100%;object-fit:cover"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec work">
+    <div class="sec-h"><i></i><h2>Selected work</h2></div>
+    <div class="projects">
+      <a class="proj" href="signease.html" data-cursor="project">
+        <div class="cover"><img src="img/covers/signease.png" alt="Signease app screens"></div>
+        <div class="details"><h3>Signease</h3>
+          <p><b>Bridging communication through Indian Sign Language</b>An accessibility-focused ecosystem designed to bring Deaf and hearing people closer through Indian Sign Language.</p>
+          <div class="tags"><span>UI UX</span><span>ACCESSIBILITY</span></div></div>
+      </a>
+      <a class="proj" href="trackit.html" data-cursor="project">
+        <div class="cover tall"><img src="img/covers/trackit.png" alt="TrackIt app screens"></div>
+        <div class="details"><h3>TrackIt</h3>
+          <p><b>Making everyday money management simpler</b>A mobile app concept that brings recurring household bills, budgets and expenses into one organised experience.</p>
+          <div class="tags"><span>UI UX</span><span>FINTECH SYSTEM</span></div></div>
+      </a>
+      <a class="proj" href="https://www.behance.net/gallery/255111227/Enhancing-SIAMA-toolkit" target="_blank" rel="noopener" data-cursor="project">
+        <div class="cover"><img src="img/covers/siama.png" alt="SIAMA dashboard"></div>
+        <div class="details"><h3>SIAMA</h3>
+          <p><b>Making craft education more contextual and connected</b>Toolkit that helps craft educators understand the people, practices and markets surrounding Indian crafts. I transformed an existing prototype into a more structured, persistent and insight-driven experience.</p>
+          <div class="tags"><span>SYSTEM DESIGN</span><span>INFO VISUALIZATION</span></div></div>
+      </a>
+      <a class="proj" href="ai-trade.html" data-cursor="project">
+        <div class="cover"><img src="img/covers/ai-trade.png" alt="AI Trade Dashboard screens"></div>
+        <div class="details"><h3>AI Trade Dashboard</h3>
+          <p><b>Making AI-generated trade ideas easier to evaluate</b>A desktop dashboard concept designed to help investment teams assess AI-generated trade recommendations with greater clarity.</p>
+          <div class="tags"><span>AI RECOMMENDATION</span><span>DASHBOARD DESIGN</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec more" id="more">
+    <div class="sec-h"><i></i><h2>Playground <small>(more projects)</small></h2></div>
+    <div class="cards">
+      <a class="pcard" href="#" data-cursor="project" data-imgs="img/play/wari-1.png img/play/wari-2.png"><div class="thumb"><img src="img/play/wari-thumb.png" width="80" height="80" alt=""></div><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div></a>
+      <a class="pcard" href="#" data-cursor="project" data-imgs="img/play/tithi-1.png img/play/tithi-2.png img/play/tithi-3.png"><div class="thumb"><img src="img/play/tithi-thumb.png" width="80" height="80" alt=""></div><div><b>Tithi</b><span>An AR-enabled Marathi panchang desk calendar</span></div></a>
+      <a class="pcard" href="#" data-cursor="project" data-imgs="img/play/ashta-1.png img/play/ashta-2.png img/play/ashta-3.png"><div class="thumb"><img src="img/play/ashta-thumb.png" width="80" height="80" alt=""></div><div><b>AshtaChaal</b><span>Chowka Bara revived with Ganjifa strategy cards</span></div></a>
+    </div>
+    <!-- hover images from Figma "More Projects hover images" (229:310); each card fills these slots with its own set -->
+    <div class="gallery" aria-hidden="true">
+      <figure class="g1"><img src="img/play/wari-1.png" alt=""></figure>
+      <figure class="g2"><img src="img/play/wari-2.png" alt=""></figure>
+      <figure class="g3"><img src="img/play/tithi-3.png" alt=""></figure>
+    </div>
+  </section>
+
+  <section class="sec bring">
+    <div class="board" id="board">
+      <div class="center"><img class="face" src="img/v2/logo.png" alt=""><h2>What I bring to the table</h2><p>I don't just bring a seat to the table. I bring ideas that change the conversation.</p></div>
+      <span class="pill b" style="left:661.1px;top:85.8px;--r:-8deg">Product Design</span>
+      <span class="pill y" style="left:1008.7px;top:152.6px;--r:-8deg">Accessibility</span>
+      <span class="pill y" style="left:324.7px;top:187.7px;--r:7deg">Design Systems</span>
+      <span class="pill b" style="left:201.8px;top:353.5px;--r:-8deg">User Research</span>
+      <span class="pill b" style="left:1133.6px;top:343.5px;--r:5deg">AI Explorations</span>
+      <span class="pill y" style="left:1164.5px;top:539.7px;--r:20deg">Data Visualization</span>
+      <span class="pill y" style="left:244.4px;top:574.1px;--r:3deg">Usability Testing</span>
+      <span class="pill b" style="left:560.3px;top:701.2px;--r:-14deg">Experience Design</span>
+      <span class="pill b" style="left:930.1px;top:670.7px;--r:-14deg">Wireframing &amp; Prototyping</span>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+    <div class="credits">
+      <p>Curated by <b>Siddhesha Pawade</b></p>
+      <p>Powered by coffee, claude and curiosity.</p>
+      <hr>
+      <div class="socials">
+        <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+        <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+        <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================= ABOUT (Figma "about (final)" 146:177) ================= -->
+<div class="page" id="about">
+  <div class="dot-fade"></div>
+  <header class="head">
+    <a class="brand" href="#work" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+    <nav><a href="#work">Work</a><a class="on" href="#about">About</a><a href="#playground">Playground</a><a href="/resume_siddhesha.pdf" download>Resume</a></nav>
+  </header>
+  <section class="a-hero">
+    <div class="a-intro">
+      <p class="a-eyebrow">So, Who Am I Anyway?</p>
+      <h1 class="statement">I'm a <b>product designer</b> who makes sense of complex workflows and the systems behind them, and a teammate who turns design debates into opportunities to learn.</h1>
+      <div class="twocol">
+        <div><h2>The Chapter I'm In</h2><p>Currently pursuing my <b>M.Des in Interaction Design at IIT Guwahati,</b> learning to look beyond screens and understand the people, systems, and stories behind them. I'm drawn to messy problems, curious questions, and the process of turning observations into meaningful experiences.</p></div>
+        <div><h2>When I'm Not Designing</h2><p style="max-width:303px">Probably cooking something, planning a trip, watching another film, painting, or dancing when the mood strikes and somewhere in between I might decide to manage a production for film.</p></div>
+      </div>
+      <a class="btn" href="/resume_siddhesha.pdf" download>Resume <img src="img/about/arrow-down.svg" width="16" height="16" alt=""></a>
+    </div>
+    <div class="a-photo">
+      <div class="fc" id="flipcard" role="button" tabindex="0" aria-pressed="false" data-cursor="flip"
+        aria-label="Portrait card. Press to switch between the photo and the code version">
+        <div class="fc-inner">
+          <!-- front: color photo -->
+          <div class="fc-face">
+            <svg class="fc-waves" viewBox="0 0 440 587" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <img class="fc-shot" src="img/about/portrait-fort-crop.png" alt="Siddhesha smiling">
+            <div class="fc-copy"><p class="t">EXPERIENCE</p><p class="l">Designing experiences</p><p class="s">for humans within systems.</p></div>
+          </div>
+          <!-- back: the same photo drawn in characters -->
+          <div class="fc-face fc-back" aria-hidden="true">
+            <p class="fc-ghost">01001000
+01110101
+01101101
+01100001
+01101110
+system.think()
+analyze()</p>
+            <canvas></canvas>
+            <div class="fc-copy"><p class="t">SYSTEMS</p><p class="l">Trained to think in</p><p class="s">structure, logic, and complexity.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-hint" aria-hidden="true">
+        <svg viewBox="0 0 520 480">
+          <path class="ring" pathLength="1" d="M496 304 C478 288 418 286 392 296 C368 306 370 336 398 344 C430 352 496 348 506 326 C514 308 486 290 452 290"/>
+          <path class="arrow" pathLength="1" d="M398 292 C406 258 398 222 378 208"/>
+          <path class="head" pathLength="1" d="M386 222 L376 207 L393 203"/>
+        </svg>
+        <p>click here</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="Visual work">
+    <div class="strip-row">
+      <!-- photos and captions from Figma "Image scroll" 245:2253 (about, periwinkle & apricot); second set below is a duplicate for the seamless loop -->
+      <figure style="width:227px"><img src="img/about/strip2/big-canvas.jpg" style="height:330px;width:227px" alt="Working on big canvas"><figcaption>Working on big canvas</figcaption></figure>
+      <figure><img src="img/about/strip2/assam-research.jpg" style="height:166px;object-position:bottom" alt="On research in hills of Assam"><figcaption>On research in hills of Assam</figcaption></figure>
+      <figure><img src="img/about/strip2/just-for-fun.jpg" style="height:311px" alt="Just for fun"><figcaption>Just for fun</figcaption></figure>
+      <figure><img src="img/about/strip2/castles.jpg" style="height:232px" alt="Building castles, literally"><figcaption>Building castles, literally</figcaption></figure>
+      <figure><img src="img/about/strip2/film-production.jpg" style="height:292px" alt="Exploring film production"><figcaption>Exploring film production</figcaption></figure>
+      <figure><img src="img/about/strip2/sense-of-mess.jpg" style="height:192px" alt="Making sense of the mess"><figcaption>Making sense of the mess</figcaption></figure>
+      <figure><img src="img/about/strip2/product-testing.jpg" style="height:280px" alt="Contextual product testing"><figcaption>Contextual product testing</figcaption></figure>
+      <figure><img src="img/about/strip2/handmade.jpg" style="height:221px;object-position:bottom" alt="Love handmade"><figcaption>Love handmade</figcaption></figure>
+      <figure><img src="img/about/strip2/last.jpg" style="height:275px" alt="Photo"><figcaption></figcaption></figure>
+      <figure aria-hidden="true" style="width:227px"><img src="img/about/strip2/big-canvas.jpg" style="height:330px;width:227px" alt=""><figcaption>Working on big canvas</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/assam-research.jpg" style="height:166px;object-position:bottom" alt=""><figcaption>On research in hills of Assam</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/just-for-fun.jpg" style="height:311px" alt=""><figcaption>Just for fun</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/castles.jpg" style="height:232px" alt=""><figcaption>Building castles, literally</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/film-production.jpg" style="height:292px" alt=""><figcaption>Exploring film production</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/sense-of-mess.jpg" style="height:192px" alt=""><figcaption>Making sense of the mess</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/product-testing.jpg" style="height:280px" alt=""><figcaption>Contextual product testing</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/handmade.jpg" style="height:221px;object-position:bottom" alt=""><figcaption>Love handmade</figcaption></figure>
+      <figure aria-hidden="true"><img src="img/about/strip2/last.jpg" style="height:275px" alt=""><figcaption></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="resume" id="resume">
+    <div>
+      <h2 class="r-title">Experience</h2>
+      <div class="entry"><time>Jul 2026 - Present</time><div><h3>Design Head</h3><p class="org">Tarangini Media Club, IIT Guwahati</p>
+        <ul><li>Lead visual design for the institute's student media club under the Student Welfare Board.</li></ul></div></div>
+      <div class="entry"><time>Jul 2024 - Oct 2024</time><div><h3>Design Intern</h3><p class="org">Obladi Creatives · Remote</p>
+        <ul><li>Conceptualised and executed visual designs across social media, digital campaigns and marketing touchpoints.</li><li>Designed branding assets and marketing collaterals for 8+ client brands, contributing to packaging across 10+ product lines.</li></ul></div></div>
+      <div class="entry"><time>Jun 2023 - Dec 2024</time><div><h3>Programmer Analyst</h3><p class="org">Cognizant Technology Solutions · Pune</p>
+        <ul><li>Maintained and monitored client-side applications, diagnosing and resolving code-level issues to improve performance, reliability and stability.</li></ul></div></div>
+      <div class="entry"><time>Jun 2022 - Mar 2023</time><div><h3>Software Developer</h3><p class="org">Connecticus Software (Siemens Digital R&amp;D) · Pune</p>
+        <ul><li>Contributed to UX enhancements and feature development for Siemens Polarion ALM in an Agile team, improving workflow usability and interface consistency.</li><li>Resolved 15+ workflow defects and functional issues, streamlining user workflows.</li></ul></div></div>
+    </div>
+    <div>
+      <h2 class="r-title">Education</h2>
+      <div class="entry"><time>2025 - Present</time><div><h3>M.Des, Interaction Design</h3><p class="org">Indian Institute of Technology, Guwahati · CGPA 8.4</p></div></div>
+      <div class="entry"><time>2018 - 2022</time><div><h3>B.E.</h3><p class="org">G H Raisoni Institute of Engineering and Technology, Pune · CGPA 8.28</p></div></div>
+    </div>
+    <div>
+      <h2 class="r-title">What I do</h2>
+      <div class="chips"><span>User Research</span><span>Information Architecture</span><span>User Flows</span><span>Wireframing</span><span>Prototyping</span><span>Usability Testing</span><span>UI Design</span><span>Accessibility</span><span>Design Systems</span><span>Visual Storytelling</span><span>Data Visualization</span><span>Figma</span><span>Framer</span><span>Python</span><span>HTML/CSS</span></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+    <div class="credits">
+      <p>Curated by <b>Siddhesha Pawade</b></p>
+      <p>Powered by coffee, Claude and curiosity.</p>
+      <hr>
+      <div class="socials">
+        <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="22" height="22" alt=""></a>
+        <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+        <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="22" height="22" alt=""></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+
+<div class="switch"><a data-p="work">Work page</a><a data-p="about">About page</a></div>
+
+<script>
+  var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // pages: #work / #about
+  var onShow=[];
+  function show(){
+    var hash=(location.hash||'#work').slice(1), id=hash==='about'?'about':'work';
+    document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
+    document.querySelectorAll('.switch a').forEach(function(a){a.classList.toggle('on',a.dataset.p===id)});
+    window.scrollTo(0,0); onShow.forEach(function(f){f(id)});
+    if(hash==='playground'){ var m=document.getElementById('more'); if(m) m.scrollIntoView({block:'start'}); }
+  }
+  document.querySelectorAll('.switch a').forEach(function(a){a.onclick=function(){location.hash=a.dataset.p}});
+  window.addEventListener('hashchange',show);
+  document.querySelectorAll('[data-scroll]').forEach(function(b){b.addEventListener('click',function(e){var t=document.getElementById(b.dataset.scroll); if(t&&location.hash==='#about'){e.preventDefault(); t.scrollIntoView({behavior:still?'auto':'smooth',block:'start'});}})});
+
+  // custom cursor: "You" by default, "It's me" on the photo, "View project" on projects
+  var cursorMove=[];
+  (function(){
+    if(!fine) return;
+    var el=document.querySelector('.cursor'), tag=el.querySelector('.tag');
+    var labels={me:"It's me",project:'View project',flip:'Click',back:'Click'};
+    var x=-100,y=-100,cx=x,cy=y,state='',raf=0;
+    document.documentElement.classList.add('has-cursor');
+    function set(next){
+      if(next===state) return; state=next;
+      el.classList.toggle('me',next==='me'||next==='flip'||next==='back');
+      tag.textContent=labels[next]||'You';
+      tag.classList.remove('pop'); void tag.offsetWidth; tag.classList.add('pop');
+    }
+    function tick(){
+      var k=still?1:.35; cx+=(x-cx)*k; cy+=(y-cy)*k;
+      el.style.transform='translate('+(cx-2)+'px,'+(cy-1)+'px)';
+      raf=(Math.abs(x-cx)>.1||Math.abs(y-cy)>.1)?requestAnimationFrame(tick):0;
+    }
+    document.addEventListener('pointermove',function(e){
+      x=e.clientX; y=e.clientY;
+      if(!el.classList.contains('live')){cx=x;cy=y;el.classList.add('live')}
+      var t=e.target.closest&&e.target.closest('[data-cursor]');
+      set(t?t.dataset.cursor:'');
+      if(!raf) raf=requestAnimationFrame(tick);
+      cursorMove.forEach(function(f){f(e)});
+    });
+    document.documentElement.addEventListener('pointerleave',function(){el.classList.remove('live')});
+  })();
+
+  // hero lines: one every 3s. Out = fade + rise 10px (550ms), in = fade + settle 5px (500ms)
+  (function(){
+    var lines=[].slice.call(document.querySelectorAll('.facts .fact')), i=0, ease='cubic-bezier(.16,1,.3,1)';
+    if(lines.length<2||still) return;
+    setInterval(function(){
+      if(document.hidden) return;
+      var cur=lines[i], next=lines[i=(i+1)%lines.length];
+      var out=cur.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-10px)'}],{duration:550,easing:ease,fill:'forwards'});
+      // swap on a timer, not onfinish, so the cycle never stalls if the tab stops painting
+      setTimeout(function(){
+        cur.classList.remove('on'); out.cancel(); next.classList.add('on');
+        next.animate([{opacity:0,transform:'translateY(-5px)'},{opacity:1,transform:'none'}],{duration:500,easing:ease});
+      },550);
+    },4500);
+  })();
+
+  // photo pop: "It's me" shows first, then the girl and yellow card pop out with a click
+  (function(){
+    var photo=document.getElementById('photo'), timer=0, open=false, ctx=null, DELAY=180;
+    var tagLink=photo.querySelector('.card-pop');
+    // browsers only allow audio after a click or key press on the page
+    function unlock(){
+      try{ ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); if(ctx.state==='suspended') ctx.resume(); }catch(e){}
+    }
+    ['pointerdown','keydown'].forEach(function(t){document.addEventListener(t,unlock,{passive:true})});
+    function click(){
+      if(!ctx||ctx.state!=='running') return;
+      var t=ctx.currentTime, o=ctx.createOscillator(), g=ctx.createGain();
+      o.type='triangle'; o.frequency.setValueAtTime(1500,t); o.frequency.exponentialRampToValueAtTime(420,t+.05);
+      g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.32,t+.004); g.gain.exponentialRampToValueAtTime(.0001,t+.09);
+      o.connect(g).connect(ctx.destination); o.start(t); o.stop(t+.1);
+      var n=ctx.createBuffer(1,ctx.sampleRate*.012,ctx.sampleRate), d=n.getChannelData(0);
+      for(var i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*(1-i/d.length);
+      var s=ctx.createBufferSource(), ng=ctx.createGain(); s.buffer=n; ng.gain.value=.12;
+      s.connect(ng).connect(ctx.destination); s.start(t);
+    }
+    function showPop(){
+      if(open||timer) return;
+      timer=setTimeout(function(){ timer=0; open=true; photo.classList.add('popped'); tagLink.tabIndex=0; click(); },DELAY);
+    }
+    function hide(){
+      clearTimeout(timer); timer=0;
+      if(open){ open=false; photo.classList.remove('popped'); tagLink.tabIndex=-1; }
+    }
+    // hovering the polaroid starts it; once out, the girl and card keep it open
+    document.addEventListener('pointerover',function(e){
+      var t=e.target.closest&&e.target.closest('[data-cursor="me"]');
+      if(t&&photo.contains(t)){ if(t.classList.contains('polaroid')||open) showPop(); }
+      else hide();
+    });
+    document.documentElement.addEventListener('pointerleave',hide);
+    var pol=photo.querySelector('.polaroid');
+    pol.addEventListener('focus',showPop);
+    photo.addEventListener('focusout',function(e){ if(!photo.contains(e.relatedTarget)) hide(); });
+    pol.addEventListener('pointerup',function(e){ if(e.pointerType!=='mouse'){ open?hide():showPop(); } });
+  })();
+
+  // more projects: each card's own photos spring out beside it on hover
+  [].forEach.call(document.querySelectorAll('.pcard[data-imgs]'),function(c){ c.dataset.imgs.split(' ').forEach(function(s){ new Image().src=s; }); });
+  (function(){
+    var sec=document.getElementById('more'), gal=sec.querySelector('.gallery'), figs=[].slice.call(gal.children);
+    var cards=[].slice.call(sec.querySelectorAll('.pcard')), active=null, hideT=0;
+    var IN='cubic-bezier(.34,1.56,.64,1)';
+    function anchor(card){
+      var y=card.offsetTop+card.offsetHeight/2;
+      gal.style.transform='translateY('+y+'px)';
+    }
+    function enter(card){
+      clearTimeout(hideT);
+      var srcs=(card.dataset.imgs||'').split(' ').filter(Boolean), n=srcs.length, first=!active;
+      if(first){ gal.style.transition='none'; anchor(card); void gal.offsetWidth; gal.style.transition=''; } else anchor(card);
+      if(card===active) return; active=card;
+      figs.forEach(function(f,i){
+        f.getAnimations().forEach(function(a){a.cancel()});
+        if(i>=n){ f.style.visibility='hidden'; return; }
+        f.firstElementChild.src=srcs[i];
+        f.style.visibility='visible';
+        var r=getComputedStyle(f).getPropertyValue('--r').trim();
+        f.animate(still?[{opacity:0},{opacity:1}]:[
+          {opacity:0,transform:'translate(-90px,30px) rotate(0deg) scale(.6)'},
+          {opacity:1,transform:'translate(0,0) rotate('+r+') scale(1)'}
+        ],{duration:still?150:560,delay:still?0:i*70,easing:IN,fill:'both'});
+      });
+    }
+    function leave(){
+      hideT=setTimeout(function(){
+        active=null;
+        figs.forEach(function(f){
+          if(f.style.visibility!=='visible') return;
+          f.getAnimations().forEach(function(a){a.cancel()});
+          var r=getComputedStyle(f).getPropertyValue('--r').trim();
+          f.animate([{opacity:1,transform:'rotate('+r+') scale(1)'},{opacity:0,transform:'rotate('+r+') scale(.9) translateY(10px)'}],{duration:180,easing:'ease-in',fill:'both'});
+        });
+      },60);
+    }
+    cards.forEach(function(c){
+      c.addEventListener('pointerenter',function(){enter(c)});
+      c.addEventListener('pointerleave',leave);
+      c.addEventListener('focus',function(){enter(c)});
+      c.addEventListener('blur',leave);
+    });
+  })();
+
+  // what I bring: pills curve out of the middle once the cursor nears it, then stay
+  (function(){
+    var board=document.getElementById('board'), center=board.querySelector('.center');
+    var pills=[].slice.call(board.querySelectorAll('.pill')), shown=false, NEAR=280;
+    var cx=687.5, cy=368; // middle of the logo + heading block, in board coordinates
+    function reveal(){
+      if(shown) return; shown=true;
+      pills.forEach(function(p,i){
+        var x=parseFloat(p.style.left), y=parseFloat(p.style.top), r=p.style.getPropertyValue('--r');
+        var dx=cx-x, dy=cy-y, a=-70*Math.PI/180, c=Math.cos(a), s=Math.sin(a);
+        // halfway point swings 70 degrees around the middle, so each pill travels on an arc
+        var mx=(dx*c-dy*s)*.55, my=(dx*s+dy*c)*.55;
+        var base='translate(-50%,-50%) ';
+        p.animate(still?[{opacity:0},{opacity:1}]:[
+          {opacity:0,transform:base+'translate('+dx+'px,'+dy+'px) rotate(calc('+r+' - 120deg)) scale(.3)'},
+          {opacity:1,transform:base+'translate('+mx+'px,'+my+'px) rotate(calc('+r+' - 40deg)) scale(.85)',offset:.55},
+          {opacity:1,transform:base+'rotate('+r+')'}
+        ],{duration:still?200:900,delay:still?0:i*55,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+      });
+      board.classList.add('shown');
+    }
+    function reset(){
+      if(!shown) return; shown=false; board.classList.remove('shown');
+      pills.forEach(function(p){p.getAnimations().forEach(function(a){a.cancel()})});
+    }
+    if(fine){
+      cursorMove.push(function(e){
+        if(shown||!board.offsetParent) return;
+        var b=center.getBoundingClientRect();
+        var ddx=Math.max(b.left-e.clientX,0,e.clientX-b.right), ddy=Math.max(b.top-e.clientY,0,e.clientY-b.bottom);
+        if(ddx*ddx+ddy*ddy<NEAR*NEAR) reveal();
+      });
+    }
+    // reset once the section drops below the viewport (visitor scrolled back up), or on a page change
+    new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting&&en.boundingClientRect.top>0) reset();
+        // scrolling past counts too: once most of the board is on screen, the pills come out even if the cursor never got near
+        else if(en.intersectionRatio>=.6) reveal();
+      });
+    },{threshold:[0,.6]}).observe(board);
+    onShow.push(reset);
+  })();
+
+  // about flip card: click turns the color photo into the 0101 portrait and back
+  (function(){
+    var card=document.getElementById('flipcard'); if(!card) return;
+    var back=card.querySelector('.fc-back'), cv=back.querySelector('canvas'), hint=card.parentNode.querySelector('.fc-hint');
+    // grayscale, contrast-boosted head-and-shoulders crop that matches the front photo's framing
+    var SRC='img/about/portrait-fort-ascii.png', CW=700, CH=950, PLACE={h:.86,right:-.1};
+    var RAMP=' .:-=+*#', BITS='01', L=RAMP.length-1;
+    var img=new Image(), grid=null, cols=0, rows=0, cw=0, ch=0, ox=0, oy=0, dpr=1, fontPx=5, reveal=1, revealStart=0, pointer=null, raf=0;
+
+    // wave lines on the front: stacked sine curves that drift in phase
+    (function(){
+      var d='';
+      for(var i=0;i<22;i++){
+        var base=-40+i*30, amp=16+10*Math.sin(i*.45), ph=i*.32, p='';
+        for(var x=-10;x<=450;x+=6) p+=(x===-10?'M':'L')+x+' '+(base+amp*Math.sin(x/70+ph)+.12*x).toFixed(1)+' ';
+        d+='<path d="'+p+'"/>';
+      }
+      card.querySelector('.fc-waves').innerHTML=d;
+    })();
+
+    function build(){
+      var W=back.offsetWidth, H=back.offsetHeight; if(!W||!img.complete) return;
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+      var h=H*PLACE.h, w=h*CW/CH, x=W-w-W*PLACE.right, y=H-h;
+      fontPx=Math.max(4,Math.min(7,h/125));
+      var ctx=cv.getContext('2d'); ctx.font='500 '+fontPx+'px "JetBrains Mono", ui-monospace, monospace';
+      cw=ctx.measureText('M').width; ch=fontPx*1.02;
+      cols=Math.floor(w/cw); rows=Math.floor(h/ch); ox=x+(w-cols*cw)/2; oy=y+(h-rows*ch);
+      var s=document.createElement('canvas'); s.width=cols; s.height=rows;
+      var sx=s.getContext('2d',{willReadFrequently:true}); sx.imageSmoothingQuality='high';
+      sx.drawImage(img,0,0,cols,rows);
+      var px=sx.getImageData(0,0,cols,rows).data, lum=new Float32Array(cols*rows), fg=[];
+      for(var i=0;i<lum.length;i++){ lum[i]=(.2126*px[i*4]+.7152*px[i*4+1]+.0722*px[i*4+2])/255; if(lum[i]>.04) fg.push(lum[i]); }
+      fg.sort(function(a,b){return a-b});
+      var lo=fg[Math.floor(fg.length*.03)]||0, hi=fg[Math.floor(fg.length*.985)]||1;
+      function at(xx,yy){ return lum[Math.min(rows-1,Math.max(0,yy))*cols+Math.min(cols-1,Math.max(0,xx))]; }
+      grid=new Float32Array(cols*rows);
+      for(var yy=0;yy<rows;yy++) for(var xx=0;xx<cols;xx++){
+        var k=yy*cols+xx, v=lum[k]; if(v<.035){ grid[k]=0; continue; }
+        var n=(v-lo)/(hi-lo); n=Math.pow(Math.min(1,Math.max(0,n)),.95)+Math.hypot(at(xx+1,yy)-at(xx-1,yy),at(xx,yy+1)-at(xx,yy-1))*.15;
+        grid[k]=Math.min(1,Math.max(.08,n));
+      }
+      draw();
+    }
+    function draw(){
+      if(!grid) return;
+      var ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,cv.width,cv.height);
+      ctx.font='500 '+fontPx+'px "JetBrains Mono", ui-monospace, monospace'; ctx.textBaseline='top'; ctx.fillStyle='#ecebe6';
+      var t=performance.now(), R=56;
+      for(var lvl=1;lvl<=L;lvl++){
+        ctx.globalAlpha=.12+.88*Math.pow(lvl/L,1.2);
+        for(var y=0;y<rows;y++){
+          var rowP=reveal*1.35-(y/rows)*.35; if(rowP<=0) continue; // rows settle top to bottom
+          for(var x=0;x<cols;x++){
+            var v=grid[y*cols+x]; if(!v) continue;
+            var k=Math.round(v*L), c=RAMP[k], X=ox+x*cw, Y=oy+y*ch;
+            if(rowP<1&&Math.random()>rowP) c=BITS[(Math.random()*2)|0];
+            if(pointer&&Math.hypot(X-pointer.x,Y-pointer.y)<R){ c=BITS[(x*7+y*13+((t/90)|0))&1]; k=Math.min(L,k+3); }
+            if(k!==lvl) continue;
+            ctx.fillText(c,X,Y);
+          }
+        }
+      }
+      ctx.globalAlpha=1;
+    }
+    function loop(now){
+      raf=0; if(reveal<1) reveal=Math.max(0,Math.min(1,(now-revealStart)/1300));
+      draw(); if(reveal<1||pointer) raf=requestAnimationFrame(loop);
+    }
+    function kick(){ if(!raf) raf=requestAnimationFrame(loop); }
+    function toggle(){
+      var on=card.classList.toggle('on');
+      card.setAttribute('aria-pressed',on); card.dataset.cursor=on?'back':'flip';
+      if(on){ if(!grid) build(); if(still){ reveal=1; draw(); } else { reveal=0; revealStart=performance.now()+220; draw(); kick(); } }
+    }
+    card.addEventListener('click',function(e){
+      toggle();
+      // refresh the cursor tag right away ("Flip me" -> "Flip back") without waiting for the mouse to move
+      if(e.clientX||e.clientY) card.dispatchEvent(new PointerEvent('pointermove',{bubbles:true,clientX:e.clientX,clientY:e.clientY}));
+    });
+    card.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+    if(!still){
+      back.addEventListener('pointermove',function(e){
+        if(e.pointerType!=='mouse'||!card.classList.contains('on')) return;
+        var r=back.getBoundingClientRect(); pointer={x:e.clientX-r.left,y:e.clientY-r.top}; kick();
+      });
+      back.addEventListener('pointerleave',function(){ pointer=null; kick(); });
+    }
+    // draw the circle and arrow once the About page is on screen; reset the card when leaving it
+    onShow.push(function(id){
+      if(id!=='about'){ card.classList.remove('on'); card.setAttribute('aria-pressed','false'); card.dataset.cursor='flip'; hint.classList.remove('drawn'); return; }
+      requestAnimationFrame(function(){ build(); requestAnimationFrame(function(){ hint.classList.add('drawn'); }); });
+    });
+    var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(build,150); });
+    img.onload=function(){ (document.fonts?document.fonts.load('500 8px "JetBrains Mono"'):Promise.resolve()).catch(function(){}).then(build); };
+    img.src=SRC;
+  })();
+
+  show();
+</script>
+</body>
+</html>

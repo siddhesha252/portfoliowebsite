@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="280.814" height="280.814" viewBox="0 0 280.814 280.814" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Glow" filter="url(#filter0_f_0_40)">
+<circle cx="140.407" cy="140.407" r="93.6047" fill="#D9A27A" fill-opacity="0.35"/>
+</g>
+<defs>
+<filter id="filter0_f_0_40" x="0" y="0" width="280.814" height="280.814" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="23.4012" result="effect1_foregroundBlur_0_40"/>
+</filter>
+</defs>
+</svg>

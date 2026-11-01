@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wari leaflet unfold</title>
+<style>
+  :root{--bg:#f6f5f1;--ink:#242424;--muted:#62625e}
+  html,body{margin:0;height:100%;background:var(--bg);font-family:Manrope,system-ui,sans-serif;color:var(--ink)}
+  body{display:grid;place-items:center;overflow:hidden}
+  .stage{position:relative;width:min(1100px,96vw);aspect-ratio:16/9;perspective:2200px;perspective-origin:50% 38%}
+  /* ambient: soft floor shadow that widens with the spread */
+  .floor{position:absolute;left:50%;top:83%;width:var(--shw,22%);height:5%;transform:translateX(-50%);
+    background:radial-gradient(closest-side,rgba(60,45,20,.28),rgba(60,45,20,0));filter:blur(6px)}
+  .rig{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
+  .panel{position:absolute;left:0;top:0;transform-style:preserve-3d;transform-origin:0 50%}
+  .panel > .child{left:100%}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:2px;overflow:hidden}
+  .face canvas{width:100%;height:100%;display:block}
+  .face.back{transform:rotateY(180deg)}
+  /* secondary: fold shading darkens as a panel turns away from the light */
+  .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,0) 35%);opacity:var(--s,0)}
+  .caption{position:absolute;left:0;right:0;bottom:3%;text-align:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .debug{display:none}
+  body.is-debug{display:block;overflow:auto;padding:16px}
+  body.is-debug .stage{display:none}
+  body.is-debug .debug{display:block}
+  .debug .row{display:flex;gap:10px;margin:10px 0}
+  .debug canvas{height:380px;border:1px solid #ccc;background:#fff}
+  .debug .src{position:relative;display:inline-block}
+  .debug .src img{width:1280px;display:block}
+  .debug .src svg{position:absolute;inset:0;width:100%;height:100%}
+  @media (prefers-reduced-motion:reduce){ .floor{transition:none} }
+</style>
+</head>
+<body>
+<div class="stage" aria-label="Wari Pandharichi leaflet unfolding">
+  <div class="floor"></div>
+  <div class="rig" id="rig"></div>
+  <div class="caption" id="cap">Wari Pandharichi · folded leaflet</div>
+</div>
+<div class="debug" id="dbg"></div>
+
+<script>
+/* ---------- panel corners measured on the 1280x960 photos (TL, TR, BR, BL) ---------- */
+const SIDES = {
+  a: { src: 'side-a.jpg', quads: [
+    [[24,246],[334,294],[336,766],[62,828]],
+    [[336,294],[651,284],[651,768],[338,768]],
+    [[653,284],[914,294],[916,770],[653,768]],
+    [[916,294],[1240,266],[1251,806],[918,770]] ] },
+  b: { src: 'side-b.jpg', quads: [
+    [[6,286],[380,284],[382,772],[8,808]],
+    [[382,284],[683,293],[683,845],[384,772]],
+    [[685,293],[985,284],[985,862],[685,845]],
+    [[987,284],[1252,322],[1250,808],[987,862]] ] }
+};
+const PW = 300, PH = 460;            // flattened panel size in px (scene units)
+const INSET = 0.02;              // trim a hair inside each quad so no wall/table leaks in
+
+const load = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = src; });
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// Flatten a quad from the photo into a PW x PH canvas (bilinear quad mapping; perspective here is mild)
+function flatten(img, q, scale = 2) {
+  const W = PW * scale, H = PH * scale;
+  const sc = document.createElement('canvas'); sc.width = img.naturalWidth; sc.height = img.naturalHeight;
+  const sx = sc.getContext('2d'); sx.drawImage(img, 0, 0);
+  const sd = sx.getImageData(0, 0, sc.width, sc.height).data;
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const cx = c.getContext('2d'); const out = cx.createImageData(W, H); const od = out.data;
+  const [tl, tr, br, bl] = q;
+  for (let y = 0; y < H; y++) {
+    const v = INSET + (1 - 2 * INSET) * (y + .5) / H;
+    for (let x = 0; x < W; x++) {
+      const u = INSET + (1 - 2 * INSET) * (x + .5) / W;
+      const px = lerp(lerp(tl[0], tr[0], u), lerp(bl[0], br[0], u), v);
+      const py = lerp(lerp(tl[1], tr[1], u), lerp(bl[1], br[1], u), v);
+      // bilinear sample
+      const x0 = Math.floor(px), y0 = Math.floor(py), fx = px - x0, fy = py - y0, w = sc.width;
+      const i00 = (y0 * w + x0) * 4, i10 = i00 + 4, i01 = i00 + w * 4, i11 = i01 + 4, o = (y * W + x) * 4;
+      for (let k = 0; k < 3; k++)
+        od[o + k] = (sd[i00 + k] * (1 - fx) + sd[i10 + k] * fx) * (1 - fy) + (sd[i01 + k] * (1 - fx) + sd[i11 + k] * fx) * fy;
+      od[o + 3] = 255;
+    }
+  }
+  cx.putImageData(out, 0, 0);
+  return c;
+}
+
+async function build() {
+  const imgs = { a: await load(SIDES.a.src), b: await load(SIDES.b.src) };
+  const tex = { a: SIDES.a.quads.map(q => flatten(imgs.a, q)), b: SIDES.b.quads.map(q => flatten(imgs.b, q)) };
+
+  if (location.search.includes('debug')) return debug(imgs, tex);
+
+  // nested accordion: panel i+1 hangs off the right edge of panel i
+  const rig = document.getElementById('rig');
+  rig.style.width = PW + 'px'; rig.style.height = PH + 'px';
+  let parent = rig; const panels = [];
+  for (let i = 0; i < 4; i++) {
+    const p = document.createElement('div'); p.className = 'panel' + (i ? ' child' : '');
+    p.style.width = PW + 'px'; p.style.height = PH + 'px';
+    const f = document.createElement('div'); f.className = 'face front'; f.appendChild(tex.a[i]);
+    const b = document.createElement('div'); b.className = 'face back'; b.appendChild(tex.b[3 - i]);   // back of A-panel i is B-panel (4-i)
+    const s1 = document.createElement('div'); s1.className = 'shade'; f.appendChild(s1);
+    const s2 = document.createElement('div'); s2.className = 'shade'; b.appendChild(s2);
+    p.append(f, b); parent.appendChild(p); panels.push({ el: p, shades: [s1, s2] }); parent = p;
+  }
+  animate(rig, panels);
+}
+
+/* ---------- motion ---------- */
+// Paper material: ~1.0x duration, tiny settle. Signature curve: smooth decelerate.
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;            // in-out cubic, on-screen moves
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const settle = t => 1 + 2.2 * Math.pow(t - 1, 3) + 1.2 * Math.pow(t - 1, 2);          // ease-out with ~3% paper overshoot
+const clamp = t => Math.max(0, Math.min(1, t));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+
+const CLOSED = 179.2, ZIG = 24;        // fold angles; ZIG = resting zigzag like the photo
+// Timeline (seconds): rest closed → unfold A side (staggered hinges) → hold → turn over → hold B → refold
+const T = { rest: 0.9, open: 2.2, stagger: 0.28, hold: 2.0, turn: 1.4, holdB: 2.2, close: 1.6, back: 1.1 };
+const LOOP = T.rest + T.open + 2 * T.stagger + T.hold + T.turn + T.holdB + T.close + T.back + 0.2;
+
+function animate(rig, panels) {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cap = document.getElementById('cap'), floor = document.querySelector('.floor');
+  const t0 = performance.now();
+  function frame(now) {
+    const fixed = new URLSearchParams(location.search).get('t');   // ?t=3.2 freezes a frame for review
+    let t = fixed != null ? +fixed : ((now - t0) / 1000) % LOOP;
+    if (reduce) t = T.rest + T.open + 2 * T.stagger + .5;          // show the open spread, no motion
+    const o0 = T.rest;
+    const oEnd = o0 + T.open + 2 * T.stagger;
+    const turn0 = oEnd + T.hold, turnEnd = turn0 + T.turn;
+    const close0 = turnEnd + T.holdB, closeEnd = close0 + T.close;
+
+    // hinge progress 0 = folded, 1 = open; hinges open one after another (lead with the cover)
+    const open = [1, 2, 3].map(k => {
+      const a = o0 + (k - 1) * T.stagger;
+      const pOpen = settle(seg(t, a, a + T.open));
+      const c = close0 + (3 - k) * (T.close * .18);               // refold from the far end
+      const pClose = ease(seg(t, c, c + T.close * .64));
+      return t < close0 ? pOpen : 1 - pClose;
+    });
+    const angles = [0, ...open.map((p, i) => (i % 2 ? -1 : 1) * lerp(CLOSED, ZIG, p))];   // panel 2 tucks behind the cover
+
+    // whole-sheet turn to show side B (rotateY 180), slight lift during the turn
+    const pt = ease(seg(t, turn0, turnEnd));
+    // once closed, finish the turn (180 → 360) so the loop lands back on the cover without a jump
+    const pb = ease(seg(t, closeEnd, closeEnd + T.back));
+    const spin = 180 * pt + 180 * pb;
+    const lift = Math.sin(Math.PI * pt) * -18 + Math.sin(Math.PI * pb) * -10;
+
+    // keep the spread centred: approximate projected width of the zigzag
+    const avgOpen = open.reduce((a, b) => a + b, 0) / 3;
+    const spanPanels = 1 + 3 * avgOpen * Math.cos(ZIG * Math.PI / 180);
+    const bob = Math.sin(now / 900) * 3;                            // ambient breathing float
+    rig.style.transform = `translate3d(${-spanPanels * PW / 2}px, ${-PH / 2 + lift + bob}px, 0) rotateX(6deg) rotateY(${-8 + spin}deg)`;
+    rig.style.transformOrigin = `${spanPanels * PW / 2}px 50%`;
+    panels.forEach((p, i) => {
+      p.el.style.transform = `rotateY(${angles[i]}deg)`;
+      const s = Math.min(.9, Math.abs(Math.sin(angles[i] * Math.PI / 180)) * .9 + (i % 2 ? .15 : 0));
+      p.shades.forEach(sh => sh.style.setProperty('--s', s.toFixed(3)));
+    });
+    floor.style.setProperty('--shw', (16 + 46 * avgOpen) + '%');
+    cap.textContent = avgOpen < .5 ? 'Wari Pandharichi · folded leaflet'
+      : (spin > 90 && spin < 270 ? 'Inside · वारकरी, the devotees who walk with faith' : 'Outside · वारी पंढरीची, the path of devotion');
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function debug(imgs, tex) {
+  const d = document.getElementById('dbg'); document.body.classList.add('is-debug');
+  for (const k of ['a', 'b']) {
+    const wrap = document.createElement('div'); wrap.className = 'src';
+    const im = imgs[k].cloneNode(); wrap.appendChild(im);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('viewBox', '0 0 1280 960');
+    svg.innerHTML = SIDES[k].quads.map(q => `<polygon points="${q.map(p => p.join(',')).join(' ')}" fill="none" stroke="#f0f" stroke-width="3"/>`).join('');
+    wrap.appendChild(svg); d.appendChild(wrap);
+    const row = document.createElement('div'); row.className = 'row'; tex[k].forEach(c => row.appendChild(c)); d.appendChild(row);
+    // magnified corner checks: 80px of photo around each corner at 2x, crosshair on the measured point
+    const zr = document.createElement('div'); zr.className = 'row'; zr.style.flexWrap = 'wrap';
+    SIDES[k].quads.forEach((q, qi) => q.forEach((pt, ci) => {
+      const z = document.createElement('canvas'); z.width = z.height = 200; z.style.height = '200px'; z.title = `${k}${qi + 1} ${['TL','TR','BR','BL'][ci]}`;
+      const g = z.getContext('2d'); g.drawImage(imgs[k], pt[0] - 100, pt[1] - 100, 200, 200, 0, 0, 200, 200);
+      g.strokeStyle = '#f0f'; g.beginPath(); g.moveTo(100, 0); g.lineTo(100, 200); g.moveTo(0, 100); g.lineTo(200, 100); g.stroke();
+      g.strokeStyle = 'rgba(0,160,255,.6)'; for (let s = 0; s <= 200; s += 20) { g.beginPath(); g.moveTo(s, 96); g.lineTo(s, 104); g.moveTo(96, s); g.lineTo(104, s); g.stroke(); }
+      g.fillStyle = '#000'; g.font = 'bold 13px sans-serif'; g.fillText(z.title, 4, 14); zr.appendChild(z);
+    }));
+    d.appendChild(zr);
+  }
+}
+build();
+</script>
+</body>
+</html>

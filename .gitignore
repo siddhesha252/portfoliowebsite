@@ -1,0 +1,5 @@
+# design-check tool settings (local only)
+.impeccable/
+# old backup copies of the page
+source.backup.html
+source.v2-backup.html
