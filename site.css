@@ -135,3 +135,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .head nav a{padding:0 7px;font-size:13px}
   .brand .name{font-size:26px}
 }
+
+/* wide screens (wider than the 1536px design, e.g. a 15" MacBook Air at 1710px):
+   the dotted background, header, footer and next-project band run edge to edge,
+   while the case study itself stays in the centered 1536px column.
+   --side is the empty space on each side of that column. */
+@media (min-width:1537px){
+  .site{max-width:none;container-type:inline-size;background:url(img/v2/dots.png) 0 0/22px 22px,var(--bg)}
+  .site > div{max-width:1536px;margin-inline:auto;background:none !important}
+  .site > div > *{--side:max(0px,(100cqw - 1536px) / 2)}
+  .site > div > [data-name="Dot fade"]{left:calc(-1 * var(--side)) !important;right:calc(-1 * var(--side)) !important}
+  .site .head,.site .foot,.site .next-link{width:auto;margin-inline:calc(-1 * var(--side))}
+  .site .head{padding-left:calc(19px + var(--side));padding-right:calc(80px + var(--side))}
+  .site .foot{padding-left:calc(56px + var(--side));padding-right:calc(80px + var(--side))}
+  .site .next-link{padding-inline:var(--side)}
+}

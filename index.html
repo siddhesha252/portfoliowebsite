@@ -396,6 +396,18 @@
     nav a{padding:0 7px;font-size:13px}
     .brand .name{font-size:26px}
   }
+
+  /* wide screens (wider than the 1536px design, e.g. a 15" MacBook Air at 1710px):
+     backgrounds run edge to edge while text and images stay in the centered 1536px column.
+     --side is the empty space on each side of that column. */
+  @media (min-width:1537px){
+    .page{max-width:none;container-type:inline-size}
+    .page > *{--side:max(0px,(100cqw - 1536px) / 2)}
+    .hero,.sec,.a-hero,.resume{max-width:1536px;margin-inline:auto}
+    .head{padding-left:calc(19px + var(--side));padding-right:calc(80px + var(--side))}
+    .clients{padding-left:calc(80px + var(--side))}
+    .foot{padding-left:calc(56px + var(--side));padding-right:calc(80px + var(--side))}
+  }
 </style>
 </head>
 <body>
