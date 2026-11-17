@@ -35,7 +35,14 @@
     while(side.firstChild) wrap.appendChild(side.firstChild);
     side.appendChild(wrap);
     var back=wrap.querySelector('[data-name="Go back"]');
-    if(back){ var a=document.createElement('a'); a.href='./#work'; a.setAttribute('aria-label','Go back to work'); back.parentNode.insertBefore(a,back); a.appendChild(back); }
+    if(back){
+      // back to where the visitor came from (Home or the Work page); straight to Work when they arrived from outside
+      var a=document.createElement('a'); a.href='work.html'; a.setAttribute('aria-label','Go back');
+      a.addEventListener('click',function(e){
+        try{ var ref=document.referrer&&new URL(document.referrer); if(ref&&ref.origin===location.origin&&history.length>1){ e.preventDefault(); history.back(); } }catch(err){}
+      });
+      back.parentNode.insertBefore(a,back); a.appendChild(back);
+    }
     var secs=[].slice.call(list.children);
     var names=secs.map(function(s){return s.dataset.name});
     // index rows share their name with the section they point at; sub-lists and the marker are skipped

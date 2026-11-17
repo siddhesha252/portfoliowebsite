@@ -59,7 +59,7 @@
   .page{display:none;position:relative;isolation:isolate;max-width:1536px;margin:0 auto;overflow:clip;background:url(img/v2/dots.png) 0 0/22px 22px,var(--bg)}
   .page.on{display:block}
   .dot-fade{position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none}
-  #work .dot-fade{top:824px;background:linear-gradient(transparent,var(--bg) 36.875%,var(--bg))}
+  #home .dot-fade{top:824px;background:linear-gradient(transparent,var(--bg) 36.875%,var(--bg))}
   #about .dot-fade{top:1181px;background:linear-gradient(transparent,var(--bg) 83.814%,var(--bg))}
 
   /* header */
@@ -150,43 +150,65 @@
   .tags span{padding:8px 14px;border-radius:4px;background:var(--tag-bg);font-weight:700;font-size:13px;letter-spacing:.52px;color:var(--body);white-space:nowrap}
 
   /* designing for AI: the two AI projects sit first, as larger cards on a light periwinkle panel */
-  .ai-work{padding-top:104px}
-  .ai-sub{margin-top:16px;font-size:18px;line-height:1.6;color:var(--muted);max-width:620px}
-  .ai-panel{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px;padding:28px;border-radius:32px;background:color-mix(in srgb,var(--blue) 7%,transparent)}
-  .ai-card{display:flex;flex-direction:column;padding:12px;border-radius:24px;background:#fff;border:1px solid color-mix(in srgb,var(--blue) 14%,transparent);
+  /* sized so the heading and both cards fit one laptop screen */
+  .ai-work{padding-top:88px}
+  .ai-sub{margin-top:12px;font-size:18px;line-height:1.6;color:var(--muted);max-width:620px}
+  .ai-panel{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;padding:20px;border-radius:28px;background:color-mix(in srgb,var(--blue) 7%,transparent)}
+  .ai-card{display:flex;flex-direction:column;padding:10px;border-radius:22px;background:#fff;border:1px solid color-mix(in srgb,var(--blue) 14%,transparent);
     box-shadow:0 12px 32px rgba(42,42,79,.06);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
   .ai-card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(42,42,79,.1)}
-  .ai-cover{position:relative;aspect-ratio:1376/860;border-radius:16px;overflow:hidden}
-  .ai-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .ai-cover{position:relative;aspect-ratio:1376/660;border-radius:14px;overflow:hidden}
+  .ai-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 52%;transition:transform .6s cubic-bezier(.16,1,.3,1)}
   .ai-card:hover .ai-cover img{transform:scale(1.025)}
-  .ai-details{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:24px 16px 16px}
-  .ai-meta{display:flex;gap:16px;font-weight:600;font-size:13px;letter-spacing:1.04px;color:var(--muted)}
+  .ai-details{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px 12px 8px}
+  .ai-meta{display:flex;gap:14px;font-weight:600;font-size:12px;letter-spacing:1px;color:var(--muted)}
   .ai-meta span{color:#a2551a}
-  .ai-details h3{font-weight:700;font-size:32px;color:var(--title)}
-  .ai-line{font-weight:600;font-size:20px;color:var(--ink)}
-  .ai-body{font-size:16px;line-height:1.6;color:var(--muted)}
-  .ai-details .tags{padding-top:4px}
-  .ai-link{padding-top:6px;font-weight:700;font-size:16px;color:var(--blue)}
+  .ai-details h3{font-weight:700;font-size:28px;color:var(--title)}
+  .ai-line{font-weight:600;font-size:17px;color:var(--ink)}
+  .ai-body{font-size:15px;line-height:1.55;color:var(--muted)}
+  .ai-foot{align-self:stretch;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:6px}
+  .ai-details .tags{padding-top:0}
+  .ai-link{flex:none;font-weight:700;font-size:15px;color:var(--blue)}
   @media (prefers-reduced-motion:reduce){.ai-card,.ai-card:hover{transform:none}}
 
-  /* more projects: hovering a card throws its thumbnails into the empty space on the right */
+  .all-work{display:inline-flex;align-items:center;gap:10px;margin-top:48px;height:48px;padding:0 24px;border-radius:100px;border:1px solid color-mix(in srgb,var(--blue) 35%,transparent);
+    font-weight:700;font-size:16px;color:var(--blue);transition:background-color .2s,transform .2s}
+  .all-work:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+  .all-work:active{transform:scale(.98)}
+  .all-work span{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .all-work:hover span{transform:translateX(4px)}
+
+  /* playground: the cards on the left pick what the framed window on the right shows */
   .more{position:relative;padding-bottom:160px}
-  .cards{display:flex;flex-direction:column;gap:20px;width:676px;margin-top:48px}
-  .pcard{display:flex;align-items:center;gap:20px;height:120px;padding:20px 24px 20px 20px;background:var(--card-bg);border:1px solid var(--card-line);border-radius:16px;
-    transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .35s}
-  .pcard:hover,.pcard:focus-visible{transform:translateX(6px);border-color:color-mix(in srgb,var(--blue) 30%,var(--card-line));box-shadow:0 10px 24px -14px color-mix(in srgb,var(--blue) 35%,transparent)}
+  .play{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:stretch;margin-top:48px}
+  .cards{display:flex;flex-direction:column;gap:16px}
+  .pcard{display:flex;align-items:center;gap:20px;width:100%;min-height:120px;padding:20px 24px 20px 20px;font:inherit;text-align:left;color:inherit;cursor:pointer;
+    background:var(--card-bg);border:1px solid var(--card-line);border-radius:16px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .35s,background-color .25s}
+  .pcard:hover,.pcard:focus-visible{transform:translateX(4px);border-color:color-mix(in srgb,var(--blue) 30%,var(--card-line))}
+  .pcard[aria-pressed="true"]{transform:translateX(8px);background:#fff;border-color:color-mix(in srgb,var(--blue) 45%,var(--card-line));
+    box-shadow:0 14px 28px -18px rgba(42,42,79,.35)}
   .thumb{flex:none;width:80px;height:80px;border-radius:10px;background:var(--ph);overflow:hidden}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .pcard b{display:block;font-weight:700;font-size:18px;color:var(--body)}
   .pcard span{display:block;margin-top:6px;font-size:16px;color:#69645e}
-  .gallery{position:absolute;left:836px;top:0;width:600px;height:0;pointer-events:none;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  .peek{position:relative;min-height:392px;border-radius:24px;overflow:hidden;border:1px solid color-mix(in srgb,var(--blue) 16%,transparent);
+    background:radial-gradient(circle,color-mix(in srgb,var(--blue) 22%,transparent) 1px,transparent 1.4px) 0 0/18px 18px,color-mix(in srgb,var(--blue) 5%,#fff)}
+  .peek-stage{position:absolute;left:0;right:0;top:0;bottom:76px}
   /* the Figma exports include their white frame; the figure adds the rounded corners and shadow */
-  .gallery figure{position:absolute;opacity:0;visibility:hidden;border-radius:12px;overflow:hidden;
+  .peek figure{position:absolute;margin:0;border-radius:10px;overflow:hidden;opacity:0;
     box-shadow:0 18px 30px -16px rgba(30,30,60,.35),0 2px 6px rgba(30,30,60,.08)}
-  .gallery figure img{display:block;width:auto;height:auto;max-width:none}
-  .g1{left:0;top:-150px;--r:-5deg}
-  .g2{left:250px;top:-90px;--r:4deg}
-  .g3{left:450px;top:-175px;--r:-2deg}
+  .peek figure img{display:block;width:100%;height:auto}
+  .pk1{left:9%;top:12%;width:31%;--r:-5deg}
+  .pk2{left:43%;top:7%;width:25%;--r:4deg}
+  .pk3{left:63%;top:38%;width:28%;--r:-2deg}
+  .peek.two .pk1{left:15%;top:16%;width:34%}
+  .peek.two .pk2{left:55%;top:8%;width:27%}
+  .peek-cap{position:absolute;left:0;right:0;bottom:0;height:76px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    background:rgba(255,255,255,.82);border-top:1px solid color-mix(in srgb,var(--blue) 12%,transparent)}
+  .peek-cap b{display:block;font-weight:700;font-size:17px;color:var(--ink)}
+  .peek-cap span{display:block;margin-top:4px;font-size:14px;color:var(--muted)}
+  .peek-hint{flex:none;font-family:Mansalva,cursive;font-size:18px;color:var(--blue);white-space:nowrap}
 
   /* what I bring: pills wait out of sight until the cursor reaches the middle */
   .bring{padding-bottom:160px}
@@ -321,14 +343,14 @@
     .statement{width:auto;max-width:800px;font-size:clamp(26px,2.3vw,30px);line-height:1.55}
     .a-hero{gap:40px}
   }
-  @media (max-width:1439px){ .gallery{zoom:.66} }
+  @media (max-width:1439px){ .pk1,.pk2,.pk3{border-radius:8px} }
   @media (min-width:1024px) and (max-width:1279px){
     .hero .a-photo{right:12px}
     .a-polaroid{zoom:.8}
     .intro{width:calc(100% - 600px)}
     .cover{width:min(680px,54%);height:auto;aspect-ratio:680/410}
     .cover.tall{aspect-ratio:680/420}
-    .gallery{display:none}
+    .pcard{padding:16px 18px 16px 16px;gap:16px}
     .a-photo{zoom:.8}
     .resume{padding-right:80px}
   }
@@ -366,6 +388,7 @@
     .ai-details h3{font-size:26px}
     .ai-line{font-size:17px}
     .ai-details .tags{flex-wrap:wrap}
+    .ai-foot{flex-direction:column;align-items:flex-start;gap:10px}
     .work{padding-top:64px;padding-bottom:48px}
     .projects{gap:44px;margin-top:32px}
     .proj{flex-direction:column;gap:18px}
@@ -376,12 +399,19 @@
     .tags{flex-wrap:wrap;padding-top:6px}
 
     .more{padding-bottom:72px}
-    .cards{width:100%;margin-top:28px;gap:14px}
+    .cards{gap:12px}
     .pcard{height:auto;min-height:96px;padding:14px;gap:14px}
     .thumb{width:64px;height:64px}
     .pcard b{font-size:16px}
     .pcard span{font-size:14px;line-height:1.4}
-    .gallery{display:none} /* hover-only extra photos; no hover on touch screens */
+    .play{grid-template-columns:1fr;gap:20px;margin-top:28px}
+    .pcard[aria-pressed="true"],.pcard:hover{transform:none}
+    .peek{min-height:0;aspect-ratio:1/.92}
+    .peek-stage{bottom:84px}
+    .peek-cap{height:84px;padding:0 16px}
+    .peek-hint{display:none}
+    .pk1{left:5%;top:10%;width:44%}.pk2{left:44%;top:5%;width:34%}.pk3{left:52%;top:42%;width:42%}
+    .peek.two .pk1{left:6%;top:16%;width:48%}.peek.two .pk2{left:52%;top:8%;width:40%}
 
     /* what I bring: the floating board becomes a heading with the pills wrapped underneath */
     .bring{padding-bottom:72px}
@@ -422,14 +452,16 @@
     .chips span{height:34px;padding:0 14px;font-size:14px}
   }
   @media (max-width:1023px){ .photo{height:410px} } /* the box only needs room for the polaroid, card and girl */
+  /* phones: five nav items need the whole row, and Home is already in the nav, so the wordmark steps aside */
   @media (max-width:480px){
     .photo{zoom:.6}
-    nav a{padding:0 8px}
-    .head{gap:8px}
+    .head{justify-content:center;padding-left:10px;padding-right:10px}
+    .head .brand{display:none}
+    nav{gap:0}
+    nav a{padding:0 9px}
   }
   @media (max-width:380px){
     nav a{padding:0 7px;font-size:13px}
-    .brand .name{font-size:26px}
   }
 
   /* wide screens (wider than the 1536px design, e.g. a 15" MacBook Air at 1710px):
@@ -448,11 +480,11 @@
 <body>
 
 <!-- ================= HOME (Figma "home (final)" 146:2) ================= -->
-<div class="page" id="work">
+<div class="page" id="home">
   <div class="dot-fade"></div>
   <header class="head">
-    <a class="brand" href="#work" aria-label="Sidd, home"><span class="name">Sidd</span></a>
-    <nav><a class="on" href="#work">Work</a><a href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+    <a class="brand" href="#home" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+    <nav><a class="on" href="#home">Home</a><a href="work.html">Work</a><a href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
   </header>
 
   <section class="hero">
@@ -554,8 +586,7 @@ analyze()</p>
           <h3>AI Trade Dashboard</h3>
           <p class="ai-line">Meridian Desk, a shared board for AI trade ideas</p>
           <p class="ai-body">From the overnight suggestion to a signed-off trade. Each idea moves across one board, with the case, the tests and the sign-off opening beside it.</p>
-          <div class="tags"><span>APPROVAL FLOW</span><span>DASHBOARD DESIGN</span></div>
-          <span class="ai-link">View case study →</span>
+          <div class="ai-foot"><div class="tags"><span>APPROVAL FLOW</span><span>DASHBOARD DESIGN</span></div><span class="ai-link">View case study →</span></div>
         </div>
       </a>
       <a class="ai-card" href="ally.html" data-cursor="project">
@@ -565,8 +596,7 @@ analyze()</p>
           <h3>Ally</h3>
           <p class="ai-line">An AI copilot for a home bakery</p>
           <p class="ai-body">Ally answers routine WhatsApp questions from verified data and stops at anything that would commit Lakshmi to a price, a date or an order.</p>
-          <div class="tags"><span>ERROR RECOVERY</span><span>WEB + MOBILE</span></div>
-          <span class="ai-link">View case study →</span>
+          <div class="ai-foot"><div class="tags"><span>ERROR RECOVERY</span><span>WEB + MOBILE</span></div><span class="ai-link">View case study →</span></div>
         </div>
       </a>
     </div>
@@ -588,26 +618,32 @@ analyze()</p>
           <div class="tags"><span>UI UX</span><span>AI UX</span></div></div>
       </a>
       <a class="proj" href="signease.html" data-cursor="project">
-        <div class="cover"><img src="img/covers/signease-v2.jpg" alt="Signease app screens"></div>
+        <div class="cover"><img src="img/covers/signease-v3.jpg" alt="Signease app screens"></div>
         <div class="details"><h3>Signease</h3>
           <p><b>Bridging communication through Indian Sign Language</b>An accessibility-focused ecosystem designed to bring Deaf and hearing people closer through Indian Sign Language.</p>
           <div class="tags"><span>UI UX</span><span>ACCESSIBILITY</span></div></div>
       </a>
     </div>
+    <a class="all-work" href="work.html">All work in one place <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="sec more" id="more">
     <div class="sec-h"><i></i><h2>Playground <small>(more projects)</small></h2></div>
-    <div class="cards">
-      <a class="pcard" href="#" data-cursor="project" data-imgs="img/play/wari-1.png img/play/wari-2.png"><div class="thumb"><img src="img/play/wari-thumb.png" width="80" height="80" alt=""></div><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div></a>
-      <a class="pcard" href="#" data-cursor="project" data-imgs="img/play/tithi-1.png img/play/tithi-2.png img/play/tithi-3.png"><div class="thumb"><img src="img/play/tithi-thumb.png" width="80" height="80" alt=""></div><div><b>Tithi</b><span>An AR-enabled Marathi panchang desk calendar</span></div></a>
-      <a class="pcard" href="#" data-cursor="project" data-imgs="img/play/ashta-1.png img/play/ashta-2.png img/play/ashta-3.png"><div class="thumb"><img src="img/play/ashta-thumb.png" width="80" height="80" alt=""></div><div><b>AshtaChaal</b><span>Chowka Bara revived with Ganjifa strategy cards</span></div></a>
-    </div>
-    <!-- hover images from Figma "More Projects hover images" (229:310); each card fills these slots with its own set -->
-    <div class="gallery" aria-hidden="true">
-      <figure class="g1"><img src="img/play/wari-1.png" alt=""></figure>
-      <figure class="g2"><img src="img/play/wari-2.png" alt=""></figure>
-      <figure class="g3"><img src="img/play/tithi-3.png" alt=""></figure>
+    <div class="play">
+      <div class="cards" role="group" aria-label="Playground projects">
+        <button type="button" class="pcard" aria-pressed="true" aria-controls="peek" data-cursor="peek" data-imgs="img/play/wari-1.png img/play/wari-2.png"><div class="thumb"><img src="img/play/wari-thumb.png" width="80" height="80" alt=""></div><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div></button>
+        <button type="button" class="pcard" aria-pressed="false" aria-controls="peek" data-cursor="peek" data-imgs="img/play/tithi-1.png img/play/tithi-2.png img/play/tithi-3.png"><div class="thumb"><img src="img/play/tithi-thumb.png" width="80" height="80" alt=""></div><div><b>Tithi</b><span>An AR-enabled Marathi panchang desk calendar</span></div></button>
+        <button type="button" class="pcard" aria-pressed="false" aria-controls="peek" data-cursor="peek" data-imgs="img/play/ashta-1.png img/play/ashta-2.png img/play/ashta-3.png"><div class="thumb"><img src="img/play/ashta-thumb.png" width="80" height="80" alt=""></div><div><b>AshtaChaal</b><span>Chowka Bara revived with Ganjifa strategy cards</span></div></button>
+      </div>
+      <!-- photos from Figma "More Projects hover images" (229:310); the active card fills these slots with its own set -->
+      <div class="peek" id="peek" aria-live="polite">
+        <div class="peek-stage">
+          <figure class="pk1"><img src="img/play/wari-1.png" alt=""></figure>
+          <figure class="pk2"><img src="img/play/wari-2.png" alt=""></figure>
+          <figure class="pk3"><img src="img/play/tithi-3.png" alt=""></figure>
+        </div>
+        <div class="peek-cap"><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div><p class="peek-hint">hover a card to switch</p></div>
+      </div>
     </div>
   </section>
 
@@ -645,8 +681,8 @@ analyze()</p>
 <div class="page" id="about">
   <div class="dot-fade"></div>
   <header class="head">
-    <a class="brand" href="#work" aria-label="Sidd, home"><span class="name">Sidd</span></a>
-    <nav><a href="#work">Work</a><a class="on" href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+    <a class="brand" href="#home" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+    <nav><a href="#home">Home</a><a href="work.html">Work</a><a class="on" href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
   </header>
   <section class="a-hero">
     <div class="a-intro">
@@ -741,10 +777,10 @@ analyze()</p>
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  // pages: #work / #about
+  // pages: #home / #about (old #work links still land on Home)
   var onShow=[];
   function show(){
-    var hash=(location.hash||'#work').slice(1), id=hash==='about'?'about':'work';
+    var hash=(location.hash||'#home').slice(1), id=hash==='about'?'about':'home';
     document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
     document.title=id==='about'?'About, Siddhesha Pawade':'Siddhesha Pawade, Product Designer';
     window.scrollTo(0,0); onShow.forEach(function(f){f(id)});
@@ -758,7 +794,7 @@ analyze()</p>
   (function(){
     if(!fine) return;
     var el=document.querySelector('.cursor'), tag=el.querySelector('.tag');
-    var labels={me:"It's me",project:'View project',flip:'Click',back:'Click'};
+    var labels={me:"It's me",project:'View project',flip:'Click',back:'Click',peek:'Peek inside'};
     var x=-100,y=-100,cx=x,cy=y,state='',raf=0;
     document.documentElement.classList.add('has-cursor');
     function set(next){
@@ -841,50 +877,40 @@ analyze()</p>
     onShow.push(function(id){ if(id!=='about') hide(); }); // the polaroid sits on About; tuck it away when leaving
   })();
 
-  // more projects: each card's own photos spring out beside it on hover
+  // playground: the active card's photos settle into the framed window; hover (or tap) another card to swap them
   [].forEach.call(document.querySelectorAll('.pcard[data-imgs]'),function(c){ c.dataset.imgs.split(' ').forEach(function(s){ new Image().src=s; }); });
   (function(){
-    var sec=document.getElementById('more'), gal=sec.querySelector('.gallery'), figs=[].slice.call(gal.children);
-    var cards=[].slice.call(sec.querySelectorAll('.pcard')), active=null, hideT=0;
+    var sec=document.getElementById('more'), peek=document.getElementById('peek'), figs=[].slice.call(peek.querySelectorAll('figure'));
+    var cards=[].slice.call(sec.querySelectorAll('.pcard')), cap=peek.querySelector('.peek-cap > div'), active=null, swapT=0;
     var IN='cubic-bezier(.34,1.56,.64,1)';
-    function anchor(card){
-      var y=card.offsetTop+card.offsetHeight/2;
-      gal.style.transform='translateY('+y+'px)';
-    }
-    function enter(card){
-      clearTimeout(hideT);
-      var srcs=(card.dataset.imgs||'').split(' ').filter(Boolean), n=srcs.length, first=!active;
-      if(first){ gal.style.transition='none'; anchor(card); void gal.offsetWidth; gal.style.transition=''; } else anchor(card);
+    peek.querySelector('.peek-hint').textContent=fine?'hover a card to switch':'tap a card to switch';
+    function rot(f){ return getComputedStyle(f).getPropertyValue('--r').trim()||'0deg'; }
+    function select(card,animate){
       if(card===active) return; active=card;
+      cards.forEach(function(c){ c.setAttribute('aria-pressed',c===card); });
+      var srcs=card.dataset.imgs.split(' ').filter(Boolean), n=srcs.length;
+      cap.innerHTML=card.querySelector('b').outerHTML+card.querySelector('span').outerHTML;
+      peek.classList.toggle('two',n===2);
       figs.forEach(function(f,i){
         f.getAnimations().forEach(function(a){a.cancel()});
-        if(i>=n){ f.style.visibility='hidden'; return; }
-        f.firstElementChild.src=srcs[i];
-        f.style.visibility='visible';
-        var r=getComputedStyle(f).getPropertyValue('--r').trim();
-        f.animate(still?[{opacity:0},{opacity:1}]:[
-          {opacity:0,transform:'translate(-90px,30px) rotate(0deg) scale(.6)'},
-          {opacity:1,transform:'translate(0,0) rotate('+r+') scale(1)'}
-        ],{duration:still?150:560,delay:still?0:i*70,easing:IN,fill:'both'});
+        if(i>=n){ f.style.opacity=0; return; }
+        f.firstElementChild.src=srcs[i]; f.style.opacity=1;
+        var r=rot(f);
+        if(!animate||still){ f.style.transform='rotate('+r+')'; return; }
+        f.animate([
+          {opacity:0,transform:'translateY(26px) rotate(0deg) scale(.82)'},
+          {opacity:1,transform:'translateY(0) rotate('+r+') scale(1)'}
+        ],{duration:540,delay:i*70,easing:IN,fill:'both'});
       });
     }
-    function leave(){
-      hideT=setTimeout(function(){
-        active=null;
-        figs.forEach(function(f){
-          if(f.style.visibility!=='visible') return;
-          f.getAnimations().forEach(function(a){a.cancel()});
-          var r=getComputedStyle(f).getPropertyValue('--r').trim();
-          f.animate([{opacity:1,transform:'rotate('+r+') scale(1)'},{opacity:0,transform:'rotate('+r+') scale(.9) translateY(10px)'}],{duration:180,easing:'ease-in',fill:'both'});
-        });
-      },60);
-    }
     cards.forEach(function(c){
-      c.addEventListener('pointerenter',function(){enter(c)});
-      c.addEventListener('pointerleave',leave);
-      c.addEventListener('focus',function(){enter(c)});
-      c.addEventListener('blur',leave);
+      // a short wait so sweeping the pointer across the list doesn't flicker through every card
+      c.addEventListener('pointerenter',function(e){ if(e.pointerType!=='mouse') return; clearTimeout(swapT); swapT=setTimeout(function(){ select(c,true); },90); });
+      c.addEventListener('pointerleave',function(){ clearTimeout(swapT); });
+      c.addEventListener('click',function(){ clearTimeout(swapT); select(c,true); });
+      c.addEventListener('focus',function(){ select(c,true); });
     });
+    select(cards[0],false);
   })();
 
   // what I bring: pills curve out of the middle once the cursor nears it, then stay
@@ -1047,7 +1073,7 @@ analyze()</p>
     }
     // draw the circle and arrow once the About page is on screen; reset the card when leaving it
     onShow.push(function(id){
-      if(id!=='work'){ card.classList.remove('on'); card.setAttribute('aria-pressed','false'); card.dataset.cursor='flip'; hint.classList.remove('drawn'); return; }
+      if(id!=='home'){ card.classList.remove('on'); card.setAttribute('aria-pressed','false'); card.dataset.cursor='flip'; hint.classList.remove('drawn'); return; }
       requestAnimationFrame(function(){ build(); requestAnimationFrame(function(){ hint.classList.add('drawn'); }); });
     });
     var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(build,150); });

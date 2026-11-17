@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work, Siddhesha Pawade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* Work: every case study on one page, filterable */
+  .wk{position:relative;isolation:isolate;display:flex;flex-direction:column;width:100%;
+    background:url(img/v2/dots.png) 0 0/22px 22px repeat,var(--bg)}
+  .wk-fade{position:absolute;left:0;right:0;top:520px;bottom:0;z-index:-1;background:linear-gradient(color-mix(in srgb,var(--bg) 0%,transparent),var(--bg) 360px)}
+  .wk-top{padding:40px 80px 0}
+  .wk-top h1{margin:0;font-weight:700;font-size:60px;line-height:1.16;letter-spacing:-1.2px;color:var(--ink)}
+  .wk-intro{margin:16px 0 0;max-width:640px;font-size:20px;line-height:1.6;color:var(--muted)}
+  .wk-filter{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+  .wk-filter button{font:inherit;font-weight:700;font-size:15px;height:42px;padding:0 18px;display:inline-flex;align-items:center;gap:8px;
+    border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;
+    transition:background-color .2s,border-color .2s,color .2s,transform .15s}
+  .wk-filter button:hover{border-color:color-mix(in srgb,var(--blue) 40%,var(--line));color:var(--ink)}
+  .wk-filter button:active{transform:scale(.97)}
+  .wk-filter button span{font-weight:600;color:#8a8aa6}
+  .wk-filter button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+  .wk-filter button[aria-pressed="true"] span{color:rgba(255,255,255,.78)}
+
+  .wk-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px 40px;padding:56px 80px 128px}
+  .wk-card{display:flex;flex-direction:column;gap:22px;border-radius:22px;outline-offset:8px}
+  .wk-card[hidden]{display:none}
+  .wk-cover{position:relative;aspect-ratio:1376/860;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#f4f4fa}
+  .wk-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .wk-card:hover .wk-cover img{transform:scale(1.025)}
+  .wk-text{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .wk-meta{margin:0;display:flex;gap:14px;font-weight:600;font-size:13px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+  .wk-meta b{font-weight:700;color:#a2551a}
+  .wk-card h2{margin:0;font-weight:700;font-size:30px;letter-spacing:-.4px;color:var(--ink)}
+  .wk-line{margin:0;font-weight:600;font-size:18px;line-height:1.45;color:var(--ink)}
+  .wk-body{margin:0;max-width:560px;font-size:16px;line-height:1.6;color:var(--muted)}
+  .wk-tags{display:flex;flex-wrap:wrap;gap:8px;padding-top:6px}
+  .wk-tags span{padding:7px 12px;border-radius:4px;background:#ededf8;font-weight:700;font-size:12px;letter-spacing:.5px;color:#45456a}
+  .wk-go{display:none;padding-top:8px;font-weight:700;font-size:16px;color:var(--blue)}
+  /* the first card on show is the feature: picture on the left, text beside it */
+  .wk-card.feat{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center}
+  .wk-card.feat h2{font-size:40px;letter-spacing:-.8px}
+  .wk-card.feat .wk-go{display:block}
+  .wk-empty{grid-column:1/-1;margin:0;color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){ .wk-cover img{transition:none} }
+
+  @media (max-width:1023px){
+    .wk-top{padding:24px var(--gut) 0}
+    .wk-top h1{font-size:40px}
+    .wk-intro{font-size:17px}
+    .wk-filter{margin-top:24px;gap:8px}
+    .wk-filter button{height:38px;padding:0 14px;font-size:14px}
+    .wk-grid{grid-template-columns:1fr;gap:44px;padding:36px var(--gut) 72px}
+    .wk-card.feat{display:flex;align-items:stretch;gap:22px}
+    .wk-card h2,.wk-card.feat h2{font-size:26px}
+    .wk-line{font-size:16px}
+    .wk-body{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<div class="site">
+<div class="wk" data-name="Work">
+<div class="wk-fade" aria-hidden="true"></div>
+<header class="head">
+  <a class="brand" href="./" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+  <nav><a href="./">Home</a><a class="on" href="work.html">Work</a><a href="./#about">About</a><a href="./#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+</header>
+
+<main>
+  <div class="wk-top">
+    <h1>Work</h1>
+    <p class="wk-intro">Five case studies: two AI products, a household money app, an accessibility app and a research toolkit.</p>
+    <div class="wk-filter" role="group" aria-label="Filter projects">
+      <button type="button" data-f="all" aria-pressed="true">All <span></span></button>
+      <button type="button" data-f="ai" aria-pressed="false">AI <span></span></button>
+      <button type="button" data-f="mobile" aria-pressed="false">Mobile apps <span></span></button>
+      <button type="button" data-f="web" aria-pressed="false">Web and dashboards <span></span></button>
+    </div>
+  </div>
+
+  <div class="wk-grid">
+    <a class="wk-card" href="ai-trade.html" data-cursor="project" data-cats="ai web">
+      <div class="wk-cover"><img src="img/covers/ai-trade-v2.jpg" alt="AI Trade Dashboard on a laptop"></div>
+      <div class="wk-text">
+        <p class="wk-meta"><b>01</b>AI recommendations · Design task</p>
+        <h2>AI Trade Dashboard</h2>
+        <p class="wk-line">Meridian Desk, a shared board for AI trade ideas</p>
+        <p class="wk-body">From the overnight suggestion to a signed-off trade. Each idea moves across one board, with the case, the tests and the sign-off opening beside it.</p>
+        <div class="wk-tags"><span>APPROVAL FLOW</span><span>DASHBOARD DESIGN</span></div>
+        <span class="wk-go">View case study →</span>
+      </div>
+    </a>
+    <a class="wk-card" href="ally.html" data-cursor="project" data-cats="ai web mobile">
+      <div class="wk-cover"><img src="img/covers/ally.jpg" alt="Ally dashboard on a laptop and phone" loading="lazy"></div>
+      <div class="wk-text">
+        <p class="wk-meta"><b>02</b>AI assistant · 48-hour task</p>
+        <h2>Ally</h2>
+        <p class="wk-line">An AI copilot for a home bakery</p>
+        <p class="wk-body">Ally answers routine WhatsApp questions from verified data and stops at anything that would commit Lakshmi to a price, a date or an order.</p>
+        <div class="wk-tags"><span>ERROR RECOVERY</span><span>WEB + MOBILE</span></div>
+        <span class="wk-go">View case study →</span>
+      </div>
+    </a>
+    <a class="wk-card" href="siama.html" data-cursor="project" data-cats="web">
+      <div class="wk-cover"><img src="img/covers/siama-v2.jpg" alt="SIAMA dashboard on a laptop" loading="lazy"></div>
+      <div class="wk-text">
+        <p class="wk-meta"><b>03</b>Semester thesis · 6 months</p>
+        <h2>SIAMA</h2>
+        <p class="wk-line">Making craft education more contextual and connected</p>
+        <p class="wk-body">A planning toolkit for craft trainers. I turned an existing prototype into a saved, guided workspace with a dashboard and export.</p>
+        <div class="wk-tags"><span>SYSTEM DESIGN</span><span>INFO VISUALIZATION</span></div>
+        <span class="wk-go">View case study →</span>
+      </div>
+    </a>
+    <a class="wk-card" href="trackit.html" data-cursor="project" data-cats="ai mobile">
+      <div class="wk-cover"><img src="img/covers/trackit-v2.jpg" alt="TrackIt app screens" loading="lazy"></div>
+      <div class="wk-text">
+        <p class="wk-meta"><b>04</b>Redesign · 99 screens</p>
+        <h2>TrackIt</h2>
+        <p class="wk-line">One place for the whole household’s money</p>
+        <p class="wk-body">Bills, splits, budgets, payments and insights on one record, with an assistant that drafts and explains but never acts alone.</p>
+        <div class="wk-tags"><span>UI UX</span><span>AI UX</span></div>
+        <span class="wk-go">View case study →</span>
+      </div>
+    </a>
+    <a class="wk-card" href="signease.html" data-cursor="project" data-cats="mobile">
+      <div class="wk-cover"><img src="img/covers/signease-v3.jpg" alt="Signease app screens" loading="lazy"></div>
+      <div class="wk-text">
+        <p class="wk-meta"><b>05</b>Accessibility · 48 screens</p>
+        <h2>Signease</h2>
+        <p class="wk-line">Bridging communication through Indian Sign Language</p>
+        <p class="wk-body">An accessibility-focused ecosystem designed to bring Deaf and hearing people closer through Indian Sign Language.</p>
+        <div class="wk-tags"><span>UI UX</span><span>ACCESSIBILITY</span></div>
+        <span class="wk-go">View case study →</span>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+  <div class="credits">
+    <p>Curated by <b>Siddhesha Pawade</b></p>
+    <p>Powered by coffee, claude and curiosity.</p>
+    <hr>
+    <div class="socials">
+      <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+      <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+      <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+<script src="site.js"></script>
+<script>
+  // filter chips: show the matching case studies; the first one on show becomes the wide feature card
+  (function(){
+    var cards=[].slice.call(document.querySelectorAll('.wk-card')), btns=[].slice.call(document.querySelectorAll('.wk-filter button'));
+    var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function match(c,f){ return f==='all'||c.dataset.cats.split(' ').indexOf(f)>-1; }
+    btns.forEach(function(b){ b.querySelector('span').textContent=cards.filter(function(c){return match(c,b.dataset.f)}).length; });
+    function apply(f,animate){
+      var first=true;
+      cards.forEach(function(c){
+        var on=match(c,f); c.hidden=!on; c.classList.toggle('feat',on&&first); if(on) first=false;
+        if(on&&animate&&!still) c.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:420,easing:'cubic-bezier(.16,1,.3,1)'});
+      });
+      btns.forEach(function(b){ b.setAttribute('aria-pressed',b.dataset.f===f); });
+    }
+    btns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.dataset.f,true); }); });
+    apply('all',false);
+  })();
+</script>
+</body>
+</html>

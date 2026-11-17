@@ -131,9 +131,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .mail{font-size:clamp(18px,5.2vw,26px)}
   .credits{width:auto;align-items:flex-start;text-align:left}
 }
+/* phones: five nav items need the whole row, and Home is already in the nav, so the wordmark steps aside */
+@media (max-width:480px){
+  .head{justify-content:center;padding-left:10px;padding-right:10px}
+  .head .brand{display:none}
+  .head nav{gap:0}
+  .head nav a{padding:0 9px;font-size:14px}
+}
 @media (max-width:380px){
   .head nav a{padding:0 7px;font-size:13px}
-  .brand .name{font-size:26px}
 }
 
 /* wide screens (wider than the 1536px design, e.g. a 15" MacBook Air at 1710px):
