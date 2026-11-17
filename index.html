@@ -91,7 +91,12 @@
   .fact.on{opacity:1;visibility:visible}
 
   /* photo: the girl and yellow card rest behind the polaroid and pop out on hover */
-  .photo{position:absolute;left:912px;top:80px;width:560px;height:520px}
+  /* the polaroid lives on About; its box overhangs the column a little so the card and girl have room */
+  .a-polaroid{position:relative;width:520px;height:420px;flex:none;align-self:center}
+  .photo{position:absolute;left:-24px;top:0;width:560px;height:520px}
+  /* the flip card lives in the home hero, where the polaroid used to be */
+  .hero .a-photo{position:absolute;right:0;top:76px;margin:0} /* hugs the right edge so the card keeps clear of the headline */
+  .hero .fc-hint{translate:-16px 0} /* pull "click here" in a little so it stays inside the page */
   .polaroid{position:absolute;left:134.13px;top:6.7px;width:300px;height:374.6px;z-index:3;background:#f6f5f1;filter:drop-shadow(0 4px 4.7px rgba(0,0,0,.25));transform:rotate(.66deg);transition:transform .45s cubic-bezier(.34,1.56,.64,1);outline:none}
   .polaroid:focus-visible{outline:3px solid var(--blue);outline-offset:6px}
   .shot{position:absolute;left:13.8px;right:13.8px;top:13.8px;height:316px;background:#fbfbfb;overflow:hidden}
@@ -310,7 +315,6 @@
   /* ===== RESPONSIVE ===== */
   /* the design is drawn at 1536px; below that, pin the right-hand pieces to the right edge instead of a fixed left offset */
   @media (max-width:1535px){
-    .photo{left:auto;right:56px}
     .intro{width:calc(100% - 700px)}
     .fact{font-size:clamp(40px,4vw,62px);line-height:1.38}
     .a-intro{width:auto;flex:1;min-width:0}
@@ -319,7 +323,8 @@
   }
   @media (max-width:1439px){ .gallery{zoom:.66} }
   @media (min-width:1024px) and (max-width:1279px){
-    .photo{zoom:.78;right:30px}
+    .hero .a-photo{right:12px}
+    .a-polaroid{zoom:.8}
     .intro{width:calc(100% - 600px)}
     .cover{width:min(680px,54%);height:auto;aspect-ratio:680/410}
     .cover.tall{aspect-ratio:680/420}
@@ -343,6 +348,9 @@
     .intro{position:static;width:auto;padding:24px var(--gut) 0;gap:28px}
     .hello{font-size:30px;line-height:1.4}
     .fact{font-size:clamp(28px,7.4vw,46px);line-height:1.22}
+    .hero .a-photo{position:relative;left:auto;right:auto;top:auto;padding:0 var(--gut)}
+    .hero .fc-hint{translate:none}
+    .a-polaroid{width:100%;height:auto;margin-top:24px}
     .photo{position:relative;left:auto;right:auto;top:auto;margin:20px auto 0;zoom:.66}
     .clients{flex-direction:column;align-items:flex-start;gap:14px;height:auto;padding:18px 0 18px var(--gut)}
     .clients p{font-size:13px;letter-spacing:1.6px}
@@ -461,16 +469,44 @@
       <a class="btn" href="#about">About/CV <img src="img/v2/arrow.svg" width="16" height="16" alt=""></a>
     </div>
 
-    <div class="photo" id="photo">
-      <a class="card-pop" href="#about" data-cursor="me" tabindex="-1" aria-label="About me">
-        <svg viewBox="0 0 266.527 370.898" aria-hidden="true"><path d="M9.02553 8.38058C9.03768 6.18851 10.8119 4.41458 13.004 4.4028L255.405 3.10006C257.632 3.08809 259.439 4.89599 259.427 7.12217L257.501 354.518C257.489 356.71 255.715 358.484 253.523 358.495L11.1215 359.798C8.89532 359.81 7.08772 358.002 7.10006 355.776L9.02553 8.38058Z"/></svg>
-        <span class="about-tag"><img src="img/final/about-arrow.svg" alt=""><span>about</span></span>
-      </a>
-      <div class="girl" data-cursor="me" aria-hidden="true"><img src="img/v2/peeking-girl.png" alt=""></div>
-      <figure class="polaroid" data-cursor="me" tabindex="0" aria-label="Photo of Siddhesha">
-        <div class="shot"><img src="img/v2/portrait.jpg" alt="Siddhesha smiling"></div>
-        <figcaption>sidd.jpeg</figcaption>
-      </figure>
+    <div class="a-photo hero-card">
+      <div class="fc" id="flipcard" role="button" tabindex="0" aria-pressed="false" data-cursor="flip"
+        aria-label="Portrait card. Press to switch between the photo and the code version">
+        <div class="fc-inner">
+          <!-- front: color photo -->
+          <div class="fc-face">
+            <svg class="fc-waves" viewBox="0 0 440 587" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <img class="fc-shot" src="img/about/portrait-fort-crop.png" alt="Siddhesha smiling">
+            <div class="fc-copy"><p class="t">EXPERIENCE</p><p class="l">Designing experiences</p><p class="s">for humans within systems.</p></div>
+          </div>
+          <!-- back: the same photo drawn in characters -->
+          <div class="fc-face fc-back" aria-hidden="true">
+            <p class="fc-ghost">01001000
+01110101
+01101101
+01100001
+01101110
+system.think()
+analyze()</p>
+            <canvas></canvas>
+            <div class="fc-copy"><p class="t">SYSTEMS</p><p class="l">Trained to think in</p><p class="s">structure, logic, and complexity.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-hint" aria-hidden="true">
+        <!-- phone layout: the hint sits under the card and points up at it -->
+        <svg class="hint-mob" viewBox="0 0 200 92">
+          <path class="ring" pathLength="1" d="M140 42 C124 32 70 32 52 42 C38 50 42 72 66 76 C92 80 146 76 152 60 C156 48 136 36 112 36"/>
+          <path class="arrow" pathLength="1" d="M82 38 C86 24 80 12 70 4"/>
+          <path class="tip" pathLength="1" d="M73 14 L70 4 L80 5"/>
+        </svg>
+        <svg class="hint-desk" viewBox="0 0 520 480">
+          <path class="ring" pathLength="1" d="M508 328 C492 316 436 316 414 326 C398 334 400 360 424 366 C450 372 512 368 518 348 C522 334 502 320 478 320"/>
+          <path class="arrow" pathLength="1" d="M426 320 C432 290 418 262 394 250"/>
+          <path class="tip" pathLength="1" d="M400 261 L394 250 L406 248"/>
+        </svg>
+        <p>click here</p>
+      </div>
     </div>
   </section>
 
@@ -622,43 +658,17 @@
       </div>
       <a class="btn" href="resume_siddhesha.pdf" download>Resume <img src="img/about/arrow-down.svg" width="16" height="16" alt=""></a>
     </div>
-    <div class="a-photo">
-      <div class="fc" id="flipcard" role="button" tabindex="0" aria-pressed="false" data-cursor="flip"
-        aria-label="Portrait card. Press to switch between the photo and the code version">
-        <div class="fc-inner">
-          <!-- front: color photo -->
-          <div class="fc-face">
-            <svg class="fc-waves" viewBox="0 0 440 587" preserveAspectRatio="none" aria-hidden="true"></svg>
-            <img class="fc-shot" src="img/about/portrait-fort-crop.png" alt="Siddhesha smiling">
-            <div class="fc-copy"><p class="t">EXPERIENCE</p><p class="l">Designing experiences</p><p class="s">for humans within systems.</p></div>
-          </div>
-          <!-- back: the same photo drawn in characters -->
-          <div class="fc-face fc-back" aria-hidden="true">
-            <p class="fc-ghost">01001000
-01110101
-01101101
-01100001
-01101110
-system.think()
-analyze()</p>
-            <canvas></canvas>
-            <div class="fc-copy"><p class="t">SYSTEMS</p><p class="l">Trained to think in</p><p class="s">structure, logic, and complexity.</p></div>
-          </div>
-        </div>
-      </div>
-      <div class="fc-hint" aria-hidden="true">
-        <!-- phone layout: the hint sits under the card and points up at it -->
-        <svg class="hint-mob" viewBox="0 0 200 92">
-          <path class="ring" pathLength="1" d="M140 42 C124 32 70 32 52 42 C38 50 42 72 66 76 C92 80 146 76 152 60 C156 48 136 36 112 36"/>
-          <path class="arrow" pathLength="1" d="M82 38 C86 24 80 12 70 4"/>
-          <path class="tip" pathLength="1" d="M73 14 L70 4 L80 5"/>
-        </svg>
-        <svg class="hint-desk" viewBox="0 0 520 480">
-          <path class="ring" pathLength="1" d="M508 328 C492 316 436 316 414 326 C398 334 400 360 424 366 C450 372 512 368 518 348 C522 334 502 320 478 320"/>
-          <path class="arrow" pathLength="1" d="M426 320 C432 290 418 262 394 250"/>
-          <path class="tip" pathLength="1" d="M400 261 L394 250 L406 248"/>
-        </svg>
-        <p>click here</p>
+    <div class="a-polaroid">
+      <div class="photo" id="photo">
+        <a class="card-pop" href="#about" data-cursor="me" tabindex="-1" aria-label="About me">
+          <svg viewBox="0 0 266.527 370.898" aria-hidden="true"><path d="M9.02553 8.38058C9.03768 6.18851 10.8119 4.41458 13.004 4.4028L255.405 3.10006C257.632 3.08809 259.439 4.89599 259.427 7.12217L257.501 354.518C257.489 356.71 255.715 358.484 253.523 358.495L11.1215 359.798C8.89532 359.81 7.08772 358.002 7.10006 355.776L9.02553 8.38058Z"/></svg>
+          <span class="about-tag"><img src="img/final/about-arrow.svg" alt=""><span>about</span></span>
+        </a>
+        <div class="girl" data-cursor="me" aria-hidden="true"><img src="img/v2/peeking-girl.png" alt=""></div>
+        <figure class="polaroid" data-cursor="me" tabindex="0" aria-label="Photo of Siddhesha">
+          <div class="shot"><img src="img/v2/portrait.jpg" alt="Siddhesha smiling"></div>
+          <figcaption>sidd.jpeg</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -828,6 +838,7 @@ analyze()</p>
     pol.addEventListener('focus',showPop);
     photo.addEventListener('focusout',function(e){ if(!photo.contains(e.relatedTarget)) hide(); });
     pol.addEventListener('pointerup',function(e){ if(e.pointerType!=='mouse'){ open?hide():showPop(); } });
+    onShow.push(function(id){ if(id!=='about') hide(); }); // the polaroid sits on About; tuck it away when leaving
   })();
 
   // more projects: each card's own photos spring out beside it on hover
@@ -1036,7 +1047,7 @@ analyze()</p>
     }
     // draw the circle and arrow once the About page is on screen; reset the card when leaving it
     onShow.push(function(id){
-      if(id!=='about'){ card.classList.remove('on'); card.setAttribute('aria-pressed','false'); card.dataset.cursor='flip'; hint.classList.remove('drawn'); return; }
+      if(id!=='work'){ card.classList.remove('on'); card.setAttribute('aria-pressed','false'); card.dataset.cursor='flip'; hint.classList.remove('drawn'); return; }
       requestAnimationFrame(function(){ build(); requestAnimationFrame(function(){ hint.classList.add('drawn'); }); });
     });
     var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(build,150); });
