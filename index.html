@@ -475,6 +475,198 @@
     .clients{padding-left:calc(80px + var(--side))}
     .foot{padding-left:calc(56px + var(--side));padding-right:calc(80px + var(--side))}
   }
+
+  /* ===== OPTION B PREVIEW ===== */
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 24px;border-radius:100px;border:1px solid color-mix(in srgb,var(--blue) 35%,transparent);
+    background:#fff;font:inherit;font-weight:700;font-size:16px;color:var(--blue);cursor:pointer;transition:background-color .2s,transform .16s cubic-bezier(.23,1,.32,1);white-space:nowrap}
+  .btn-ghost:hover{background:color-mix(in srgb,var(--blue) 8%,#fff)}
+  .btn-ghost:active{transform:scale(.97)}
+  .btn.rd-go img{transition:transform .3s cubic-bezier(.23,1,.32,1)}
+  .btn.rd-go:hover img{transform:translateX(3px)}
+  .rd-ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+  /* top nav: smaller type, tighter pills */
+  @media (min-width:1024px){
+    .head{height:80px}
+    .head.stuck{height:64px}
+    nav{gap:2px;align-items:center}
+    nav a{height:36px;padding:0 14px;font-size:16px}
+  }
+  .nav-qr{height:36px;padding:0 14px;margin-left:10px;display:flex;align-items:center;border-radius:100px;border:1px solid color-mix(in srgb,var(--blue) 35%,transparent);
+    background:#fff;font:inherit;font-weight:700;font-size:16px;color:var(--blue);cursor:pointer;transition:background-color .2s,transform .16s cubic-bezier(.23,1,.32,1)}
+  .nav-qr:hover{background:color-mix(in srgb,var(--blue) 8%,#fff)}
+  .nav-qr:active{transform:scale(.97)}
+
+  /* facts on every project card. Each fact has a left rule; the first 13px are clipped so a wrapped line never starts with one */
+  .rd-meta{display:flex;flex-wrap:wrap;row-gap:4px;margin-left:-13px;clip-path:inset(0 0 0 13px);font-weight:600;font-size:14px;line-height:1.4;color:var(--label)}
+  .rd-meta span{padding-left:12px;margin-right:12px;border-left:1px solid color-mix(in srgb,var(--blue) 28%,transparent);white-space:nowrap}
+  .details .rd-meta{margin-top:-6px;max-width:none;font-size:15px;line-height:1.4;color:var(--label)}
+
+  /* Quick read */
+  html:has(dialog.qr[open]){overflow:hidden}
+  dialog.qr{position:fixed;inset:0 0 0 auto;margin:0;width:min(560px,100vw);height:100dvh;max-height:none;max-width:none;padding:0;border:0;
+    background:#fff;color:var(--ink);box-shadow:-30px 0 60px -30px rgba(42,42,79,.35);overflow:auto;overscroll-behavior:contain;font-family:Manrope,sans-serif}
+  dialog.qr::backdrop{background:rgba(42,42,79,.3)}
+  dialog.qr[open]{animation:qr-in .45s cubic-bezier(.32,.72,0,1)}
+  dialog.qr[open]::backdrop{animation:qr-fade .3s ease}
+  dialog.qr.closing{animation:qr-out .2s cubic-bezier(.4,0,1,1) forwards}
+  dialog.qr.closing::backdrop{animation:qr-fade .2s ease reverse forwards}
+  @keyframes qr-in{from{transform:translateX(48px);opacity:0}}
+  @keyframes qr-out{to{transform:translateX(48px);opacity:0}}
+  @keyframes qr-fade{from{opacity:0}}
+  .has-cursor dialog.qr, .has-cursor dialog.qr *{cursor:auto !important}
+  .has-cursor dialog.qr a, .has-cursor dialog.qr button{cursor:pointer !important}
+  .qr-in{min-height:100%;display:flex;flex-direction:column}
+  .qr-body{flex:1;padding:26px 40px 32px}
+  .qr-top{display:flex;align-items:center;justify-content:space-between}
+  .qr-top p{font-family:Mansalva,cursive;font-size:24px;color:var(--blue)}
+  .qr-x{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font:inherit;font-size:22px;line-height:1;color:var(--muted);transition:background-color .2s,transform .16s cubic-bezier(.23,1,.32,1)}
+  .qr-x:hover{background:color-mix(in srgb,var(--blue) 8%,#fff)}
+  .qr-x:active{transform:scale(.94)}
+  .qr h2{margin-top:22px;font-weight:700;font-size:32px;letter-spacing:-.6px;color:var(--title)}
+  .qr-role{margin-top:4px;font-size:17px;line-height:1.5;color:var(--muted)}
+  .qr-facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-top:24px;padding:20px;border-radius:16px;background:color-mix(in srgb,var(--blue) 6%,#fff)}
+  .qr-facts dt{font-family:Mansalva,cursive;font-size:18px;line-height:1;color:var(--hello2)}
+  .qr-facts dd{margin-top:6px;font-weight:700;font-size:15px;line-height:1.45;color:var(--ink)}
+  .qr-more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:700;font-size:15px;color:var(--blue)}
+  .qr-more span{transition:transform .25s cubic-bezier(.23,1,.32,1)}
+  .qr-more:hover span{transform:translateX(3px)}
+  .qr h3{margin-top:30px;font-weight:700;font-size:18px;color:var(--title)}
+  .qr-work{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:12px}
+  .qr-work a{display:flex;align-items:center;gap:16px;padding:8px;margin:0 -8px;border-radius:14px;transition:background-color .2s}
+  .qr-work a:hover{background:color-mix(in srgb,var(--blue) 6%,#fff)}
+  .qr-work img{flex:none;width:96px;height:60px;border-radius:8px;object-fit:cover;border:1px solid var(--line)}
+  .qr-work b{display:block;font-weight:700;font-size:16px;color:var(--ink)}
+  .qr-work span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:var(--muted)}
+  .qr-all{display:inline-flex;margin-top:10px;font-weight:700;font-size:15px;color:var(--blue)}
+  .qr-all:hover{text-decoration:underline;text-underline-offset:4px}
+  .qr-skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .qr-skills span{padding:7px 12px;border-radius:4px;background:var(--tag-bg);font-weight:700;font-size:13px;color:var(--body)}
+  .qr-tools{margin-top:12px;font-size:14px;color:var(--muted)}
+  .qr-tools b{font-weight:700;color:var(--ink)}
+  .qr-actions{position:sticky;bottom:0;display:flex;flex-wrap:wrap;gap:10px;padding:16px 40px 20px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .qr-actions .btn,.qr-actions .btn-ghost{height:44px;padding:0 20px;font-size:15px}
+
+  /* From code to design: developer years are dashed squares, design years solid circles */
+  .path{padding-top:40px;padding-bottom:150px}
+  .path-sub{margin-top:12px;max-width:620px;font-size:18px;line-height:1.6;color:var(--muted)}
+  .path-notes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:28px;margin-top:44px}
+  .path-notes span{font-family:Mansalva,cursive;font-size:22px;line-height:1}
+  .path-notes .n1{grid-column:1/3;color:var(--blue)}
+  .path-notes .n2{grid-column:3/6;color:var(--hello2)}
+  .path-list{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:28px;margin-top:14px}
+  .path-list li{position:relative;padding-top:44px}
+  .path-list li::before{content:"";position:absolute;left:8px;right:-28px;top:8px;height:2px;transform-origin:0 50%}
+  .path-list li:last-child::before{right:0}
+  .path-list li.code::before{background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--blue) 60%,transparent) 0 7px,transparent 7px 13px)}
+  .path-list li.design::before{background:color-mix(in srgb,var(--yellow) 75%,transparent)}
+  .path-list li::after{content:"";position:absolute;left:0;top:1px;width:16px;height:16px;box-sizing:border-box}
+  .path-list li.code::after{border-radius:4px;border:2px solid var(--blue);background:#fff}
+  .path-list li.design::after{border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px #fff}
+  .path-list time{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:14px;color:var(--date)}
+  .path-list b{display:block;margin-top:8px;font-weight:700;font-size:19px;line-height:1.3;color:var(--title)}
+  .path-list .org{display:block;margin-top:4px;font-weight:600;font-size:15px;line-height:1.4;color:var(--org)}
+  .path-list p{margin-top:10px;font-size:15px;line-height:1.55;color:var(--muted)}
+  @media (prefers-reduced-motion:no-preference){
+    .path.js .path-list li{opacity:0;translate:0 12px;transition:opacity .5s calc(var(--i)*110ms),translate .6s cubic-bezier(.16,1,.3,1) calc(var(--i)*110ms)}
+    .path.js .path-list li::before{scale:0 1;transition:scale .5s cubic-bezier(.65,0,.35,1) calc(var(--i)*110ms + 120ms)}
+    .path.js.in .path-list li{opacity:1;translate:0 0}
+    .path.js.in .path-list li::before{scale:1 1}
+  }
+
+  /* ===== footer: "Drop me a hi!" answers the "Hello" at the top; the peeking girl comes out as you arrive ===== */
+  .end{position:relative;overflow:hidden;padding:104px 80px 32px;background:var(--foot);border-top:1px solid var(--line);color:var(--ink)}
+  .end-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;align-items:end;gap:32px}
+  .end-lead{max-width:540px;font-size:19px;line-height:1.6;color:var(--body)}
+  .end-big{margin-top:10px;font-weight:700;font-size:clamp(68px,8.4vw,128px);line-height:1.04;letter-spacing:-.045em;color:var(--ink)}
+  .end-big .w{display:inline-block}
+  .end-big .hand{font-family:Mansalva,cursive;font-weight:400;letter-spacing:0;font-size:1.06em;color:var(--hello2);rotate:-4deg;transform-origin:20% 80%;margin-left:.14em}
+  .end-pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
+  .pill-x{display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 24px;border-radius:100px;background:#fff;
+    border:1px solid color-mix(in srgb,var(--blue) 22%,transparent);font:inherit;font-weight:700;font-size:17px;color:var(--ink);cursor:pointer;white-space:nowrap;
+    transition:transform .2s cubic-bezier(.23,1,.32,1),background-color .2s,border-color .2s,box-shadow .25s}
+  .pill-x:active{transform:scale(.97)}
+  .pill-x .ar{display:inline-block;color:var(--blue);transition:transform .25s cubic-bezier(.23,1,.32,1)}
+  .pill-mail{gap:14px;padding-right:10px;background:var(--blue);border-color:var(--blue);color:#fff}
+  .pm-tag{height:36px;padding:0 14px;display:inline-flex;align-items:center;border-radius:100px;background:rgba(255,255,255,.18);font-size:14px;transition:background-color .2s}
+  .pill-mail.copied .pm-tag{background:#fff;color:var(--blue)}
+  @media (hover:hover) and (pointer:fine){
+    .pill-x:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--blue) 45%,transparent);box-shadow:0 12px 26px -16px rgba(42,42,79,.5)}
+    .pill-x:hover .ar{transform:translate(2px,-2px)}
+    .pill-x:hover .ar.dn{transform:translateY(2px)}
+    .pill-mail:hover{background:color-mix(in srgb,var(--blue) 88%,#000)}
+    .pill-mail:hover .pm-tag{background:rgba(255,255,255,.28)}
+  }
+  .end-peek{position:relative;height:340px}
+  /* the drawing is 887px square: her line sits at x 607 to 622, so the window ends at 609 and the line is drawn by its own clipped copy */
+  .pk{position:absolute;right:-138px;bottom:-40px;width:460px;aspect-ratio:1}
+  .pk-line{position:absolute;inset:0;width:100%;height:100%;max-width:none;clip-path:inset(0 29.88% 0 68.43%);pointer-events:none}
+  .pk-win{position:absolute;left:0;top:0;bottom:0;width:68.66%;overflow:hidden}
+  .pk-lean{position:absolute;inset:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+  .pk-girl{position:absolute;left:0;top:0;width:145.65%;max-width:none;transform-origin:70% 62%}
+  .pk.lean .pk-lean{transform:translateX(-14px) rotate(-3deg)}
+  .pk.duck .pk-lean{transform:translateX(150px);transition:transform .22s cubic-bezier(.77,0,.175,1)}
+  .pk-bub{position:absolute;right:calc(100% - 196px);bottom:calc(100% - 108px);padding:8px 16px 10px;border-radius:20px 20px 4px 20px;background:#fff;
+    border:2px solid #0938a6;font-family:Mansalva,cursive;font-size:22px;line-height:1.1;color:#0938a6;white-space:nowrap;pointer-events:none;
+    transform-origin:100% 100%;opacity:0;transform:scale(.9) translateY(4px);transition:opacity .2s ease,transform .3s cubic-bezier(.34,1.56,.64,1)}
+  .pk-bub span{display:inline-block}
+  .pk-bub.on{opacity:1;transform:none}
+  .end-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px;margin-top:72px;padding-top:22px;
+    border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent);font-size:15px;color:var(--body)}
+  .end-meta b{font-weight:700;color:var(--ink)}
+  .end-top{height:40px;padding:0 16px;border-radius:100px;border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);background:#fff;font:inherit;font-weight:700;font-size:14px;color:var(--blue);cursor:pointer;
+    transition:background-color .2s,transform .16s cubic-bezier(.23,1,.32,1)}
+  .end-top:hover{background:color-mix(in srgb,var(--blue) 8%,#fff)}
+  .end-top:active{transform:scale(.97)}
+  @media (prefers-reduced-motion:reduce){ .pk-lean,.pk-bub{transition:opacity .2s} .pk.lean .pk-lean,.pk.duck .pk-lean{transform:none} }
+  @media (min-width:1537px){ .end{padding-left:calc(80px + var(--side));padding-right:calc(80px + var(--side))} }
+
+
+  @media (max-width:1279px){ .end-grid{grid-template-columns:minmax(0,1fr) 300px} .pk{right:-150px} }
+  @media (max-width:1023px){
+    .nav-qr{display:none}
+    .rd-ctas .btn,.rd-ctas .btn-ghost{height:46px}
+    .rd-meta{font-size:13px}
+    .details .rd-meta{font-size:14px}
+    .path{padding-top:24px;padding-bottom:80px}
+    .path-sub{font-size:16px}
+    .path-notes{display:none}
+    .path-list{grid-template-columns:1fr;row-gap:30px;margin-top:32px;padding-left:34px}
+    .path-list li{padding-top:0}
+    .path-list li::before{left:-27px;right:auto;top:20px;bottom:-30px;width:2px;height:auto;transform-origin:50% 0}
+    .path-list li:last-child::before{display:none}
+    .path-list li.code::before{background:repeating-linear-gradient(180deg,color-mix(in srgb,var(--blue) 60%,transparent) 0 7px,transparent 7px 13px)}
+    .path-list li::after{left:-34px;top:2px}
+    .path-list b{margin-top:4px;font-size:18px}
+    .qr-body{padding:22px var(--gut) 28px}
+    .qr-actions{padding:14px var(--gut) 18px}
+    .end{padding:64px var(--gut) 96px}
+    .end-grid{grid-template-columns:1fr;gap:0}
+    .end-lead{font-size:16px}
+    .end-big{font-size:clamp(54px,15vw,96px)}
+    .end-pills{gap:10px;margin-top:30px}
+    .pill-x{height:50px;padding:0 18px;font-size:15px}
+    .pill-mail{width:100%;justify-content:space-between;padding-right:8px}
+    .pm-tag{height:34px}
+    .end-peek{height:220px;margin-top:-20px;pointer-events:none}
+    .end-peek .pk-win{pointer-events:none}
+    .pk{width:270px;right:-56px;bottom:-22px}
+    .pk-bub{right:calc(100% - 116px);bottom:calc(100% - 64px);font-size:18px;padding:6px 12px 8px}
+    .end-meta{flex-direction:column;align-items:flex-start;gap:8px;margin-top:36px}
+    .end-top{margin-top:8px}
+  }
+  @media (max-width:640px){
+    dialog.qr{inset:auto 0 0 0;width:100vw;height:auto;max-height:92dvh;border-radius:22px 22px 0 0;box-shadow:0 -20px 50px -20px rgba(42,42,79,.35)}
+    @keyframes qr-in{from{transform:translateY(60px);opacity:0}}
+    @keyframes qr-out{to{transform:translateY(60px);opacity:0}}
+    .qr h2{font-size:26px}
+    .qr-facts{grid-template-columns:1fr;padding:16px;gap:14px}
+    .qr-work img{width:80px;height:50px}
+    .qr-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .qr-actions .btn{grid-column:1/-1;justify-content:center}
+    .qr-actions .btn-ghost{justify-content:center}
+  }
 </style>
 </head>
 <body>
@@ -484,7 +676,7 @@
   <div class="dot-fade"></div>
   <header class="head">
     <a class="brand" href="#home" aria-label="Sidd, home"><span class="name">Sidd</span></a>
-    <nav><a class="on" href="#home">Home</a><a href="work.html">Work</a><a href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+    <nav><a class="on" href="#home">Home</a><a href="work.html">Work</a><a href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a><button type="button" class="nav-qr" data-qr>Quick read</button></nav>
   </header>
 
   <section class="hero">
@@ -498,7 +690,7 @@
           <span class="fact">A curious observer of people, places, and plot twists</span>
           <span class="fact">Now I focus less on if-else and more on “How might we”</span>
         </span></h1>
-      <a class="btn" href="#about">About/CV <img src="img/v2/arrow.svg" width="16" height="16" alt=""></a>
+      <div class="rd-ctas"><a class="btn rd-go" href="work.html">See my work <img src="img/v2/arrow.svg" width="16" height="16" alt=""></a><button type="button" class="btn-ghost" data-qr>Quick read</button></div>
     </div>
 
     <div class="a-photo hero-card">
@@ -583,7 +775,7 @@ analyze()</p>
         <div class="ai-cover"><img src="img/covers/ai-trade-v2.jpg" alt="AI Trade Dashboard on a laptop"></div>
         <div class="ai-details">
           <p class="ai-meta"><span>01</span>AI RECOMMENDATIONS</p>
-          <h3>AI Trade Dashboard</h3>
+          <h3>AI Trade Dashboard</h3><p class="rd-meta"><span>Solo design</span><span>48-hour design task</span><span>Web dashboard</span></p>
           <p class="ai-line">Meridian Desk, a shared board for AI trade ideas</p>
           <p class="ai-body">From the overnight suggestion to a signed-off trade. Each idea moves across one board, with the case, the tests and the sign-off opening beside it.</p>
           <div class="ai-foot"><div class="tags"><span>APPROVAL FLOW</span><span>DASHBOARD DESIGN</span></div><span class="ai-link">View case study →</span></div>
@@ -593,7 +785,7 @@ analyze()</p>
         <div class="ai-cover"><img src="img/covers/ally.jpg" alt="Ally dashboard on a laptop and phone"></div>
         <div class="ai-details">
           <p class="ai-meta"><span>02</span>AI ASSISTANT</p>
-          <h3>Ally</h3>
+          <h3>Ally</h3><p class="rd-meta"><span>Solo design</span><span>48-hour design task</span><span>Built around WhatsApp</span></p>
           <p class="ai-line">An AI copilot for a home bakery</p>
           <p class="ai-body">Ally answers routine WhatsApp questions from verified data and stops at anything that would commit Lakshmi to a price, a date or an order.</p>
           <div class="ai-foot"><div class="tags"><span>ERROR RECOVERY</span><span>WEB + MOBILE</span></div><span class="ai-link">View case study →</span></div>
@@ -607,24 +799,37 @@ analyze()</p>
     <div class="projects">
       <a class="proj" href="siama.html" data-cursor="project">
         <div class="cover"><img src="img/covers/siama-v2.jpg" alt="SIAMA dashboard on a laptop"></div>
-        <div class="details"><h3>SIAMA</h3>
+        <div class="details"><h3>SIAMA</h3><p class="rd-meta"><span>Solo design and code</span><span>6-month thesis</span><span>Live web platform</span></p>
           <p><b>Making craft education more contextual and connected</b>Toolkit that helps craft educators understand the people, practices and markets surrounding Indian crafts. I transformed an existing prototype into a more structured, persistent and insight-driven experience.</p>
           <div class="tags"><span>SYSTEM DESIGN</span><span>INFO VISUALIZATION</span></div></div>
       </a>
       <a class="proj" href="trackit.html" data-cursor="project">
         <div class="cover"><img src="img/covers/trackit-v2.jpg" alt="TrackIt app screens"></div>
-        <div class="details"><h3>TrackIt</h3>
-          <p><b>One place for the whole household’s money</b>A household money app redesign: bills, splits, budgets, payments and insights on one record, with an assistant that drafts and explains but never acts alone.</p>
+        <div class="details"><h3>TrackIt</h3><p class="rd-meta"><span>Group course project</span><span>Extended solo</span><span>iOS app</span></p>
+          <p><b>One place for the whole household’s money</b>Began as a group course project. I carried it on as a personal project and added new flows: an AI assistant, shared splits and budgets.</p>
           <div class="tags"><span>UI UX</span><span>AI UX</span></div></div>
       </a>
       <a class="proj" href="signease.html" data-cursor="project">
         <div class="cover"><img src="img/covers/signease-v3.jpg" alt="Signease app screens"></div>
-        <div class="details"><h3>Signease</h3>
+        <div class="details"><h3>Signease</h3><p class="rd-meta"><span>Solo design</span><span>Field research</span><span>Mobile app</span></p>
           <p><b>Bridging communication through Indian Sign Language</b>An accessibility-focused ecosystem designed to bring Deaf and hearing people closer through Indian Sign Language.</p>
           <div class="tags"><span>UI UX</span><span>ACCESSIBILITY</span></div></div>
       </a>
     </div>
     <a class="all-work" href="work.html">All work in one place <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="sec path" aria-labelledby="path-h">
+    <div class="sec-h"><i></i><h2 id="path-h">From code to design</h2></div>
+    <p class="path-sub">I’m a product designer with an engineering background who makes sense of complex workflows and the systems behind them.</p>
+    <div class="path-notes" aria-hidden="true"><span class="n1">writing code</span><span class="n2">designing</span></div>
+    <ol class="path-list">
+      <li class="code" style="--i:0"><time>2022</time><b>Software Developer</b><span class="org">Connecticus Software, for Siemens Digital R&amp;D</span><p>UX enhancements and features for Siemens Polarion ALM. Resolved 15+ workflow defects.</p></li>
+      <li class="code" style="--i:1"><time>2023</time><b>Programmer Analyst</b><span class="org">Cognizant, Pune</span><p>Diagnosed and fixed code-level issues in client applications.</p></li>
+      <li class="design" style="--i:2"><time>2024</time><b>Design Intern</b><span class="org">Obladi Creatives</span><p>Branding and campaigns for 8+ client brands, packaging across 10+ product lines.</p></li>
+      <li class="design" style="--i:3"><time>2025</time><b>M.Des, Interaction Design</b><span class="org">IIT Guwahati</span><p>CGPA 8.4. SIAMA was my semester thesis here.</p></li>
+      <li class="design" style="--i:4"><time>2026</time><b>Design Head</b><span class="org">Tarangini Media Club, IIT Guwahati</span><p>Leading visual design for the institute’s student media club.</p></li>
+    </ol>
   </section>
 
   <section class="sec more" id="more">
@@ -647,32 +852,30 @@ analyze()</p>
     </div>
   </section>
 
-  <section class="sec bring">
-    <div class="board" id="board">
-      <div class="center"><img class="face" src="img/v2/logo.png" alt=""><h2>What I bring to the table</h2><p>I don't just bring a seat to the table. I bring ideas that change the conversation.</p></div>
-      <span class="pill b" style="left:661.1px;top:85.8px;--r:-8deg">Product Design</span>
-      <span class="pill y" style="left:1008.7px;top:152.6px;--r:-8deg">Accessibility</span>
-      <span class="pill y" style="left:324.7px;top:187.7px;--r:7deg">Design Systems</span>
-      <span class="pill b" style="left:201.8px;top:353.5px;--r:-8deg">User Research</span>
-      <span class="pill b" style="left:1133.6px;top:343.5px;--r:5deg">AI Explorations</span>
-      <span class="pill y" style="left:1164.5px;top:539.7px;--r:20deg">Data Visualization</span>
-      <span class="pill y" style="left:244.4px;top:574.1px;--r:3deg">Usability Testing</span>
-      <span class="pill b" style="left:560.3px;top:701.2px;--r:-14deg">Experience Design</span>
-      <span class="pill b" style="left:930.1px;top:670.7px;--r:-14deg">Wireframing &amp; Prototyping</span>
+  <footer class="end" id="contact">
+    <div class="end-grid">
+      <div class="end-copy">
+        <p class="end-lead">Since we have come to the finish line, I believe we should get in touch.</p>
+        <h2 class="end-big"><span class="w">Drop</span> <span class="w">me</span> <span class="w">a</span> <span class="w hand">hi!</span></h2>
+        <div class="end-pills">
+          <button type="button" class="pill-x pill-mail" data-say="click to copy" aria-label="Copy my email address, siddheshapawade3@gmail.com"><span class="pm-text">siddheshapawade3@gmail.com</span><span class="pm-tag">Copy</span></button>
+          <a class="pill-x" href="https://linkedin.com/in/siddhesha-pawade" target="_blank" rel="noopener" data-say="let’s connect">LinkedIn <span class="ar" aria-hidden="true">↗</span></a>
+          <a class="pill-x" href="https://behance.net/siddhesha_pawade" target="_blank" rel="noopener" data-say="more work here">Behance <span class="ar" aria-hidden="true">↗</span></a>
+          <a class="pill-x" href="resume_siddhesha.pdf" download data-say="my resume">Resume <span class="ar dn" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="end-peek" aria-hidden="true">
+        <div class="pk">
+          <img class="pk-line" src="img/v2/peeking-girl.png" alt="" loading="lazy">
+          <div class="pk-win" data-cursor="me"><div class="pk-lean"><img class="pk-girl" src="img/v2/peeking-girl.png" alt="" loading="lazy"></div></div>
+          <p class="pk-bub"><span>hi!</span></p>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <footer class="foot">
-    <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
-    <div class="credits">
+    <div class="end-meta">
       <p>Curated by <b>Siddhesha Pawade</b></p>
       <p>Powered by coffee, claude and curiosity.</p>
-      <hr>
-      <div class="socials">
-        <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
-        <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
-        <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
-      </div>
+      <button type="button" class="end-top">Back to top <span aria-hidden="true">↑</span></button>
     </div>
   </footer>
 </div>
@@ -682,7 +885,7 @@ analyze()</p>
   <div class="dot-fade"></div>
   <header class="head">
     <a class="brand" href="#home" aria-label="Sidd, home"><span class="name">Sidd</span></a>
-    <nav><a href="#home">Home</a><a href="work.html">Work</a><a class="on" href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+    <nav><a href="#home">Home</a><a href="work.html">Work</a><a class="on" href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a><button type="button" class="nav-qr" data-qr>Quick read</button></nav>
   </header>
   <section class="a-hero">
     <div class="a-intro">
@@ -773,6 +976,35 @@ analyze()</p>
 
 <div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
 
+<dialog class="qr" id="qr" aria-labelledby="qr-title">
+  <div class="qr-in">
+    <div class="qr-body">
+      <div class="qr-top"><p>Quick read</p><button type="button" class="qr-x" data-close aria-label="Close">×</button></div>
+      <h2 id="qr-title">Siddhesha Pawade</h2>
+      <p class="qr-role">Product designer with an engineering background</p>
+      <dl class="qr-facts">
+        <div><dt>now</dt><dd>M.Des Interaction Design, IIT Guwahati (CGPA 8.4)</dd></div>
+        <div><dt>before</dt><dd>2+ years as a software developer, Siemens Digital R&amp;D and Cognizant</dd></div>
+        <div><dt>design work</dt><dd>Design Head, Tarangini Media Club. Design intern, Obladi Creatives</dd></div>
+        <div><dt>status</dt><dd>Open to work</dd></div>
+      </dl>
+      <a class="qr-more" href="#about">More about me <span aria-hidden="true">→</span></a>
+      <h3>Start with these</h3>
+      <ol class="qr-work">
+        <li><a href="ai-trade.html"><img src="img/covers/ai-trade-v2.jpg" alt=""><div><b>AI Trade Dashboard</b><span>One board to check, test and sign off AI trade ideas. 48-hour task.</span></div></a></li>
+        <li><a href="ally.html"><img src="img/covers/ally.jpg" alt=""><div><b>Ally</b><span>An AI copilot that stops at anything that commits the owner. 48-hour task.</span></div></a></li>
+        <li><a href="siama.html"><img src="img/covers/siama-v2.jpg" alt=""><div><b>SIAMA</b><span>A planning platform I designed and coded. 6-month thesis.</span></div></a></li>
+      </ol>
+      <a class="qr-all" href="work.html">All five case studies →</a>
+      <h3>What I do</h3>
+      <div class="qr-skills"><span>User research</span><span>Information architecture</span><span>User flows</span><span>Prototyping</span><span>Usability testing</span><span>Accessibility</span><span>Design systems</span><span>Data visualization</span></div>
+      <p class="qr-tools"><b>Tools:</b> Figma, Framer, Python, HTML/CSS</p>
+    </div>
+    <div class="qr-actions"><a class="btn" href="resume_siddhesha.pdf" download>Resume (PDF)</a><button type="button" class="btn-ghost" data-copy="siddheshapawade3@gmail.com">Copy email</button><a class="btn-ghost" href="https://linkedin.com/in/siddhesha-pawade" target="_blank" rel="noopener">LinkedIn</a></div>
+  </div>
+</dialog>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
@@ -915,7 +1147,7 @@ analyze()</p>
 
   // what I bring: pills curve out of the middle once the cursor nears it, then stay
   (function(){
-    var board=document.getElementById('board'), center=board.querySelector('.center');
+    var board=document.getElementById('board'); if(!board) return; var center=board.querySelector('.center');
     var pills=[].slice.call(board.querySelectorAll('.pill')), shown=false, NEAR=280;
     var cx=687.5, cy=368; // middle of the logo + heading block, in board coordinates
     var small=matchMedia('(max-width:1023px)');
@@ -1079,6 +1311,91 @@ analyze()</p>
     var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(build,150); });
     img.onload=function(){ (document.fonts?document.fonts.load('500 8px "JetBrains Mono"'):Promise.resolve()).catch(function(){}).then(build); };
     img.src=SRC;
+  })();
+
+  // Quick read sheet: native dialog (focus stays inside, Esc closes), short slide out
+  (function(){
+    var dlg=document.getElementById('qr'); if(!dlg||!dlg.showModal) return;
+    document.querySelectorAll('[data-qr]').forEach(function(b){ b.addEventListener('click',function(){ dlg.classList.remove('closing'); dlg.showModal(); }); });
+    function close(){
+      if(still){ dlg.close(); return; }
+      dlg.classList.add('closing');
+      setTimeout(function(){ dlg.classList.remove('closing'); dlg.close(); },200);
+    }
+    dlg.addEventListener('click',function(e){
+      if(e.target.closest('a[href^="#"]')){ dlg.close(); return; } // "More about me": close, then let the page switch
+      if(e.target===dlg||e.target.closest('[data-close]')) close();
+    });
+    dlg.addEventListener('cancel',function(e){ e.preventDefault(); close(); });
+  })();
+  // "Copy email" in Quick read
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var t=b.dataset.copy;
+      (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){
+        b.textContent='Copied'; setTimeout(function(){ b.textContent=label; },1600);
+      }).catch(function(){ location.href='mailto:'+t; });
+    });
+  });
+  // From code to design: the path draws in once it is on screen
+  (function(){
+    var sec=document.querySelector('.path'); if(!sec||!('IntersectionObserver' in window)) return;
+    sec.classList.add('js');
+    new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('in'); o.disconnect(); } }); },{threshold:0,rootMargin:'0px 0px -20% 0px'}).observe(sec);
+  })();
+
+  // Footer: she comes out from behind her line as you reach the end, answers what each button does, ducks when clicked
+  (function(){
+    var end=document.querySelector('.end'); if(!end) return;
+    var pk=end.querySelector('.pk'), girl=end.querySelector('.pk-girl'), win=end.querySelector('.pk-win');
+    var bub=end.querySelector('.pk-bub'), txt=bub.querySelector('span'), mail=end.querySelector('.pill-mail');
+    var out=false, hover=null, word='hi!';
+    function say(t){
+      word=t; if(txt.textContent===t) return;
+      if(still){ txt.textContent=t; return; }
+      // a quick blur hides the swap of one word for the next
+      txt.animate([{opacity:1,filter:'blur(0)'},{opacity:0,filter:'blur(3px)'}],{duration:90,easing:'ease',fill:'forwards'}).onfinish=function(){
+        txt.textContent=word; txt.animate([{opacity:0,filter:'blur(3px)'},{opacity:1,filter:'blur(0)'}],{duration:170,easing:'ease',fill:'forwards'});
+      };
+    }
+    function setOut(v){ if(v===out) return; out=v; bub.classList.toggle('on',v); if(!v){ pk.classList.remove('lean'); } }
+
+    var G=window.gsap, ST=window.ScrollTrigger;
+    if(G&&ST&&!still){
+      G.registerPlugin(ST);
+      G.fromTo(girl,{xPercent:40,rotate:7},{xPercent:0,rotate:0,ease:'none',
+        scrollTrigger:{trigger:end,start:'top 92%',end:'bottom bottom',scrub:.7,onUpdate:function(s){ setOut(s.progress>.9); }}});
+      G.from(end.querySelectorAll('.end-big .w'),{yPercent:70,opacity:0,duration:.9,ease:'expo.out',stagger:.08,
+        scrollTrigger:{trigger:end,start:'top 78%',once:true}});
+      G.from(end.querySelectorAll('.end-lead, .end-pills > *'),{y:16,opacity:0,duration:.7,ease:'expo.out',stagger:.05,delay:.15,
+        scrollTrigger:{trigger:end,start:'top 78%',once:true}});
+      onShow.push(function(id){ if(id==='home') requestAnimationFrame(function(){ ST.refresh(); }); });
+    } else { setOut(true); }
+
+    end.querySelectorAll('[data-say]').forEach(function(el){
+      function on(){ hover=el; pk.classList.add('lean'); if(out&&!el.classList.contains('copied')) say(el.dataset.say); }
+      function off(){ if(hover!==el) return; hover=null; pk.classList.remove('lean'); if(out) say('hi!'); }
+      el.addEventListener('pointerenter',on); el.addEventListener('pointerleave',off);
+      el.addEventListener('focus',on); el.addEventListener('blur',off);
+    });
+
+    var tag=mail.querySelector('.pm-tag'), timer=0;
+    mail.addEventListener('click',function(){
+      (navigator.clipboard?navigator.clipboard.writeText('siddheshapawade3@gmail.com'):Promise.reject()).then(function(){
+        mail.classList.add('copied'); tag.textContent='Copied'; say('copied!');
+        clearTimeout(timer); timer=setTimeout(function(){ mail.classList.remove('copied'); tag.textContent='Copy'; if(out) say(hover?hover.dataset.say:'hi!'); },1800);
+      }).catch(function(){ location.href='mailto:siddheshapawade3@gmail.com'; });
+    });
+
+    // click her: she ducks behind the line and pops back out
+    win.addEventListener('click',function(){
+      if(!out||pk.classList.contains('duck')) return;
+      pk.classList.add('duck'); bub.classList.remove('on');
+      setTimeout(function(){ pk.classList.remove('duck'); setTimeout(function(){ bub.classList.add('on'); say('hi again!'); },260); },420);
+    });
+
+    end.querySelector('.end-top').addEventListener('click',function(){ window.scrollTo({top:0,behavior:still?'auto':'smooth'}); });
   })();
 
   show();

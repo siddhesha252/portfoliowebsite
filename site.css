@@ -28,16 +28,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 /* header */
 .head,.foot,.next-link{width:100%;align-self:stretch;flex-shrink:0}
 /* the header stays at the top while scrolling; once the page moves it gets a frosted backing and slims down */
-.head{position:sticky;top:0;z-index:50;height:94px;display:flex;align-items:center;justify-content:space-between;padding:23px 80px 23px 19px;
+.head{position:sticky;top:0;z-index:50;height:80px;display:flex;align-items:center;justify-content:space-between;padding:23px 80px 23px 19px;
   transition:height .3s cubic-bezier(.16,1,.3,1),background-color .3s,box-shadow .3s}
-.head.stuck{height:72px;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+.head.stuck{height:64px;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 8%,transparent)}
 .brand{position:relative;display:block;width:120px;height:48px}
 .brand .logo{position:absolute;left:0;top:0;width:50px;height:48px;overflow:hidden}
 .brand .logo img{position:absolute;width:150%;height:157.89%;left:-20%;top:-28.95%;max-width:none}
 .brand .name{position:absolute;left:8px;top:20px;font-family:Sacramento,cursive;font-size:36px;line-height:19.8px;letter-spacing:-.18px;color:var(--name);white-space:nowrap}
-.head nav{display:flex;gap:8px}
-.head nav a{height:40px;padding:0 16px;display:flex;align-items:center;border-radius:100px;font-weight:700;font-size:18px;color:var(--muted);transition:background-color .2s,color .2s}
+.head nav{display:flex;gap:2px;align-items:center}
+.head nav a{height:36px;padding:0 14px;display:flex;align-items:center;border-radius:100px;font-weight:700;font-size:16px;color:var(--muted);transition:background-color .2s,color .2s}
 .head nav a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
 .head nav a.on{background:var(--blue);color:#fff}
 
