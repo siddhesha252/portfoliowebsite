@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Gochi+Hand&display=swap");
 /* Shared by the project pages: tokens, palettes, header, footer, cursor, preview controls. */
 :root{
   --bg:#fbfaf8; --ink:#242424; --muted:#62625e; --soft:#8f8e89; --blue:#3838eb; --yellow:#e6d811; --line:#e2e0d8; --ph:#e8e6df;
@@ -10,7 +11,7 @@
 [data-theme="oxford"]{--bg:#fffaeb;--ink:#14263f;--muted:#4f5a6b;--blue:#123e6b;--yellow:#f2d25b;--name:#123e6b;--tint:rgba(242,210,91,.38);--foot:rgba(236,146,72,.20);--line:#f1e4b8}
 [data-theme="cornflower"]{--bg:#faf9f6;--ink:#121318;--muted:#4f5158;--blue:#4a73b0;--yellow:#8faedc;--name:#4a73b0;--tint:rgba(143,174,220,.32);--foot:rgba(143,174,220,.26);--line:#e6e2da}
 [data-theme="oxwhite"]{--bg:#ffffff;--ink:#14263f;--muted:#4f5a6b;--blue:#123e6b;--yellow:#ec9248;--name:#123e6b;--tint:rgba(236,146,72,.16);--foot:rgba(18,62,107,.06);--line:#e8e9ec}
-[data-theme="periapricot"]{--bg:#ffffff;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#ec9248;--name:#6363b0;--tint:rgba(236,146,72,.16);--foot:var(--tint);--line:#e6e6f0}
+[data-theme="periapricot"]{--bg:#f7f7fb;--ink:#151a33;--muted:#4f566e;--blue:#3346d3;--yellow:#f06b3f;--name:#3346d3;--tint:rgba(240,107,63,.12);--foot:var(--tint);--line:#e2e4ef}
 [data-theme="periapricot-off"]{--bg:#f6f5f1;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#ec9248;--name:#6363b0;--tint:rgba(236,146,72,.16);--foot:rgba(99,99,176,.08);--line:#e2e0d8}
 [data-theme="trio"]{--bg:#ffffff;--ink:#2a2a4f;--muted:#5b5b7c;--blue:#6363b0;--yellow:#f2d25b;--name:#6363b0;--tint:rgba(242,210,91,.30);--foot:rgba(236,146,72,.14);--line:#e6e6f0}
 html[data-bg="white"]{--bg:#ffffff}
@@ -156,3 +157,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .site .foot{padding-left:calc(56px + var(--side));padding-right:calc(80px + var(--side))}
   .site .next-link{padding-inline:var(--side)}
 }
+
+/* fonts (2026-11-20): Bricolage Grotesque for headings, Gochi Hand for handwriting; body stays Manrope */
+h1,h2,h3,[class*="font-[600]"][class*="text-[22px]"],[class*="font-[700]"][class*="text-[22px]"],[class*="font-[800]"][class*="text-[22px]"],[class*="font-[600]"][class*="text-[24px]"],[class*="font-[700]"][class*="text-[24px]"],[class*="font-[800]"][class*="text-[24px]"],[class*="font-[600]"][class*="text-[26px]"],[class*="font-[700]"][class*="text-[26px]"],[class*="font-[800]"][class*="text-[26px]"],[class*="font-[600]"][class*="text-[36px]"],[class*="font-[700]"][class*="text-[36px]"],[class*="font-[800]"][class*="text-[36px]"],[class*="font-[600]"][class*="text-[40px]"],[class*="font-[700]"][class*="text-[40px]"],[class*="font-[800]"][class*="text-[40px]"],[class*="font-[600]"][class*="text-[48px]"],[class*="font-[700]"][class*="text-[48px]"],[class*="font-[800]"][class*="text-[48px]"],[class*="font-[600]"][class*="text-[60px]"],[class*="font-[700]"][class*="text-[60px]"],[class*="font-[800]"][class*="text-[60px]"],[class*="font-[600]"][class*="text-[96px]"],[class*="font-[700]"][class*="text-[96px]"],[class*="font-[800]"][class*="text-[96px]"]{font-family:"Bricolage Grotesque",Manrope,sans-serif}
+[class*="Mansalva"]{font-family:"Gochi Hand",cursive}
+.brand .name{font-family:"Gochi Hand",cursive;font-size:30px;top:16px;letter-spacing:0}
