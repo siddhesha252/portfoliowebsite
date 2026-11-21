@@ -234,6 +234,7 @@ button.zoom:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .moment-wide .m-text > div{display:flex;flex-direction:column;gap:12px}
 .pair{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:20px;align-items:start}
 .pair figure{display:flex;flex-direction:column;gap:12px}
+.pair.even{grid-template-columns:repeat(2,minmax(0,1fr))}
 
 /* ---------- iteration ---------- */
 .versions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -352,4 +353,198 @@ button.zoom:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
   .versions{grid-template-columns:minmax(0,1fr)}
   .cs h1{font-size:34px}
   .cs h2{font-size:27px}
+}
+
+/* ===== blocks added for phone-app case studies (first used on trackit.html) ===== */
+/* phone screens sit side by side on the same soft panel */
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
+.phones.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px;margin:0 auto}
+.phones.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.phones figure{display:flex;flex-direction:column;gap:12px;min-width:0}
+.phones .shot{border-radius:22px;width:100%}
+.phones figcaption{font-size:14px;line-height:1.45;color:var(--muted)}
+.phones figcaption b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.phones figcaption .n{display:block;font-size:13px;font-weight:700;color:var(--peri-ink);margin-bottom:4px;font-variant-numeric:tabular-nums}
+.cover .phones{max-width:860px;gap:34px;align-items:end}
+.cover .phones figure:nth-child(2){transform:translateY(-28px)}
+.moment .stage.phone-stage{padding:32px 28px}
+
+/* market numbers */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.stats > div{padding:22px 0 0;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:8px}
+.stats b{font-size:44px;line-height:1;letter-spacing:-.03em;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}
+.stats p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+.stats cite{font-style:normal;font-size:13px;font-weight:600;color:var(--muted)}
+
+/* quotes from interviews */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.quotes blockquote{margin:0;background:var(--stage);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.quotes blockquote p{font-size:17px;line-height:1.5;font-weight:600;color:var(--ink)}
+.quotes cite{font-style:normal;font-size:14px;color:var(--muted)}
+.quotes cite b{color:var(--ink);font-weight:700}
+
+/* sourced evidence cards and assistant rules */
+.evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;background:var(--stage);border-radius:22px;padding:24px}
+.evidence > div{background:#fff;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.evidence p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+.evidence cite{font-style:normal;font-size:13px;font-weight:700;color:var(--peri-ink)}
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;background:var(--stage);border-radius:22px;padding:24px}
+.rules > div{background:#fff;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.rules h4{font-size:17px}
+.rules p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+
+/* household roles */
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.roles > div{border-top:2px solid var(--blue);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+.roles p{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.roles.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* annotated example card (AI Trade research) */
+.idea-map{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px) minmax(0,1fr);gap:56px;align-items:stretch;padding:8px 0}
+.im-notes{display:flex;flex-direction:column;justify-content:space-around;gap:18px;position:relative;z-index:1}
+.im-notes.left{text-align:right}
+.im-note h4{font-size:15px;color:var(--blue);margin-bottom:4px}
+.im-note p{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.im-card{position:relative;z-index:1;background:#fff;border:1px solid var(--rule);border-radius:22px;padding:24px 26px 14px;box-shadow:0 1px 2px rgba(42,42,79,.06),0 18px 40px -18px rgba(42,42,79,.22);align-self:center}
+.im-top{display:flex;align-items:center;gap:12px;padding-bottom:14px}
+.im-top b{font-size:26px;letter-spacing:-.02em;color:var(--ink)}
+.im-buy{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--good);background:#e3f3ea;border-radius:999px;padding:4px 12px}
+.im-card dl > div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--rule)}
+.im-card dt{font-size:15px;color:var(--muted)}
+.im-card dd{font-size:16px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.im-card dd.good{color:var(--good)}
+.im-card dd.bad{color:#c0392b}
+.im-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.im-lines path{fill:none;stroke:var(--blue);stroke-width:1.2;opacity:.75}
+.im-lines circle{fill:var(--blue)}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:48px}
+.terms > div{border-top:1px solid var(--ink);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.terms h4{font-size:16px}
+.terms p{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.learned-panel{background:var(--stage);border-radius:22px;padding:8px 28px 4px}
+.learned-tbl th{padding-top:18px}
+.learned-tbl td:first-child{font-weight:500;color:var(--ink);width:50%}
+.learned-tbl td:last-child{color:var(--blue);font-weight:600}
+.learned-tbl .ins{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+@media (max-width:1023px){
+  .idea-map{grid-template-columns:minmax(0,1fr);gap:24px}
+  .im-card{order:-1;justify-self:center;width:100%;max-width:420px}
+  .im-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px}
+  .im-notes.left{text-align:left}
+  .im-lines{display:none}
+  .terms{grid-template-columns:minmax(0,1fr);gap:20px}
+}
+@media (max-width:560px){.im-notes{grid-template-columns:minmax(0,1fr)}.learned-panel{padding:4px 18px}}
+
+/* day strip: problems along the trading day */
+.daystrip{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;position:relative;padding-top:4px}
+.daystrip::before{content:"";position:absolute;left:6px;right:6px;top:11px;height:2px;background:var(--rule)}
+.daystrip li{position:relative;display:flex;flex-direction:column;gap:8px;padding-top:30px}
+.daystrip li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #c0392b}
+.daystrip time{font-size:14px;font-weight:800;color:#c0392b;font-variant-numeric:tabular-nums}
+.daystrip h4{font-size:16px;line-height:1.3}
+.daystrip p{font-size:14px;line-height:1.5;color:var(--ink-2)}
+
+/* stage line: who does what at each stage */
+.stages{display:flex;flex-direction:column;gap:6px}
+.st-row{display:grid;grid-template-columns:104px repeat(7,minmax(0,1fr));gap:12px;align-items:start}
+.st-panel{background:var(--stage);border-radius:14px;padding:16px 14px}
+.st-names{position:relative;padding:0 14px 10px}
+.st-names::before{content:"";position:absolute;left:136px;right:calc((100% - 118px) / 7 - 6px);top:5px;height:2px;background:var(--blue);opacity:.35}
+.st-names div{position:relative;font-size:14px;font-weight:700;color:var(--ink);padding-top:22px}
+.st-names i{position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:var(--blue)}
+.st-k{font-size:13px;font-weight:700;color:var(--muted);padding-top:2px}
+.st-row p{font-size:14px;line-height:1.45;color:var(--ink-2)}
+.st-row p b{color:var(--ink);font-weight:700}
+.st-row p.out{color:var(--muted);font-style:italic}
+.who{font-style:normal;display:inline-block;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--rule);color:var(--ink)}
+.who.analyst{background:#e8ecfc;border-color:#d3dbfa;color:#2c3fa6}
+.who.pm{background:#f3e9fb;border-color:#e5d3f5;color:#6a2f9a}
+.who.trader{background:#e3f3ea;border-color:#cbe8d7;color:var(--good)}
+.who.auto{border-style:dashed;color:var(--muted)}
+
+/* product structure tree */
+.tree{display:flex;flex-direction:column;gap:14px}
+.node{display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:12px;padding:11px 18px;box-shadow:0 1px 2px rgba(42,42,79,.05)}
+.node.root{background:var(--blue);border-color:var(--blue);color:#fff}
+.node.soft{background:var(--stage);border-style:dashed;font-weight:600}
+.tree-top{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
+.tt-left{display:flex;align-items:center;justify-content:flex-end}
+.tree-arrow{width:56px;height:2px;background:var(--rule);position:relative}
+.tree-arrow::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--rule);border-right:0}
+.tree-branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;position:relative;padding-top:30px}
+.tree-branches::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;height:16px;border:2px solid var(--rule);border-bottom:0;border-radius:12px 12px 0 0}
+.tree-branches::after{content:"";position:absolute;left:calc(50% - 1px);top:-14px;width:2px;height:14px;background:var(--rule)}
+.tree-branches > div{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative}
+.tree-branches > div::before{content:"";position:absolute;top:-14px;left:50%;width:2px;height:14px;background:var(--rule)}
+.tree-branches .node{width:100%}
+.tree-branches ul{list-style:none;align-self:stretch;display:flex;flex-direction:column;gap:7px;padding:0 6px}
+.tree-branches li{font-size:14px;line-height:1.4;color:var(--ink-2);display:flex;gap:8px}
+.tree-branches li::before{content:"";flex:none;width:5px;height:5px;border-radius:2px;background:var(--blue);margin-top:7px;opacity:.6}
+.tree-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--stage);border-radius:14px;padding:14px 20px;margin-top:8px}
+.tree-bar.main{background:var(--peri-tint);border:1px solid #d9d9f0}
+.tree-bar + .tree-bar{margin-top:0}
+.tree-bar b{font-size:15px;color:var(--ink)}
+.tree-bar span{display:flex;gap:8px;flex-wrap:wrap}
+.tree-bar em{font-style:normal;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:#fff;border:1px solid var(--rule);color:var(--ink-2)}
+
+/* main flow with exits */
+.flow{list-style:none;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:22px;align-items:start}
+.flow li{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.flow .node{font-size:14px;padding:11px 8px;text-align:center}
+.flow li:not(:last-child)::after{content:"";position:absolute;top:21px;right:-20px;width:18px;height:2px;background:var(--blue);opacity:.5}
+.flow .exit{position:relative;margin-top:22px;font-size:13px;line-height:1.45;color:var(--ink-2);background:#fff6ef;border:1px dashed #efc8a8;border-radius:10px;padding:10px 10px}
+.flow .exit::before{content:"";position:absolute;left:50%;top:-22px;height:22px;border-left:2px dashed #efc8a8}
+
+/* three short cards */
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cards3 > div{background:var(--stage);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.cards3 .k{color:var(--muted)}
+.cards3 h4{font-size:17px}
+.cards3 p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+.cards3.ask > div{background:#fff;border:1px solid var(--rule)}
+.cards3 .qq{font-size:17px;line-height:1.45;font-weight:600;color:var(--ink)}
+
+@media (max-width:1023px){
+  .daystrip{grid-template-columns:minmax(0,1fr);gap:18px;padding-left:28px}
+  .daystrip::before{left:6px;right:auto;top:6px;bottom:6px;width:2px;height:auto}
+  .daystrip li{padding-top:0}
+  .daystrip li::before{left:-28px;top:2px}
+  .stages{min-width:900px}
+  .flow{min-width:900px}
+  .tree-top{grid-template-columns:minmax(0,1fr);justify-items:center;gap:10px}
+  .tt-left{justify-content:center}
+  .tree-arrow{display:none}
+  .tree-branches{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:16px}
+  .tree-branches::before,.tree-branches::after,.tree-branches > div::before{display:none}
+  .cards3{grid-template-columns:minmax(0,1fr)}
+}
+.roles ul{display:flex;flex-direction:column;gap:6px;padding-top:4px}
+.roles li{font-size:15px;line-height:1.45;color:var(--ink-2)}
+@media (max-width:1023px){.roles.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.roles.four{grid-template-columns:minmax(0,1fr)}}
+
+/* rounds of iteration: phone thumbnails */
+.rounds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.rounds figure{display:flex;flex-direction:column;gap:12px}
+.rounds .thumb{background:var(--stage);border-radius:18px;padding:22px 30px 0;overflow:hidden;height:340px}
+.rounds .thumb img{width:100%;border-radius:18px 18px 0 0;box-shadow:0 1px 2px rgba(42,42,79,.08),0 12px 30px -14px rgba(42,42,79,.25)}
+.rounds .thumb.last{background:var(--peri-tint);border:2px solid var(--blue);padding:20px 28px 0}
+.rounds .v{font-size:13px;font-weight:700;color:var(--muted)}
+.rounds p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+
+@media (max-width:1180px){
+  .phones.five{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:1023px){
+  .stats,.quotes,.roles,.rounds{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .evidence,.rules{grid-template-columns:minmax(0,1fr);padding:16px}
+  .phones{gap:12px}
+  .phones.five{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cover .phones figure:nth-child(2){transform:none}
+}
+@media (max-width:560px){
+  .phones{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .phones figure:nth-child(3):last-child{grid-column:span 2;max-width:50%;justify-self:center}
 }
