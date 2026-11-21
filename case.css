@@ -471,7 +471,7 @@ button.zoom:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .tree-top{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
 .tt-left{display:flex;align-items:center;justify-content:flex-end}
 .tree-arrow{width:56px;height:2px;background:var(--rule);position:relative}
-.tree-arrow::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--rule);border-right:0}
+.tree-arrow::after{content:"";position:absolute;right:-1px;top:-4px;width:8px;height:10px;background:var(--rule);clip-path:polygon(0 0,100% 50%,0 100%)}
 .tree-branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;position:relative;padding-top:30px}
 .tree-branches::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;height:16px;border:2px solid var(--rule);border-bottom:0;border-radius:12px 12px 0 0}
 .tree-branches::after{content:"";position:absolute;left:calc(50% - 1px);top:-14px;width:2px;height:14px;background:var(--rule)}
