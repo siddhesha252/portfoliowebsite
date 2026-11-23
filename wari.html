@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wari Pandharichi, Siddhesha Pawade</title>
+<meta name="description" content="Wari Pandharichi: a two-sided folding infographic about the Pandharpur Wari and the Warkaris who walk it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&family=Jaini&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  .pg{--acc:#a35700;--acc-2:#f0971a;--tint:#fdf3e3}
+  /* the two Warkaris I met */
+  .people .card{flex-direction:row;align-items:flex-end;gap:20px;padding:28px 28px 0;overflow:hidden}
+  .people .card > div{padding-bottom:28px;display:flex;flex-direction:column;gap:12px}
+  .people img{width:180px;flex:none;margin-bottom:-4px}
+  .people .card:nth-child(2){--tilt:.8deg}
+  /* sketches next to the inked versions */
+  .sk{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:28px;align-items:start}
+  .sk > div{border-radius:22px;padding:24px;background:#fff;border:1px solid var(--rule)}
+  .sk > div:first-child{background:#fff7f5;border-color:#f6dcd5}
+  .sk h3{font-size:17px;margin-bottom:14px}
+  .sk .scatter img{height:180px}
+  .sk > div:last-child .scatter img{height:210px}
+  /* palette: three swatches that overlap like the tika */
+  .swatches{display:flex;align-items:center;padding-left:30px}
+  .swatches button{all:unset;cursor:pointer;width:170px;height:170px;border-radius:50%;margin-left:-30px;display:grid;place-items:center;
+    font-weight:700;font-size:16px;box-shadow:0 0 0 4px #fff;transition:transform .45s var(--spring)}
+  .swatches button:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+  @media (hover:hover){ .swatches button:hover{transform:translateY(-10px) rotate(-6deg)} }
+  .swatches .s1{background:#fff;color:#0c0c0c;box-shadow:0 0 0 4px #fff,inset 0 0 0 2px #0c0c0c}
+  .swatches .s2{background:#0c0c0c;color:#fff}
+  .swatches .s3{background:#dca700;color:#0c0c0c}
+  .swatches .s4{background:#f0971a;color:#0c0c0c}
+  .copied{font-weight:600;font-size:14px;color:var(--muted);min-height:20px}
+  .type{display:flex;flex-direction:column;gap:18px}
+  .type div{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:18px 22px;border-radius:18px;background:#fff;border:1px solid var(--rule)}
+  .type span{font-weight:700;font-size:15px;color:var(--muted)}
+  .type .j{font-family:Jaini,serif;font-size:56px;line-height:1}
+  .type .l{font-family:Lato,sans-serif;font-size:50px;line-height:1}
+  .type .a{font-size:24px;font-weight:700;color:var(--ink)}
+  .result-img{perspective:900px}
+  .result-img img{border-radius:12px;width:100%}
+  @media (max-width:1023px){
+    .people .card{flex-direction:column;align-items:flex-start;padding:24px 24px 0}
+    .people img{width:150px;align-self:center}
+    .sk{grid-template-columns:1fr}
+    .swatches button{width:110px;height:110px;font-size:13px;margin-left:-22px}
+    .swatches{padding-left:22px}
+    .type .j{font-size:40px}.type .l{font-size:36px}
+  }
+</style>
+</head>
+<body>
+<div class="site">
+<div class="pg" data-name="Wari Pandharichi">
+<div class="dot-fade" aria-hidden="true"></div>
+
+<header class="head">
+  <a class="brand" href="./" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+  <nav><a href="./">Home</a><a href="work.html">Work</a><a href="./#about">About</a><a class="on" href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+</header>
+
+<section class="p-hero">
+  <div class="txt">
+    <p class="crumb"><a href="playground.html">Playground</a><span aria-hidden="true">/</span><span>Wari Pandharichi</span></p>
+    <h1>Wari Pandharichi <b>an infographic design project <span class="hand">(fun project)</span></b></h1>
+    <p class="lede">A visual storytelling project about the Warkari movement and the annual Pandharpur Wari, a 700+ year-old pilgrimage where lakhs of devotees walk to honor Lord Vitthal.</p>
+    <ul class="facts">
+      <li><span>Made</span>A two-sided folding infographic</li>
+      <li><span>Research</span>A visit to Alandi</li>
+      <li><span>I did</span>Interviews, sketches, illustration, layout</li>
+    </ul>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <figure class="print"><img src="img/play/wari/dance.png" alt=""></figure>
+    <figure class="print"><img src="img/play/wari/fold-1.png" alt=""></figure>
+    <figure class="print"><img src="img/play/wari/temple.png" alt=""></figure>
+  </div>
+</section>
+
+<main class="p-body">
+
+  <section class="blk">
+    <div class="two">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2>Why I chose <b>this project</b></h2>
+        <p class="body">As someone deeply moved by cultural storytelling, I was fascinated by the Warkari tradition: how devotion, simplicity and unity come alive through the act of walking.</p>
+        <p class="body">This project let me explore a blend of faith, community and design that keeps cultural values alive in a visual way.</p>
+      </div>
+      <div class="rise">
+        <button class="zoom" aria-label="Open the photo full size"><div class="ph" style="aspect-ratio:4/3"><img src="img/play/wari/river.png" alt="The ghat on the Indrayani river at Alandi" loading="lazy"></div></button>
+        <p class="cap">Visit to Alandi</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2>When I met <b>Warkaris of Alandi</b></h2>
+    <div class="cards c2 people">
+      <article class="card rise">
+        <img src="img/play/wari/aaji.png" alt="Mai Aaji sitting cross-legged in an orange saree" loading="lazy">
+        <div><p class="who">The devoted pilgrim</p><h3>Mai Aaji</h3>
+          <p>An elderly woman from Alandi who has walked the Wari every year for the past 30 years. For her, the Wari is not just a pilgrimage but a way of life, a yearly promise she makes to Vitthal, rain or shine.</p></div>
+      </article>
+      <article class="card rise">
+        <img src="img/play/wari/ajoba.png" alt="Ajoba standing with his instrument, in a white Warkari cap" loading="lazy">
+        <div><p class="who">The mrudung wadak</p><h3>Ajoba</h3>
+          <p>A mrudung player whose life revolves around the Wari and Alandi. From a young age he has played in the palkhi procession, believing every beat connects him to Vitthal. For him, music, Alandi and the Wari are one and the same.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>Understanding the lifestyle and culture of <b>people from Alandi</b></h2>
+    <div class="strip" aria-label="Photos from Alandi">
+      <figure><img src="img/play/wari/talk-1.jpg" alt="Talking with two Warkaris outside a school" loading="lazy" draggable="false"></figure>
+      <figure><img src="img/play/wari/drums.jpg" alt="A drum maker in his shop of mrudungs" loading="lazy" draggable="false"></figure>
+      <figure><img src="img/play/wari/talk-2.png" alt="Interviewing a woman on a bench" loading="lazy" draggable="false"></figure>
+      <figure><img src="img/play/wari/boy.jpg" alt="A young Warkari boy in white" loading="lazy" draggable="false"></figure>
+      <figure><img src="img/play/wari/shop.jpg" alt="A craftsman making cymbal straps" loading="lazy" draggable="false"></figure>
+      <figure><img src="img/play/wari/talk-3.jpg" alt="Conversation under a tree" loading="lazy" draggable="false"></figure>
+      <figure><img src="img/play/wari/lane.jpg" alt="Children in a lane in Alandi" loading="lazy" draggable="false"></figure>
+    </div>
+    <p class="strip-hint">Drag or scroll sideways for more</p>
+  </section>
+
+  <section class="blk">
+    <h2>Illustrations and visuals <b>for the infographic</b></h2>
+    <div class="sk">
+      <div class="rise"><h3>Sketches</h3>
+        <div class="scatter">
+          <img src="img/play/wari/sk-7.png" alt="" loading="lazy"><img src="img/play/wari/sk-8.png" alt="" loading="lazy"><img src="img/play/wari/sk-9.png" alt="" loading="lazy"><img src="img/play/wari/sk-10.png" alt="" loading="lazy">
+        </div></div>
+      <div class="rise"><h3>Final line art</h3>
+        <div class="scatter">
+          <img src="img/play/wari/sk-1.png" alt="Sant Dnyaneshwar writing" loading="lazy"><img src="img/play/wari/sk-2.png" alt="Warkaris walking with flags" loading="lazy"><img src="img/play/wari/sk-3.png" alt="" loading="lazy"><img src="img/play/wari/sk-4.png" alt="" loading="lazy"><img src="img/play/wari/sk-5.png" alt="" loading="lazy"><img src="img/play/wari/sk-6.png" alt="" loading="lazy">
+        </div></div>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2>Typography <b>and color</b></h2>
+    <div class="two mid">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div class="swatches" role="group" aria-label="Colors, click to copy">
+          <button class="s1" data-hex="#ffffff">White</button>
+          <button class="s2" data-hex="#0c0c0c">#0c0c0c</button>
+          <button class="s3" data-hex="#dca700">#dca700</button>
+          <button class="s4" data-hex="#f0971a">#f0971a</button>
+        </div>
+        <p class="copied" aria-live="polite">Click a color to copy it</p>
+        <p class="body">The color palette is inspired by the tika Warkaris put on their forehead (black abir, sandalwood that dries yellowish, white abir) and by the orange flag in the Wari.</p>
+      </div>
+      <div class="type">
+        <div><p class="j">Jaini Aa</p><span>Headings</span></div>
+        <div><p class="l">Lato Aa</p><span>Body text</span></div>
+        <div><p class="a">Ams Aditya</p><span>Marathi text</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2><b>Result</b></h2>
+    <div class="two mid">
+      <div class="rise"><button class="zoom" aria-label="Open the photo full size"><img class="ph" src="img/play/wari/fold-1.png" alt="The Wari side of the printed fold-out" loading="lazy"></button></div>
+      <div class="rise"><button class="zoom" aria-label="Open the photo full size"><img class="ph" src="img/play/wari/fold-2.png" alt="The Warkari side of the printed fold-out" loading="lazy"></button></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+      <div class="switch" data-switch="flat" role="group" aria-label="Which side">
+        <button type="button" aria-pressed="true" data-src="img/play/wari/info-wari.png" data-alt="Wari side, Journey of Faith: what is Wari, the route from Dehu and Alandi to Pandharpur, the palkhi, fugdi and Vitthal" data-cap="Wari side: Journey of Faith">Wari side</button>
+        <button type="button" aria-pressed="false" data-src="img/play/wari/info-warkari.png" data-alt="Warkari side, Life of Devotion: who is a Warkari, dindi, way of life, melodies of bhakti, tulsi mala and the saints" data-cap="Warkari side: Life of Devotion">Warkari side</button>
+      </div>
+      <figure class="stage wide result-img" id="flat">
+        <button class="zoom" aria-label="Open the infographic full size"><img src="img/play/wari/info-wari.png" alt="Wari side, Journey of Faith: what is Wari, the route from Dehu and Alandi to Pandharpur, the palkhi, fugdi and Vitthal" loading="lazy"></button>
+      </figure>
+      <p class="cap" data-cap style="margin-top:-8px">Wari side: Journey of Faith</p>
+    </div>
+  </section>
+</main>
+
+<a class="next" href="tithi.html" data-cursor="project">
+  <div><p class="k">Next fun project</p><p class="nm">Tithi</p><p>An AR-enabled Marathi panchang desk calendar</p></div>
+  <div class="thumb"><img src="img/play/tithi/final-2.png" alt="" loading="lazy"></div>
+</a>
+
+<footer class="foot">
+  <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+  <div class="credits">
+    <p>Curated by <b>Siddhesha Pawade</b></p>
+    <p>Powered by coffee, claude and curiosity.</p>
+    <hr>
+    <div class="socials">
+      <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+      <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+      <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+
+<dialog class="viewer" aria-label="Picture, full size"><button type="button" aria-label="Close">&times;</button><p></p></dialog>
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+<script src="site.js"></script>
+<script src="play.js"></script>
+<script>
+  // click a swatch to copy its hex
+  (function(){
+    var out=document.querySelector('.copied');
+    [].forEach.call(document.querySelectorAll('.swatches button'),function(b){
+      b.addEventListener('click',function(){
+        var hex=b.dataset.hex;
+        (navigator.clipboard?navigator.clipboard.writeText(hex):Promise.reject()).then(function(){ out.textContent='Copied '+hex; },function(){ out.textContent=hex; });
+      });
+    });
+  })();
+</script>
+</body>
+</html>

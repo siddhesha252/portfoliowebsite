@@ -1,0 +1,190 @@
+/* Playground pages (playground.html, wari.html, tithi.html, ashtachaal.html).
+   Header, footer, cursor and palette tokens come from site.css. Each project page sets its own
+   --acc (text-safe accent), --acc-2 (bright accent for shapes) and --tint (very light wash). */
+
+.pg{
+  --rule:#e6e6f0; --ink-2:#3f3f63; --card:#fff;
+  --acc:var(--blue); --acc-2:var(--yellow); --tint:#f3f3fa;
+  --shadow:0 1px 2px rgba(42,42,79,.06),0 18px 40px -18px rgba(42,42,79,.28);
+  --spring:cubic-bezier(.34,1.56,.64,1); --ease:cubic-bezier(.16,1,.3,1);
+  position:relative;isolation:isolate;display:flex;flex-direction:column;
+  background:url(img/cs/29cfc1c143f1.png) 0 0/22px 22px repeat,#fff;color:var(--ink);font-family:Manrope,sans-serif;
+}
+.pg .dot-fade{position:absolute;left:0;right:0;top:620px;bottom:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0,#fff 420px,#fff 100%)}
+.pg p,.pg h1,.pg h2,.pg h3,.pg ul,.pg ol,.pg figure,.pg dl,.pg dd,.pg blockquote{margin:0}
+.pg ul,.pg ol{padding:0;list-style:none}
+.pg img{display:block;max-width:100%;height:auto}
+.pg b,.pg strong{font-weight:800}
+.hand{font-family:Mansalva,cursive;font-weight:400;letter-spacing:0}
+.deva{font-family:Kalam,Mansalva,cursive;font-weight:700}
+
+/* ---------- hero ---------- */
+.p-hero{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px;align-items:center;padding:36px 80px 72px}
+.p-hero .txt{display:flex;flex-direction:column;gap:24px;align-items:flex-start}
+.crumb{font-size:15px;font-weight:600;color:var(--muted);display:flex;gap:8px}
+.crumb a:hover{color:var(--blue)}
+.pg h1{font-size:64px;line-height:1.06;letter-spacing:-.035em;font-weight:500;text-wrap:balance}
+.pg h1 b{display:block;font-weight:800}
+.pg h1 .hand{display:inline-block;font-size:.62em;color:var(--acc);transform:rotate(-4deg);margin-left:6px}
+.lede{font-size:20px;line-height:1.6;color:var(--ink-2);max-width:56ch}
+.facts{display:flex;flex-wrap:wrap;gap:10px}
+.facts li{padding:9px 14px;border-radius:999px;background:var(--tint);font-weight:700;font-size:14px;color:var(--ink)}
+.facts li span{font-weight:600;color:var(--muted);margin-right:6px}
+
+/* a loose stack of printed photos; they fan out on hover */
+.stack{position:relative;height:480px}
+.print{position:absolute;margin:0;padding:10px 10px 12px;background:#fff;border-radius:6px;box-shadow:var(--shadow);
+  transform:rotate(var(--r,0deg));transition:transform .5s var(--spring)}
+.print img{border-radius:3px;width:100%;height:100%;object-fit:cover}
+.print figcaption{font-family:Mansalva,cursive;font-size:17px;color:var(--ink-2);padding:8px 2px 0;line-height:1.2}
+.stack .print:nth-child(1){left:2%;top:40px;width:56%;height:340px;--r:-6deg;z-index:1}
+.stack .print:nth-child(2){right:0;top:0;width:52%;height:300px;--r:5deg;z-index:2}
+.stack .print:nth-child(3){left:26%;bottom:0;width:50%;height:250px;--r:-2deg;z-index:3}
+@media (hover:hover){
+  .stack:hover .print:nth-child(1){transform:rotate(-10deg) translate(-26px,-6px)}
+  .stack:hover .print:nth-child(2){transform:rotate(9deg) translate(22px,-14px)}
+  .stack:hover .print:nth-child(3){transform:rotate(1deg) translateY(18px)}
+}
+
+/* ---------- body ---------- */
+.p-body{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.blk{padding:88px 80px;display:flex;flex-direction:column;gap:36px}
+.blk + .blk{border-top:1px solid var(--rule)}
+.blk.wash{background:var(--tint);border-top:0}
+.blk.wash + .blk{border-top:0}
+.pg h2{font-size:44px;line-height:1.1;letter-spacing:-.03em;font-weight:500;text-wrap:balance;max-width:22ch}
+.pg h2 b{font-weight:800}
+.pg h3{font-size:22px;line-height:1.3;letter-spacing:-.01em;font-weight:700}
+.kick{font-family:Mansalva,cursive;font-size:22px;color:var(--acc);transform:rotate(-2deg);display:inline-block;margin-bottom:-18px}
+.body{font-size:18px;line-height:1.65;color:var(--ink-2);max-width:64ch}
+.body + .body{margin-top:-16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.two.mid{align-items:center}
+.wide{width:100%}
+
+/* quote on a note card */
+.note{position:relative;padding:28px 32px;border-radius:18px;background:#fff;box-shadow:var(--shadow);transform:rotate(-1.2deg);max-width:640px}
+.note::before{content:"";position:absolute;top:-12px;left:42px;width:86px;height:24px;background:color-mix(in srgb,var(--acc-2) 55%,transparent);transform:rotate(-4deg);border-radius:2px}
+.note p{font-size:22px;line-height:1.5;font-weight:600;color:var(--ink)}
+.note cite{display:block;margin-top:12px;font-style:normal;font-size:15px;font-weight:600;color:var(--muted)}
+
+/* list with a short bold lead */
+.ticks{display:flex;flex-direction:column;gap:14px;max-width:64ch}
+.ticks li{position:relative;padding-left:30px;font-size:17px;line-height:1.6;color:var(--ink-2)}
+.ticks li::before{content:"";position:absolute;left:0;top:9px;width:14px;height:14px;border-radius:50%;border:3px solid var(--acc-2)}
+.ticks b{color:var(--ink)}
+
+/* little tags */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips li{padding:10px 16px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--acc) 30%,transparent);background:#fff;font-weight:700;font-size:15px;
+  transition:transform .35s var(--spring),background-color .2s}
+.chips li span{font-weight:500;color:var(--muted)}
+@media (hover:hover){ .chips li:hover{transform:translateY(-3px) rotate(-2deg);background:var(--tint)} }
+
+/* photo frame */
+.ph{border-radius:16px;overflow:hidden;background:#f0f0f7}
+.ph img{width:100%;height:100%;object-fit:cover}
+.cap{margin-top:10px;font-family:Mansalva,cursive;font-size:18px;color:var(--ink-2)}
+.zoom{all:unset;display:block;box-sizing:border-box;width:100%;cursor:zoom-in;border-radius:16px}
+.zoom:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+
+/* cards for people / groups */
+.cards{display:grid;gap:24px}
+.cards.c2{grid-template-columns:1fr 1fr}
+.cards.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--rule);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px;
+  transition:transform .45s var(--spring),box-shadow .3s}
+@media (hover:hover){ .card:hover{transform:translateY(-4px) rotate(var(--tilt,-.6deg));box-shadow:var(--shadow)} }
+.card .who{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.card p{font-size:16px;line-height:1.6;color:var(--ink-2)}
+
+/* scrolling photo strip */
+.strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 80px 18px;margin:0 -80px;scroll-padding-inline:80px;scrollbar-width:thin;cursor:grab}
+.strip.dragging{cursor:grabbing;scroll-snap-type:none}
+.strip figure{flex:none;scroll-snap-align:start;height:320px;border-radius:14px;overflow:hidden;background:#eee;transform:rotate(var(--r,0deg));transition:transform .4s var(--spring)}
+.strip figure img{height:100%;width:auto;max-width:none;pointer-events:none;user-select:none}
+.strip figure:nth-child(odd){--r:-1.2deg}
+.strip figure:nth-child(even){--r:1.4deg;margin-top:18px}
+@media (hover:hover){ .strip figure:hover{transform:rotate(0) scale(1.03)} }
+.strip-hint{font-size:14px;font-weight:600;color:var(--muted)}
+
+/* scattered cut-outs that wiggle on hover */
+.scatter{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:12px 28px}
+.scatter img{height:220px;width:auto;transition:transform .5s var(--spring);filter:drop-shadow(0 10px 14px rgba(42,42,79,.12))}
+.scatter img:nth-child(odd){transform:rotate(-3deg)}
+.scatter img:nth-child(even){transform:rotate(3deg)}
+@media (hover:hover){ .scatter img:hover{transform:rotate(0) scale(1.08) translateY(-6px)} }
+
+/* a soft panel for flat artwork */
+.stage{background:var(--tint);border-radius:24px;padding:36px;display:flex;justify-content:center}
+
+/* tabs that switch one picture */
+.switch{display:inline-flex;padding:5px;border-radius:999px;background:#fff;border:1px solid var(--rule);gap:4px}
+.switch button{font:inherit;font-weight:700;font-size:15px;border:0;background:none;color:var(--muted);height:42px;padding:0 18px;border-radius:999px;cursor:pointer;transition:background-color .25s,color .25s}
+.switch button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.switch button:active{transform:scale(.97)}
+
+/* before / after style comparison */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.vs > div{border-radius:20px;padding:26px;background:#fff;border:1px solid var(--rule);display:flex;flex-direction:column;gap:10px}
+.vs > div:last-child{background:var(--tint);border-color:transparent}
+.vs h3{font-size:19px}
+.vs p{font-size:16px;line-height:1.6;color:var(--ink-2)}
+
+/* numbered flow with curved arrows between steps */
+.flow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.flow li{padding:16px 22px;border:2px solid var(--acc);border-radius:50% / 46%;font-weight:700;font-size:16px;background:#fff;max-width:260px;text-align:center;line-height:1.35}
+.flow .arr{border:0;padding:0;background:none;font-family:Mansalva,cursive;font-size:30px;color:var(--acc)}
+
+/* next project */
+.next{display:flex;align-items:center;gap:40px;padding:64px 80px 96px;border-top:1px solid var(--rule)}
+.next > div{flex:1;display:flex;flex-direction:column;gap:12px}
+.next .k{font-size:15px;font-weight:600;color:var(--muted)}
+.next .nm{font-size:76px;line-height:1.1;letter-spacing:-.04em;font-weight:800}
+.next p:last-child{font-size:19px;color:var(--muted);font-weight:500}
+.next .thumb{width:420px;height:260px;border-radius:20px;overflow:hidden;transform:rotate(2deg);box-shadow:var(--shadow);transition:transform .5s var(--spring)}
+.next .thumb img{width:100%;height:100%;object-fit:cover}
+.next:hover .thumb{transform:rotate(-1deg) scale(1.03)}
+
+/* full-size viewer */
+.viewer{border:0;padding:0;margin:auto;background:transparent;max-width:min(1500px,96vw);max-height:94vh;overflow:visible}
+.viewer::backdrop{background:rgba(30,30,52,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.viewer img{max-width:min(1500px,96vw);max-height:88vh;width:auto;height:auto;border-radius:12px;display:block;margin:0 auto;background:#fff}
+.viewer p{color:#fff;text-align:center;margin-top:12px;font-weight:600}
+.viewer button{position:fixed;top:18px;right:22px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;font-size:26px;cursor:pointer}
+
+/* things rise into place the first time they scroll in */
+.js .rise{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.js .rise.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .js .rise{opacity:1;transform:none;transition:none}
+  .print,.card,.scatter img,.strip figure,.chips li,.next .thumb{transition:none}
+}
+
+/* ---------- tablet and phone ---------- */
+@media (max-width:1023px){
+  .p-hero{grid-template-columns:1fr;gap:36px;padding:24px var(--gut) 56px}
+  .pg h1{font-size:42px}
+  .lede{font-size:17px}
+  .stack{height:380px;max-width:520px;width:100%;justify-self:center}
+  .stack .print:nth-child(1){height:260px}
+  .stack .print:nth-child(2){height:230px}
+  .stack .print:nth-child(3){height:190px}
+  .blk{padding:56px var(--gut);gap:28px}
+  .pg h2{font-size:31px}
+  .body{font-size:16px}
+  .two,.vs,.cards.c2,.cards.c3{grid-template-columns:1fr;gap:24px}
+  .note p{font-size:18px}
+  .strip{padding:8px var(--gut) 18px;margin:0 calc(var(--gut) * -1)}
+  .strip figure{height:230px}
+  .scatter img{height:150px}
+  .stage{padding:18px}
+  .next{flex-direction:column;align-items:flex-start;padding:44px var(--gut) 56px;gap:24px}
+  .next .nm{font-size:46px}
+  .next .thumb{width:100%;height:auto;aspect-ratio:16/10}
+  .flow{flex-direction:column;align-items:stretch}
+  .flow li{max-width:none}
+  .flow .arr{transform:rotate(90deg);align-self:center}
+}

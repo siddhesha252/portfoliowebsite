@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AshtaChaal, Siddhesha Pawade</title>
+<meta name="description" content="AshtaChaal: reviving the Indian board game Chowka Bara with hand-painted, Ganjifa-inspired strategy cards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&family=Kalam:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  .pg{--acc:#a8242a;--acc-2:#3f8a4f;--tint:#f8f4e6}
+  .pg h1 .deva{display:inline-block;font-size:.7em;color:var(--acc);margin-left:8px;transform:rotate(-3deg)}
+  /* cowrie shells: throw them and count the mouths facing up */
+  .throw{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;padding:36px;border-radius:28px;background:#24502e;color:#f5f1e1}
+  .shells{display:flex;gap:22px;justify-content:center;min-height:140px;align-items:center}
+  .shell{width:74px;height:104px;border-radius:50%;background:radial-gradient(ellipse at 35% 30%,#fffaf0,#efe1c2 55%,#d6bf92);position:relative;
+    box-shadow:0 10px 16px -8px rgba(0,0,0,.45);transform:rotate(var(--r,0deg))}
+  .shell.mouth::after{content:"";position:absolute;left:50%;top:14px;bottom:14px;width:10px;margin-left:-5px;border-radius:6px;background:#5a3b1c;
+    box-shadow:-5px 0 0 -2px #efe1c2,5px 0 0 -2px #efe1c2}
+  .shell.mouth::before{content:"";position:absolute;left:50%;top:18px;bottom:18px;width:22px;margin-left:-11px;
+    background:repeating-linear-gradient(180deg,transparent 0 5px,#c9ad7a 5px 7px);border-radius:8px;opacity:.8}
+  .shell.hump{background:radial-gradient(ellipse at 40% 30%,#fffdf6,#f3e6c9 45%,#c7a873);}
+  .throw-out{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  .throw-out .throw-score{color:#fff;max-width:none;font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .throw-out p{color:#d9d3bb;font-size:15px;line-height:1.5;max-width:30ch}
+  .btn-throw{font:inherit;font-weight:800;font-size:16px;height:50px;padding:0 24px;border-radius:999px;border:0;background:#f5d65b;color:#24502e;cursor:pointer;transition:transform .2s var(--spring)}
+  .btn-throw:hover{transform:translateY(-2px) rotate(-2deg)}
+  .btn-throw:active{transform:scale(.96)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:#d9d3bb}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .legend i{display:inline-block;width:16px;height:22px;border-radius:50%;background:#efe1c2;position:relative}
+  .legend i.m::after{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:4px;border-radius:2px;background:#5a3b1c}
+  .types{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center;gap:12px;font-weight:700;font-style:italic;color:var(--acc)}
+  .museum{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .museum img{border-radius:10px;width:100%;height:100%;object-fit:cover}
+  .bts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .bts figure{border-radius:12px;overflow:hidden;transform:rotate(var(--r,0deg));transition:transform .45s var(--spring);box-shadow:var(--shadow)}
+  .bts figure:nth-child(3n+1){--r:-1.5deg}.bts figure:nth-child(3n+2){--r:1deg}.bts figure:nth-child(3n){--r:-.5deg}
+  @media (hover:hover){ .bts figure:hover{transform:rotate(0) scale(1.03)} }
+  .bts img{width:100%;height:260px;object-fit:cover}
+  .sketches{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:#fff;border:1px solid var(--rule);border-radius:22px;padding:24px}
+  @media (max-width:1023px){
+    .throw{grid-template-columns:1fr;padding:24px}
+    .shells{gap:12px}
+    .shell{width:54px;height:76px}
+    .throw-out .throw-score{font-size:30px}
+    .bts{grid-template-columns:1fr 1fr}
+    .bts img{height:180px}
+    .sketches{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){ .bts figure{transition:none} }
+</style>
+</head>
+<body>
+<div class="site">
+<div class="pg" data-name="AshtaChaal">
+<div class="dot-fade" aria-hidden="true"></div>
+
+<header class="head">
+  <a class="brand" href="./" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+  <nav><a href="./">Home</a><a href="work.html">Work</a><a href="./#about">About</a><a class="on" href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+</header>
+
+<section class="p-hero">
+  <div class="txt">
+    <p class="crumb"><a href="playground.html">Playground</a><span aria-hidden="true">/</span><span>AshtaChaal</span></p>
+    <h1>AshtaChaal <span class="deva" lang="mr">अष्टचाल</span><b>reviving the Indian board game Chowka Bara</b></h1>
+    <p class="lede">A hand-painted board game that adds Ganjifa-inspired strategy cards to Chowka Bara, for screen-free play with family and friends.</p>
+    <ul class="facts">
+      <li><span>Made</span>A board, cards, tokens and a rules card</li>
+      <li><span>By hand</span>Painted and tested at home</li>
+      <li><span>I did</span>Research, game rules, card and board design</li>
+    </ul>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <figure class="print"><img src="img/play/ashta/hero.jpg" alt=""></figure>
+    <figure class="print"><img src="img/play/ashta/bts-3.jpg" alt=""></figure>
+    <figure class="print"><img src="img/play/ashta/cards-box.png" alt=""></figure>
+  </div>
+</section>
+
+<main class="p-body">
+
+  <section class="blk">
+    <div class="two">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2>Why this <b>project?</b></h2>
+        <ul class="ticks">
+          <li>To revive the traditional Indian board game Chowka Bara by adding a new layer of strategy and surprise through a small set of hand-painted, Ganjifa-inspired cards.</li>
+          <li>To blend cultural preservation with today's play, encouraging screen-free social time.</li>
+        </ul>
+        <h3 style="margin-top:12px">What inspired me</h3>
+        <p class="body">A visit to a heritage museum in Manipal, where I found Sawantwadi-made Ganjifa cards, a beautiful art form from my home state Maharashtra. I wanted to reconnect this forgotten look with a game people can play today.</p>
+      </div>
+      <div class="rise">
+        <div class="museum">
+          <button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/museum-1.png" alt="Framed rectangular Ganjifa cards at the museum" loading="lazy"></button>
+          <button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/museum-2.png" alt="Framed round Ganjifa cards at the museum" loading="lazy"></button>
+        </div>
+        <p class="cap">Ganjifa cards from the Manipal heritage museum, Udupi</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2>Research: <b>Ganjifa</b></h2>
+    <div class="two">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <p class="body">Ganjifa is a traditional card game that came to India from Persia in the 16th century during Mughal rule. The word comes from the Persian “Ganjifeh”, meaning playing cards. Over time, Indian artisans adapted it with local stories, deities and symbols.</p>
+        <h3>Places where Ganjifa cards are made</h3>
+        <ul class="chips">
+          <li>Sawantwadi <span>Maharashtra</span></li>
+          <li>Mysore <span>Karnataka</span></li>
+          <li>Bishnupur <span>West Bengal</span></li>
+          <li>Bonkura <span>Odisha</span></li>
+        </ul>
+      </div>
+      <div class="rise" style="display:flex;flex-direction:column;gap:12px">
+        <h3>Types of Indian Ganjifa</h3>
+        <img src="img/play/ashta/types.png" alt="Three round Ganjifa cards: Mughal, Dashawatara and Ashtadigpala" loading="lazy" style="aspect-ratio:767/240;object-fit:cover;object-position:top">
+        <div class="types" aria-hidden="true"><span>Mughal</span><span>Dashawatara</span><span>Ashtadigpala</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>Research: <b>Chowka Bara</b></h2>
+    <div class="two">
+      <p class="body">An ancient Indian board game, widely played in Karnataka and close to Pachisi and Ashta Chamma. A game of strategy, chance and movement for 2 to 4 players. Four cowrie shells are used as dice: the number of shells landing mouth side up decides the move.</p>
+      <div class="rise">
+        <button class="zoom" aria-label="Open the photo full size"><div class="ph" style="aspect-ratio:3/2"><img src="img/play/ashta/kids.jpg" alt="Children playing Chowka Bara on a board drawn on the ground" loading="lazy"></div></button>
+        <p class="cap">Traditionally played Chowka Bara boards in Indian households</p>
+      </div>
+    </div>
+
+    <div class="throw rise" aria-label="Cowrie shell throw">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div class="shells" aria-hidden="true"><span class="shell mouth" style="--r:-12deg"></span><span class="shell hump" style="--r:8deg"></span><span class="shell mouth" style="--r:20deg"></span><span class="shell hump" style="--r:-6deg"></span></div>
+        <div class="legend"><span><i class="m"></i>Mouth side up = 1 point</span><span><i></i>Hump side up = 0 points</span></div>
+      </div>
+      <div class="throw-out">
+        <p class="throw-score" aria-live="polite">2 points</p>
+        <p>Throw the four shells and count the mouths facing up.</p>
+        <button type="button" class="btn-throw">Throw the shells</button>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:12px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3>Regional variations</h3>
+        <ul class="chips">
+          <li>Chauka Bara <span>Kannada</span></li>
+          <li>Ashta Chamma <span>Telugu</span></li>
+          <li>Daayam <span>Tamil</span></li>
+          <li>Champul <span>Marathi</span></li>
+          <li>Kavidi Kali <span>Malayalam</span></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3>Relevance in the digital age</h3>
+        <ul class="ticks">
+          <li><b>Digital detox:</b> a tactile alternative to screens that brings people face to face.</li>
+          <li><b>Mental health:</b> board games can lower stress and feel calming.</li>
+          <li><b>Social skills:</b> turn-taking, cooperation, and coping with winning or losing.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2><b>Ideation</b></h2>
+    <p class="body">I studied Pachisi, Vimanam, Chaupar and Chowka Bara, each with its own layout and flow, to understand symmetry, central convergence and movement paths. I chose Chowka Bara for its cross-shaped layout and familiarity, then added card-based twists and Ganjifa-inspired visuals.</p>
+    <div class="sketches rise">
+      <img src="img/play/ashta/sketch-1.png" alt="Pencil sketches of 5x5, 6x6 and cross-shaped board layouts" loading="lazy">
+      <img src="img/play/ashta/sketch-2.png" alt="Pencil sketch of a 7x7 board and a Vimanam style track" loading="lazy">
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>Behind <b>the scenes</b></h2>
+    <p class="body">From sketching layouts and designing cards to painting tokens and testing gameplay, AshtaChaal came to life through hands-on making and iteration.</p>
+    <div class="bts">
+      <figure><button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/bts-1.jpg" alt="The painted board with cards and tokens" loading="lazy"></button></figure>
+      <figure><button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/bts-2.jpg" alt="Painting the board on the floor" loading="lazy"></button></figure>
+      <figure><button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/bts-4.jpg" alt="Red cards laid out to dry" loading="lazy"></button></figure>
+      <figure><button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/bts-5.jpg" alt="Painting the board border" loading="lazy"></button></figure>
+      <figure><button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/bts-6.jpg" alt="Board with tokens during a test game" loading="lazy"></button></figure>
+      <figure><button class="zoom" aria-label="Open the photo full size"><img src="img/play/ashta/bts-3.jpg" alt="Painting cards with a palette of paints" loading="lazy"></button></figure>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2>Final <b>result</b></h2>
+    <p class="body">Traditional looks inspired by Ganjifa art with strategic play rooted in Chowka Bara. From the hand-painted board to the action cards, each part aims for a nostalgic yet fresh experience for all ages.</p>
+    <div class="two mid">
+      <button class="zoom rise" aria-label="Open the photo full size"><img class="ph" src="img/play/ashta/final.png" alt="The finished game: hand-painted board, tokens, Chaal Patra cards and the gameplay card" loading="lazy"></button>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <ul class="chips">
+          <li>Hand-painted board</li>
+          <li>Chaal Patra <span>(cards)</span></li>
+          <li>Tokens and pawns</li>
+          <li>Gameplay and rules card</li>
+        </ul>
+        <figure class="print" style="position:relative;--r:2deg;max-width:420px">
+          <img src="img/play/ashta/playing.png" alt="Two people playing AshtaChaal on the floor" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<a class="next" href="wari.html" data-cursor="project">
+  <div><p class="k">Next fun project</p><p class="nm">Wari Pandharichi</p><p>Visual storytelling of the Pandharpur pilgrimage</p></div>
+  <div class="thumb"><img src="img/play/wari/fold-1.png" alt="" loading="lazy"></div>
+</a>
+
+<footer class="foot">
+  <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+  <div class="credits">
+    <p>Curated by <b>Siddhesha Pawade</b></p>
+    <p>Powered by coffee, claude and curiosity.</p>
+    <hr>
+    <div class="socials">
+      <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+      <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+      <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+
+<dialog class="viewer" aria-label="Picture, full size"><button type="button" aria-label="Close">&times;</button><p></p></dialog>
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+<script src="site.js"></script>
+<script src="play.js"></script>
+<script>
+  // cowrie throw: each shell lands mouth up or hump up; the score is the number of mouths
+  (function(){
+    var shells=[].slice.call(document.querySelectorAll('.shell')), out=document.querySelector('.throw-score'), btn=document.querySelector('.btn-throw');
+    var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    btn.addEventListener('click',function(){
+      var n=0;
+      shells.forEach(function(s,i){
+        var up=Math.random()<.5; if(up) n++;
+        var r=Math.round(Math.random()*50-25);
+        var land=function(){ s.className='shell '+(up?'mouth':'hump'); s.style.setProperty('--r',r+'deg'); };
+        if(still||!s.animate){ land(); return; }
+        s.animate([{transform:'translateY(0) rotate(0)'},{transform:'translateY(-90px) rotate(360deg)',offset:.45},{transform:'translateY(0) rotate('+(720+r)+'deg)'}],
+          {duration:700+i*90,easing:'cubic-bezier(.3,.6,.4,1)'}).onfinish=land;
+        setTimeout(land,(700+i*90)*.5);
+      });
+      setTimeout(function(){ out.textContent=n===1?'1 point':n+' points'; },still?0:1000);
+    });
+  })();
+</script>
+</body>
+</html>

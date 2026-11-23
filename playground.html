@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playground, Siddhesha Pawade</title>
+<meta name="description" content="Fun projects: an infographic about the Pandharpur Wari, a Marathi panchang calendar with AR, and a hand-painted board game.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  .pl-top{padding:40px 80px 8px;display:flex;flex-direction:column;gap:16px}
+  .pl-top h1 .hand{font-size:.55em;color:var(--yellow)}
+  .pl-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:48px 80px 120px}
+  .pj{--t:#f3f3fa;--a:var(--blue);display:flex;flex-direction:column;gap:24px;border-radius:28px;padding:28px;background:var(--t);outline-offset:6px;
+    transition:transform .5s var(--spring)}
+  .pj:hover{transform:translateY(-4px)}
+  .pj:active{transform:scale(.99)}
+  .pj.wari{--t:#fdf3e3;--a:#a35700}
+  .pj.tithi{--t:#f2f8e3;--a:#4a6a1c}
+  .pj.ashta{--t:#f8f4e6;--a:#a8242a}
+  .pj.feat{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center;padding:36px}
+  /* three prints that fan out when the card is hovered */
+  .fan{position:relative;height:340px}
+  .feat .fan{height:420px}
+  .fan .print{width:52%;height:78%;top:8%;left:24%}
+  .fan .print:nth-child(1){--r:-7deg;transform:rotate(-7deg) translateX(-18%)}
+  .fan .print:nth-child(2){--r:6deg;transform:rotate(6deg) translateX(18%)}
+  .fan .print:nth-child(3){--r:0deg;z-index:2}
+  @media (hover:hover){
+    .pj:hover .fan .print:nth-child(1){transform:rotate(-14deg) translateX(-40%) translateY(4%)}
+    .pj:hover .fan .print:nth-child(2){transform:rotate(12deg) translateX(40%) translateY(4%)}
+    .pj:hover .fan .print:nth-child(3){transform:rotate(-2deg) translateY(-5%) scale(1.04)}
+  }
+  .pj-text{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .pj-kind{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--a)}
+  .pj h2{font-size:34px;font-weight:800;letter-spacing:-.02em}
+  .feat h2{font-size:46px}
+  .pj-line{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:46ch}
+  .pj .chips li{border-color:color-mix(in srgb,var(--a) 25%,transparent);font-size:13px;padding:7px 12px}
+  .pj-go{margin-top:6px;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:#fff;font-weight:700;font-size:15px;color:var(--a);
+    box-shadow:0 1px 2px rgba(42,42,79,.08);transition:transform .3s var(--spring)}
+  .pj:hover .pj-go{transform:translateX(4px)}
+  @media (max-width:1023px){
+    .pl-top{padding:24px var(--gut) 0}
+    .pl-grid{grid-template-columns:1fr;gap:28px;padding:32px var(--gut) 72px}
+    .pj,.pj.feat{display:flex;align-items:stretch;padding:20px;gap:18px}
+    .fan,.feat .fan{height:260px}
+    .pj h2,.feat h2{font-size:28px}
+  }
+</style>
+</head>
+<body>
+<div class="site">
+<div class="pg" data-name="Playground">
+<div class="dot-fade" aria-hidden="true"></div>
+
+<header class="head">
+  <a class="brand" href="./" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+  <nav><a href="./">Home</a><a href="work.html">Work</a><a href="./#about">About</a><a class="on" href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+</header>
+
+<main>
+  <div class="pl-top">
+    <h1>Playground <span class="hand">(fun projects)</span></h1>
+    <p class="lede">Three projects about Indian culture: an infographic about the Pandharpur Wari, a Marathi panchang calendar with AR, and a hand-painted board game.</p>
+  </div>
+
+  <div class="pl-grid">
+    <a class="pj wari feat rise" href="wari.html" data-cursor="project">
+      <div class="fan" aria-hidden="true">
+        <figure class="print"><img src="img/play/wari/dance.png" alt=""></figure>
+        <figure class="print"><img src="img/play/wari/temple.png" alt=""></figure>
+        <figure class="print"><img src="img/play/wari/fold-1.png" alt=""></figure>
+      </div>
+      <div class="pj-text">
+        <p class="pj-kind">Infographic</p>
+        <h2>Wari Pandharichi</h2>
+        <p class="pj-line">A two-sided folding infographic about the Pandharpur Wari and the Warkaris who walk it, drawn after a visit to Alandi.</p>
+        <ul class="chips"><li>Field visit</li><li>Illustration</li><li>Print</li></ul>
+        <span class="pj-go">See the project <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+
+    <a class="pj tithi rise" href="tithi.html" data-cursor="project">
+      <div class="fan" aria-hidden="true">
+        <figure class="print"><img src="img/play/tithi/final-1.png" alt=""></figure>
+        <figure class="print"><img src="img/play/tithi/ar.png" alt=""></figure>
+        <figure class="print"><img src="img/play/tithi/final-2.png" alt=""></figure>
+      </div>
+      <div class="pj-text">
+        <p class="pj-kind">Calendar and AR</p>
+        <h2>Tithi</h2>
+        <p class="pj-line">A Marathi panchang desk calendar with marker-based AR, so younger people can read tithis and festivals.</p>
+        <ul class="chips"><li>Research</li><li>Illustration</li><li>AR</li></ul>
+        <span class="pj-go">See the project <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+
+    <a class="pj ashta rise" href="ashtachaal.html" data-cursor="project">
+      <div class="fan" aria-hidden="true">
+        <figure class="print"><img src="img/play/ashta/bts-4.jpg" alt=""></figure>
+        <figure class="print"><img src="img/play/ashta/bts-3.jpg" alt=""></figure>
+        <figure class="print"><img src="img/play/ashta/hero.jpg" alt=""></figure>
+      </div>
+      <div class="pj-text">
+        <p class="pj-kind">Board game</p>
+        <h2>AshtaChaal</h2>
+        <p class="pj-line">Chowka Bara revived with hand-painted, Ganjifa-inspired strategy cards, for screen-free play.</p>
+        <ul class="chips"><li>Game design</li><li>Hand painted</li><li>Play testing</li></ul>
+        <span class="pj-go">See the project <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+  <div class="credits">
+    <p>Curated by <b>Siddhesha Pawade</b></p>
+    <p>Powered by coffee, claude and curiosity.</p>
+    <hr>
+    <div class="socials">
+      <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+      <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+      <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+<script src="site.js"></script>
+<script src="play.js"></script>
+</body>
+</html>

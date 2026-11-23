@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tithi, Siddhesha Pawade</title>
+<meta name="description" content="Tithi: a Marathi panchang desk calendar with marker-based AR, made to help young people read the Hindu lunar calendar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mansalva&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  .pg{--acc:#4a6a1c;--acc-2:#a8cc52;--tint:#f2f8e3}
+  /* moon: pick a paksha and a day, see the tithi */
+  .moon-box{display:grid;grid-template-columns:auto minmax(0,1fr);gap:48px;align-items:center;padding:40px;border-radius:28px;background:#1d2410;color:#f4f7ea}
+  .moon-box svg{width:220px;height:220px;display:block}
+  .moon-box .lit{fill:#f6f1d0}
+  .moon-box .dark{fill:#323a22}
+  .moon-ctl{display:flex;flex-direction:column;gap:20px}
+  .moon-ctl .switch{background:#2a321b;border-color:#3b4528}
+  .moon-ctl .switch button{color:#cdd6b4}
+  .moon-ctl .switch button[aria-pressed="true"]{background:var(--acc-2);color:#1d2410}
+  .moon-name{font-size:44px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .moon-sub{font-size:16px;color:#c3cca9;line-height:1.6;max-width:52ch}
+  .moon-ctl input[type=range]{width:100%;max-width:440px;accent-color:var(--acc-2);height:28px;cursor:pointer}
+  .moon-ctl label{font-weight:700;font-size:14px;color:#c3cca9}
+  .moon-days{display:flex;justify-content:space-between;max-width:440px;font-size:12px;font-weight:600;color:#8f9a74}
+  /* the nephew's questions, in his words */
+  .bubbles{position:relative;display:flex;flex-wrap:wrap;gap:12px 16px}
+  .bubbles p{font-family:Mansalva,cursive;font-size:21px;padding:10px 18px;border-radius:18px 18px 18px 4px;background:#fff;border:1.5px solid #dfe8c6;color:var(--ink);transform:rotate(var(--r,-2deg))}
+  .bubbles p:nth-child(even){--r:2deg}
+  .polas{position:relative;height:440px}
+  .polas .print:nth-child(1){left:0;top:0;width:52%;height:420px;--r:-4deg}
+  .polas .print:nth-child(2){right:4%;top:60px;width:46%;height:330px;--r:5deg;z-index:2}
+  /* insights on taped paper */
+  .papers .card{background:#fffdf6;border-color:#ece6d0;border-radius:6px}
+  .papers .card:nth-child(1){transform:rotate(-1.2deg)}
+  .papers .card:nth-child(2){transform:rotate(1deg)}
+  .papers .card:nth-child(3){transform:rotate(-.6deg)}
+  .papers .card::before{content:"";position:absolute;top:-10px;left:50%;width:76px;height:20px;margin-left:-38px;background:color-mix(in srgb,var(--acc-2) 50%,transparent);transform:rotate(-3deg)}
+  .papers .card{position:relative}
+  .papers ul{display:flex;flex-direction:column;gap:8px}
+  .papers li{font-size:15px;line-height:1.55;color:var(--ink-2);padding-left:16px;position:relative}
+  .papers li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+  .it1{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.1fr);gap:16px;align-items:end}
+  .it1 img{border-radius:10px;width:100%}
+  .finals{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
+  .finals > :first-child{grid-row:span 2}
+  .finals img{width:100%}
+  .tithi-ill img{height:290px}
+  @media (max-width:1023px){
+    .moon-box{grid-template-columns:1fr;padding:28px;gap:24px;justify-items:center}
+    .moon-box svg{width:160px;height:160px}
+    .moon-name{font-size:32px}
+    .moon-ctl .switch button{padding:0 12px;font-size:14px}
+    .polas{height:340px}
+    .polas .print:nth-child(1){height:320px}
+    .polas .print:nth-child(2){height:250px}
+    .it1{grid-template-columns:1fr 1fr}
+    .finals{grid-template-columns:1fr}
+    .finals > :first-child{grid-row:auto}
+  }
+</style>
+</head>
+<body>
+<div class="site">
+<div class="pg" data-name="Tithi">
+<div class="dot-fade" aria-hidden="true"></div>
+
+<header class="head">
+  <a class="brand" href="./" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+  <nav><a href="./">Home</a><a href="work.html">Work</a><a href="./#about">About</a><a class="on" href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+</header>
+
+<section class="p-hero">
+  <div class="txt">
+    <p class="crumb"><a href="playground.html">Playground</a><span aria-hidden="true">/</span><span>Tithi</span></p>
+    <h1>Tithi <b>exploring Indian time and traditions through design <span class="hand">(fun project)</span></b></h1>
+    <p class="lede">A desk calendar that presents the Marathi lunar month, with its tithis, festivals and significant days, plus an AR layer that brings the stories behind them to life.</p>
+    <ul class="facts">
+      <li><span>Made</span>A printed desk calendar</li>
+      <li><span>Plus</span>Marker-based AR</li>
+      <li><span>I did</span>Research, illustration, layout, AR</li>
+    </ul>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <figure class="print"><img src="img/play/tithi/final-1.png" alt=""></figure>
+    <figure class="print"><img src="img/play/tithi/ar-hero.png" alt=""></figure>
+    <figure class="print"><img src="img/play/tithi/final-2.png" alt=""></figure>
+  </div>
+</section>
+
+<main class="p-body">
+
+  <section class="blk">
+    <div class="two mid">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <h2>Reconnecting with <b>our cultural roots</b></h2>
+        <div class="note rise"><p>“Mavshi, when is Diwali this year?”</p><cite>My nephew</cite></div>
+        <p class="body">I replied with the English date, then realised I had no idea which Hindu month or tithi it fell on. Like many today, we know our festivals by their Gregorian dates, but Indian festivals follow the Panchang, a traditional lunisolar calendar.</p>
+        <p class="body">This project tries to make it simple and engaging to track the current Hindu month and year.</p>
+      </div>
+      <div class="rise">
+        <button class="zoom" aria-label="Open the picture full size"><div class="ph" style="background:#f6efe0;padding:18px;display:flex;justify-content:center"><img src="img/play/tithi/old-cal.jpg" alt="Detail of a Hindu calendar for 1871 to 72, from Rajasthan" loading="lazy" style="height:420px;width:auto"></div></button>
+        <p class="cap">A Hindu calendar for 1871-72, Rajasthan (Library of Congress)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2>How is the Indian calendar different from <b>the Western calendar?</b></h2>
+    <div class="vs">
+      <div class="rise"><h3>Gregorian calendar</h3><p>Follows the Earth's revolution around the Sun. A solar calendar is based only on the annual cycle of the sun.</p></div>
+      <div class="rise"><h3>Hindu calendar (Panchang)</h3><p>A blend of solar and lunar systems, with 12 lunar months based on the Moon's orbit around Earth. 12 lunar months make 354 days, 8 hours and 48 minutes.</p></div>
+    </div>
+    <p class="body">The waxing Moon is called Shukla Paksha and the waning Moon Krushna Paksha. Each paksha is half a lunar cycle and has 15 tithis, or lunar days. Try it:</p>
+
+    <div class="moon-box rise" aria-label="Tithi explorer">
+      <svg viewBox="-110 -110 220 220" role="img" aria-labelledby="moon-name"><circle class="dark" r="100"/><path class="lit" d=""/></svg>
+      <div class="moon-ctl">
+        <div class="switch" role="group" aria-label="Paksha">
+          <button type="button" aria-pressed="true" data-p="s">Shukla Paksha</button>
+          <button type="button" aria-pressed="false" data-p="k">Krushna Paksha</button>
+        </div>
+        <p class="moon-name" id="moon-name" aria-live="polite">Ashtami</p>
+        <p class="moon-sub"></p>
+        <label for="moon-day">Day of the paksha</label>
+        <input id="moon-day" type="range" min="1" max="15" value="8">
+        <div class="moon-days" aria-hidden="true"><span>1</span><span>5</span><span>10</span><span>15</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>Primary research: <b>understanding the gap</b></h2>
+    <p class="body">To explore how people connect (or disconnect) with the traditional Hindu calendar, I had casual interviews and conversations with people across different age groups.</p>
+    <div class="cards c3 papers">
+      <article class="card"><p class="who">Elders</p><h3>Grandparents and family elders</h3>
+        <ul><li>Actively use the Panchang daily for planning poojas, festivals and rituals.</li><li>Have deep knowledge, passed down orally.</li><li>Believe this knowledge is “slowly dying with our generation.”</li></ul></article>
+      <article class="card"><p class="who">Middle aged</p><h3>Parents' generation</h3>
+        <ul><li>Used to follow it as kids but now rely on Google for festival dates.</li><li>Find the Panchang too complex and hard to understand.</li><li>Regret that their children don't learn about tithis or lunar months.</li></ul></article>
+      <article class="card"><p class="who">Young adults</p><h3>Friends, cousins, teenagers</h3>
+        <ul><li>Most didn't know what a tithi was.</li><li>Confused by terms like Chaitra, Pratipada, Nakshatra.</li><li>Preferred simple, visual ways to understand festivals.</li><li>Showed curiosity when it was explained in an engaging way.</li></ul></article>
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <div class="two mid">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2>Problem with the <b>existing system</b></h2>
+        <p class="body">Calendars like Kalnirnay are widely used at home, but they are not designed for today's generation. They follow the Gregorian format and add tithi and festival names in small text.</p>
+        <p class="body">When I asked my teenage nephew what day it was by the Marathi lunar calendar, he looked at the Kalnirnay but couldn't figure it out.</p>
+        <div class="bubbles" aria-label="What my nephew said">
+          <p>kru kay aahe?</p><p>pratipada kay aste??</p><p>kiti complex aahe he</p><p>aaj pn drutiya udya pn drutiya ase kase</p>
+        </div>
+      </div>
+      <div class="polas rise">
+        <figure class="print"><img src="img/play/tithi/kalnirnay.png" alt="A Kalnirnay wall calendar page for August 2025" loading="lazy" style="object-fit:contain;background:#fff"></figure>
+        <figure class="print"><img src="img/play/tithi/nephew-b.jpg" alt="My nephew sitting on the floor reading the calendar" loading="lazy" style="height:calc(100% - 34px)"><figcaption>my nephew struggling to find the tithi of the day</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>Problem <b>statement</b></h2>
+    <p class="body">Gen Z and kids find it hard to understand the Indian calendar, which is rooted in both solar and lunar cycles. The tithi-based structure, month names like Ashwin, Shravan or Chaitra, and the reasons behind shifting festival dates feel confusing and far from their daily lives.</p>
+    <h3 style="margin-top:12px">Project goal</h3>
+    <p class="body">A culturally rooted, visually engaging desk calendar for the Marathi lunar panchang, with marker-based AR, so younger people can connect with traditions through both a physical and a digital layer.</p>
+    <ul class="chips">
+      <li>Marathi months <span>(Chaitra, Ashadh)</span></li>
+      <li>Daily tithi with clear visual cues</li>
+      <li>Key festivals and rituals each month</li>
+      <li>Icons and colors for seasonal changes</li>
+    </ul>
+    <h3 style="margin-top:12px">User flow</h3>
+    <ol class="flow">
+      <li>Flip to the current month</li><li class="arr" aria-hidden="true">→</li>
+      <li>Scan the visual marker</li><li class="arr" aria-hidden="true">→</li>
+      <li>Explore festival stories, cultural insights and lunar facts</li>
+    </ol>
+  </section>
+
+  <section class="blk wash">
+    <h2>Ideation: <b>first iteration</b></h2>
+    <div class="it1">
+      <img class="rise" src="img/play/tithi/it1-c.jpg" alt="First iteration: Vitthal on a yellow arch" loading="lazy">
+      <img class="rise" src="img/play/tithi/it1-a.jpg" alt="First iteration: Krishna with a pot" loading="lazy">
+      <img class="rise" src="img/play/tithi/it1-b.jpg" alt="First iteration: Ram on orange" loading="lazy">
+      <button class="zoom rise" aria-label="Open the first calendar page full size"><img src="img/play/tithi/it1-cal.jpg" alt="First iteration of the Paush Magh calendar page" loading="lazy"></button>
+    </div>
+    <p class="body">What didn't work:</p>
+    <ul class="ticks">
+      <li>The fonts were hard for younger users to read.</li>
+      <li>The colors felt loud and mismatched.</li>
+      <li>The illustrations were generic and not tied to the Marathi calendar.</li>
+      <li>The layout was plain and told no story.</li>
+    </ul>
+  </section>
+
+  <section class="blk">
+    <h2>Visuals and <b>illustrations</b></h2>
+    <p class="body">Custom illustrations inspired by traditional Indian art with a modern twist: festivals, rituals and seasons, characters from daily life and stories, in friendly colors.</p>
+    <div class="scatter tithi-ill">
+      <img src="img/play/tithi/ill-1.png" alt="A girl carrying Ganpati on her head" loading="lazy">
+      <img src="img/play/tithi/ill-3.png" alt="Children forming a pyramid for Dahi Handi" loading="lazy">
+      <img src="img/play/tithi/ill-2.png" alt="A family lighting diyas" loading="lazy">
+      <img src="img/play/tithi/ill-4.png" alt="Buddha in front of a patterned halo" loading="lazy">
+    </div>
+  </section>
+
+  <section class="blk wash">
+    <h2>Final <b>design</b></h2>
+    <p class="body">The Marathi lunar months in a simpler, culturally rich format. Each page has clear tithi markings, key festivals and an illustration.</p>
+    <div class="finals">
+      <button class="zoom rise" aria-label="Open the photo full size"><img class="ph" src="img/play/tithi/final-2.png" alt="The Kartik page with a family lighting diyas" loading="lazy"></button>
+      <button class="zoom rise" aria-label="Open the photo full size"><img class="ph" src="img/play/tithi/final-1.png" alt="The how to use this calendar page with the moon cycle and tithi names" loading="lazy"></button>
+      <button class="zoom rise" aria-label="Open the photo full size"><img class="ph" src="img/play/tithi/final-3.png" alt="The Bhadrapad page with a girl carrying Gauri" loading="lazy"></button>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="two mid">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <h2>AR <b>experience</b></h2>
+        <p class="body">Each month has an AR marker. Scanning it shows the major festival of that month with three things:</p>
+        <ul class="ticks">
+          <li><b>Festival significance:</b> what the festival means and its rituals.</li>
+          <li><b>Traditional food:</b> a regional dish made for the occasion.</li>
+          <li><b>Cultural context:</b> why the festival falls in that month by the panchang.</li>
+        </ul>
+      </div>
+      <button class="zoom rise" aria-label="Open the photo full size"><img class="ph" src="img/play/tithi/ar.png" alt="AR view of the calendar: Gauri, modaks and Lokmanya Tilak floating around the Bhadrapad page" loading="lazy"></button>
+    </div>
+  </section>
+</main>
+
+<a class="next" href="ashtachaal.html" data-cursor="project">
+  <div><p class="k">Next fun project</p><p class="nm">AshtaChaal</p><p>Chowka Bara revived with Ganjifa strategy cards</p></div>
+  <div class="thumb"><img src="img/play/ashta/hero.jpg" alt="" loading="lazy"></div>
+</a>
+
+<footer class="foot">
+  <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+  <div class="credits">
+    <p>Curated by <b>Siddhesha Pawade</b></p>
+    <p>Powered by coffee, claude and curiosity.</p>
+    <hr>
+    <div class="socials">
+      <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+      <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+      <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+
+<dialog class="viewer" aria-label="Picture, full size"><button type="button" aria-label="Close">&times;</button><p></p></dialog>
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+<script src="site.js"></script>
+<script src="play.js"></script>
+<script>
+  // tithi explorer: the lit part of the moon grows through Shukla Paksha and shrinks through Krushna Paksha
+  (function(){
+    var names=['Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami','Shasti','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dwadashi','Trayodashi','Chaturdashi'];
+    var box=document.querySelector('.moon-box'), lit=box.querySelector('.lit'), nm=box.querySelector('.moon-name'), sub=box.querySelector('.moon-sub');
+    var range=box.querySelector('input'), btns=[].slice.call(box.querySelectorAll('[data-p]')), p='s';
+    function draw(){
+      var d=+range.value, k=p==='s'?d/15:1-d/15, r=100;
+      if(k<=0.001){ lit.setAttribute('d',''); }
+      else if(k>=0.999){ lit.setAttribute('d','M0,-100A100,100 0 1 1 0,100A100,100 0 1 1 0,-100Z'); }
+      else{
+        var rx=Math.abs(1-2*k)*r, sweep=k<0.5?0:1;
+        lit.setAttribute('d','M0,-100A100,100 0 0 1 0,100A'+rx.toFixed(1)+',100 0 0 '+sweep+' 0,-100Z');
+      }
+      lit.setAttribute('transform',p==='s'?'':'scale(-1,1)');
+      var name=d===15?(p==='s'?'Purnima':'Amavasya'):names[d-1];
+      nm.textContent=name;
+      sub.textContent=(p==='s'?'Shukla ':'Krushna ')+name+', day '+d+' of the '+(p==='s'?'waxing':'waning')+' moon.'+(d===8?' Ashtami is the half moon.':'')+(d===15?(p==='s'?' The full moon.':' The new moon.'):'');
+      range.setAttribute('aria-valuetext',name);
+    }
+    range.addEventListener('input',draw);
+    btns.forEach(function(b){ b.addEventListener('click',function(){ p=b.dataset.p; btns.forEach(function(o){o.setAttribute('aria-pressed',o===b)}); draw(); }); });
+    draw();
+  })();
+</script>
+</body>
+</html>
