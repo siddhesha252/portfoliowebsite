@@ -209,6 +209,8 @@
     background:rgba(255,255,255,.82);border-top:1px solid color-mix(in srgb,var(--blue) 12%,transparent)}
   .peek-cap b{display:block;font-weight:700;font-size:17px;color:var(--ink)}
   .peek-cap span{display:block;margin-top:4px;font-size:14px;color:var(--muted)}
+  .peek-open{flex:none;display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:100px;background:var(--blue);color:#fff;font-weight:700;font-size:14px;transition:transform .2s}
+  .peek-open:hover{transform:translateX(3px)}
   .peek-hint{flex:none;font-family:'Gochi Hand',cursive;font-size:18px;color:var(--blue);white-space:nowrap}
 
   /* what I bring: pills wait out of sight until the cursor reaches the middle */
@@ -691,7 +693,7 @@
   <div class="dot-fade"></div>
   <header class="head">
     <a class="brand" href="#home" aria-label="Sidd, home"><span class="name">Sidd</span></a>
-    <nav><a class="on" href="#home">Home</a><a href="work.html">Work</a><a href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a><button type="button" class="nav-qr" data-qr>Quick read</button></nav>
+    <nav><a class="on" href="#home">Home</a><a href="work.html">Work</a><a href="#about">About</a><a href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a><button type="button" class="nav-qr" data-qr>Quick read</button></nav>
   </header>
 
   <section class="hero">
@@ -818,7 +820,7 @@ analyze()</p>
           <p><b>Making craft education more contextual and connected</b>Toolkit that helps craft educators understand the people, practices and markets surrounding Indian crafts. I transformed an existing prototype into a more structured, persistent and insight-driven experience.</p>
           <div class="tags"><span>SYSTEM DESIGN</span><span>INFO VISUALIZATION</span></div></div>
       </a>
-      <a class="proj" href="trackit.html" data-cursor="project">
+      <a class="proj" href="trackit-household.html" data-cursor="project">
         <div class="cover"><img src="img/covers/trackit-v2.jpg" alt="TrackIt app screens"></div>
         <div class="details"><h3>TrackIt</h3><p class="rd-meta"><span>Group course project</span><span>Extended solo</span><span>iOS app</span></p>
           <p><b>One place for the whole household’s money</b>Began as a group course project. I carried it on as a personal project and added new flows: an AI assistant, shared splits and budgets.</p>
@@ -838,9 +840,9 @@ analyze()</p>
     <div class="sec-h"><i></i><h2>Playground <small>(fun projects)</small></h2></div>
     <div class="play">
       <div class="cards" role="group" aria-label="Playground projects">
-        <button type="button" class="pcard" aria-pressed="true" aria-controls="peek" data-cursor="peek" data-imgs="img/play/wari-1.png img/play/wari-2.png"><div class="thumb"><img src="img/play/wari-thumb.png" width="80" height="80" alt=""></div><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div></button>
-        <button type="button" class="pcard" aria-pressed="false" aria-controls="peek" data-cursor="peek" data-imgs="img/play/tithi-1.png img/play/tithi-2.png img/play/tithi-3.png"><div class="thumb"><img src="img/play/tithi-thumb.png" width="80" height="80" alt=""></div><div><b>Tithi</b><span>An AR-enabled Marathi panchang desk calendar</span></div></button>
-        <button type="button" class="pcard" aria-pressed="false" aria-controls="peek" data-cursor="peek" data-imgs="img/play/ashta-1.png img/play/ashta-2.png img/play/ashta-3.png"><div class="thumb"><img src="img/play/ashta-thumb.png" width="80" height="80" alt=""></div><div><b>AshtaChaal</b><span>Chowka Bara revived with Ganjifa strategy cards</span></div></button>
+        <button type="button" class="pcard" aria-pressed="true" aria-controls="peek" data-cursor="peek" data-href="wari.html" data-imgs="img/play/wari-1.png img/play/wari-2.png"><div class="thumb"><img src="img/play/wari-thumb.png" width="80" height="80" alt=""></div><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div></button>
+        <button type="button" class="pcard" aria-pressed="false" aria-controls="peek" data-cursor="peek" data-href="tithi.html" data-imgs="img/play/tithi-1.png img/play/tithi-2.png img/play/tithi-3.png"><div class="thumb"><img src="img/play/tithi-thumb.png" width="80" height="80" alt=""></div><div><b>Tithi</b><span>An AR-enabled Marathi panchang desk calendar</span></div></button>
+        <button type="button" class="pcard" aria-pressed="false" aria-controls="peek" data-cursor="peek" data-href="ashtachaal.html" data-imgs="img/play/ashta-1.png img/play/ashta-2.png img/play/ashta-3.png"><div class="thumb"><img src="img/play/ashta-thumb.png" width="80" height="80" alt=""></div><div><b>AshtaChaal</b><span>Chowka Bara revived with Ganjifa strategy cards</span></div></button>
       </div>
       <!-- photos from Figma "More Projects hover images" (229:310); the active card fills these slots with its own set -->
       <div class="peek" id="peek" aria-live="polite">
@@ -849,9 +851,10 @@ analyze()</p>
           <figure class="pk2"><img src="img/play/wari-2.png" alt=""></figure>
           <figure class="pk3"><img src="img/play/tithi-3.png" alt=""></figure>
         </div>
-        <div class="peek-cap"><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div><p class="peek-hint">hover a card to switch</p></div>
+        <div class="peek-cap"><div><b>Wari Pandharichi</b><span>Visual storytelling of the Pandharpur pilgrimage</span></div><p class="peek-hint">hover a card to switch</p><a class="peek-open" href="wari.html" data-cursor="project">Open project <span aria-hidden="true">→</span></a></div>
       </div>
     </div>
+    <a class="all-work" href="playground.html">All fun projects <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="sec path" aria-labelledby="path-h">
@@ -900,7 +903,7 @@ analyze()</p>
   <div class="dot-fade"></div>
   <header class="head">
     <a class="brand" href="#home" aria-label="Sidd, home"><span class="name">Sidd</span></a>
-    <nav><a href="#home">Home</a><a href="work.html">Work</a><a class="on" href="#about">About</a><a href="#playground">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a><button type="button" class="nav-qr" data-qr>Quick read</button></nav>
+    <nav><a href="#home">Home</a><a href="work.html">Work</a><a class="on" href="#about">About</a><a href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a><button type="button" class="nav-qr" data-qr>Quick read</button></nav>
   </header>
   <section class="a-hero">
     <div class="a-intro">
@@ -1137,6 +1140,7 @@ analyze()</p>
       cards.forEach(function(c){ c.setAttribute('aria-pressed',c===card); });
       var srcs=card.dataset.imgs.split(' ').filter(Boolean), n=srcs.length;
       cap.innerHTML=card.querySelector('b').outerHTML+card.querySelector('span').outerHTML;
+      var op=peek.querySelector('.peek-open'); if(op&&card.dataset.href) op.href=card.dataset.href;
       peek.classList.toggle('two',n===2);
       figs.forEach(function(f,i){
         f.getAnimations().forEach(function(a){a.cancel()});

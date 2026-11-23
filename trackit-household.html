@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en" data-theme="periapricot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrackIt household finance, Siddhesha Pawade</title>
+<meta name="description" content="TrackIt case study: a household finance app that brings bills, shared expenses, budgets and payments into one monthly experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+<div class="site">
+<div class="cs" data-name="TrackIt household project">
+<div class="dot-fade" data-name="Dot fade" aria-hidden="true"></div>
+
+<header class="head">
+  <a class="brand" href="./" aria-label="Sidd, home"><span class="name">Sidd</span></a>
+  <nav><a href="./">Home</a><a class="on" href="work.html">Work</a><a href="./#about">About</a><a href="playground.html">Playground</a><a href="resume_siddhesha.pdf" download>Resume</a></nav>
+</header>
+
+<section class="cs-hero" data-name="Hero">
+  <p class="crumb"><a href="work.html">Work</a><span aria-hidden="true">/</span><span>TrackIt, household finance</span></p>
+  <h1>TrackIt, a household finance app. <b>Bills, shared expenses, budgets and payments in one monthly system.</b></h1>
+  <p class="lede">Household finances are scattered across bills, bank transactions, payment apps and people. TrackIt brings them into one monthly system where a household can understand what it owes, coordinate who pays and track where its money goes.</p>
+  <dl class="meta">
+    <div><dt>Role</dt><dd>Solo product designer</dd></div>
+    <div><dt>Timeline</dt><dd>2025 to 2026</dd></div>
+    <div><dt>Platform</dt><dd>iOS app</dd></div>
+    <div><dt>Status</dt><dd>Designed and prototyped. Bank data import and UPI handoff are proposed integrations, not built</dd></div>
+    <div><dt>Tools</dt><dd>Figma, FigJam</dd></div>
+    <div><dt>I did</dt><dd>Research, IA, UX, UI and AI UX</dd></div>
+  </dl>
+  <a class="be-link" href="https://behance.net/siddhesha_pawade" target="_blank" rel="noopener">Read the full case study on Behance
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.7 11.3l6.6-6.6M11.3 10.7V4.7H5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <figure class="stage cover bleed-bottom">
+<div class="phones">
+<figure><button class="zoom" data-full="img/trackit2/basket.png" aria-label="Open The monthly basket"><img class="shot" src="img/trackit2/basket.png" width="375" height="812" loading="lazy" alt="The monthly basket"></button></figure>
+<figure><button class="zoom" data-full="img/trackit2/home.png" aria-label="Open Home with this month on one card"><img class="shot" src="img/trackit2/home.png" width="375" height="812" loading="lazy" alt="Home with this month on one card"></button></figure>
+<figure><button class="zoom" data-full="img/trackit2/triggers.png" aria-label="Open Spending triggers by day and time"><img class="shot" src="img/trackit2/triggers.png" width="375" height="812" loading="lazy" alt="Spending triggers by day and time"></button></figure>
+</div>
+  </figure>
+</section>
+
+<div class="cs-body" data-name="Case study">
+  <aside class="cs-side" data-name="Sidebar">
+    <div class="go-back" data-name="Go back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12.7 8H3.3M7.3 4l-4 4 4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Go back</div>
+    <nav class="cs-index" data-name="Section index" aria-label="Sections">
+      <div data-name="OVERVIEW"><p>00</p><p>Overview</p><span data-name="Active marker"></span></div>
+      <div data-name="CONTEXT"><p>01</p><p>Context and problem</p></div>
+      <div data-name="RESEARCH"><p>02</p><p>Research</p></div>
+      <div data-name="USERS"><p>03</p><p>Who it's for</p></div>
+      <div data-name="DECISIONS"><p>04</p><p>Key decisions</p></div>
+      <div data-name="STRUCTURE"><p>05</p><p>Structure and flows</p></div>
+      <div data-name="PRODUCT"><p>06</p><p>The product</p></div>
+      <div data-name="EDGE"><p>07</p><p>Edge cases and trade-offs</p></div>
+      <div data-name="OUTCOME"><p>08</p><p>Outcome</p></div>
+    </nav>
+  </aside>
+
+  <main class="cs-main" data-name="Sections">
+
+    <section class="sec" data-name="OVERVIEW" id="overview" style="padding-top:56px">
+      <div class="short">
+        <div class="short-top">
+          <h2 class="glance">At a glance</h2>
+          <a href="#product">Skip to the screens</a>
+        </div>
+        <div class="trio">
+          <div><span class="k">Problem</span><p>Rent, electricity, groceries and subscriptions are paid in different apps and settled between people on chat. <b>Nobody sees what the household owes this month.</b></p></div>
+          <div><span class="k">What I found</span><p>Paying one bill is easy. <b>Remembering all of them, knowing who pays and knowing where the money went is not.</b> People also refused any tool that moves money on its own.</p></div>
+          <div class="made"><span class="k">What I made</span><p>A <b>monthly system for the household</b>: one payment basket, shared bills kept apart from shared expenses, budgets that count upcoming bills, and an <b>AI that suggests but never acts alone</b>.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-name="CONTEXT" id="context">
+      <div class="sec-head">
+        <p class="sec-label"><span>01</span>Context and problem</p>
+        <h2>Household money is scattered. <b>Nobody sees the whole month.</b></h2>
+      </div>
+      <div class="scene">
+        <p class="scene-lines">
+          <span>Rent goes out in one app.</span>
+          <span>Electricity and gas are paid in another.</span>
+          <span class="bad">Flatmates sort out the rest on chat.</span>
+        </p>
+        <p class="body" style="font-size:17px">TrackIt is an iOS app for couples, families and flatmates in India. It started as one place to pay every recurring bill. This version makes the household the centre: bills, shared expenses, budgets, payments and spending insights on one monthly cycle.</p>
+      </div>
+      <div class="block">
+        <h3>What TrackIt is, and what it is not</h3>
+        <div class="scope">
+          <div><h3 class="sm">A household finance app</h3><p>It organises what a household owes, who pays and where the money goes. Payments are handed off to a UPI app people already trust. It does not replace Google Pay.</p></div>
+          <div><h3 class="sm">Two proposed integrations</h3><p>Bank transactions can be imported through a consent-based Account Aggregator, and payments handed off to a UPI app. Both are designed as screens. Neither is built.</p></div>
+        </div>
+      </div>
+      <div class="block">
+        <h3>What the market says</h3>
+        <div class="stats">
+          <div><b>715M</b><p>Bill payments handled by BBPS in one quarter (Q3 FY25).</p><cite>The Economic Times</cite></div>
+          <div><b>175M</b><p>UPI autopay mandates for recurring bills, up from 58M.</p><cite>Amazon India, 2025</cite></div>
+          <div><b>85%</b><p>Of digital transactions, household bills included, run on UPI.</p><cite>PIB India, 2025</cite></div>
+          <div><b>50%</b><p>Of Indian household payments expected to be digital by FY26.</p><cite>Grant Thornton, 2025</cite></div>
+        </div>
+        <p class="caption">People already pay digitally. They still pay bill by bill, app by app, from memory.</p>
+      </div>
+      <div class="block">
+        <h3>What went wrong for households</h3>
+        <div class="issues">
+          <div><span class="k">Problem 01</span><h4>Bills all over the place</h4><p>Recurring payments live across several apps, so nothing shows the full month.</p></div>
+          <div><span class="k">Problem 02</span><h4>Paying one by one is hectic</h4><p>Eleven bills means eleven separate payments every month.</p></div>
+          <div><span class="k">Problem 03</span><h4>Due dates get missed</h4><p>With no reminder in one place, a bill is forgotten until it's overdue.</p></div>
+          <div><span class="k">Problem 04</span><h4>Auto-pay without a ceiling</h4><p>People understand auto-pay but won't use it, because they can't cap it.</p></div>
+          <div><span class="k">Problem 05</span><h4>Shared costs in chats</h4><p>Flatmates settle rent and groceries over messages, so nobody trusts the balance.</p></div>
+          <div><span class="k">Problem 06</span><h4>Failures are a black box</h4><p>When one bill in a batch fails, people can't tell what was taken and what to do next.</p></div>
+        </div>
+      </div>
+      <div class="problem">
+        <span class="k">Problem statement</span>
+        <p>Households need one monthly system where they can see what they owe, coordinate who pays, split shared costs and understand where their money goes, without giving up control of it.</p>
+      </div>
+    </section>
+
+    <section class="sec" data-name="RESEARCH" id="research">
+      <div class="sec-head">
+        <p class="sec-label"><span>02</span>Research</p>
+        <h2>I asked how households pay recurring bills today, <b>and where their apps break the habit.</b></h2>
+        <p class="body">Desk research gave the scale. Interviews with working professionals, homemakers and students gave the texture. Every quote went onto an affinity wall until the themes stopped moving.</p>
+      </div>
+      <table class="tbl stack">
+        <thead><tr><th>What I did</th><th>What I looked for</th></tr></thead>
+        <tbody>
+          <tr><td>Industry reports</td><td data-k="Looked for">Household payment patterns, digital adoption and the friction in recurring expenses</td></tr>
+          <tr><td>Competitor teardown</td><td data-k="Looked for">Five apps people already have: usability gaps, trust issues and openings</td></tr>
+          <tr><td>Literature review</td><td data-k="Looked for">Attitudes to online bill management, spending behaviour and payment frequency</td></tr>
+          <tr><td>User interviews</td><td data-k="Looked for">Where the routine breaks: the forgotten bill, the unclear payment status, the missing receipt</td></tr>
+          <tr><td>Affinity mapping</td><td data-k="Looked for">Five themes that became the app's structure</td></tr>
+        </tbody>
+      </table>
+      <div class="block">
+        <h3>Apps people already use</h3>
+        <table class="tbl stack">
+          <thead><tr><th>App</th><th>Strength</th><th>Gap</th></tr></thead>
+          <tbody>
+            <tr><td>Rocket Money</td><td data-k="Strength">Finds subscriptions automatically</td><td data-k="Gap">Few Indian household billers</td></tr>
+            <tr><td>Google Pay</td><td data-k="Strength">Trusted and widely used UPI</td><td data-k="Gap">Pays one bill at a time</td></tr>
+            <tr><td>Paytm</td><td data-k="Strength">Many billers, recharges and cashback</td><td data-k="Gap">Wallet-led, with many services in one app</td></tr>
+            <tr><td>yono SBI</td><td data-k="Strength">A trusted bank with full banking</td><td data-k="Gap">No automatic bill tracking or reminders</td></tr>
+            <tr><td>Monarch</td><td data-k="Strength">Shared budgets and goals</td><td data-k="Gap">Few Indian banks and billers</td></tr>
+          </tbody>
+        </table>
+        <p class="pattern"><span class="k">The pattern</span>Every app is built around a single transaction. None treats this month's bills as one thing you can review, authorise and close in one pass.</p>
+      </div>
+      <div class="block">
+        <h3>6 insights that shaped TrackIt</h3>
+        <div class="insights">
+          <div class="insight"><span class="k">Insight 01</span><h4>The problem is the calendar, not the payment.</h4><p>Nobody struggles to pay one bill. They struggle to remember which one is due this week.</p><p class="to">One monthly basket, sorted by due date</p></div>
+          <div class="insight"><span class="k">Insight 02</span><h4>Auto-pay fails on trust, not on setup.</h4><p>One unexpected spike and the money is gone before they see it.</p><p class="to">Approval for spikes; any bill can be held back</p></div>
+          <div class="insight"><span class="k">Insight 03</span><h4>Proof matters as much as payment.</h4><p>A payment without a receipt people can find is not finished.</p><p class="to">A result and a receipt for every bill</p></div>
+          <div class="insight"><span class="k">Insight 04</span><h4>Wallets are a dead end.</h4><p>People won't park a month of household money in a wallet.</p><p class="to">Pay straight from the bank account</p></div>
+          <div class="insight"><span class="k">Insight 05</span><h4>Shared money needs one record.</h4><p>Splits, budgets and bills kept apart never add up.</p><p class="to">Bills, splits and budgets on one record</p></div>
+          <div class="insight"><span class="k">Insight 06</span><h4>Help with the tedious parts, never the money.</h4><p>People wanted help, and refused anything that acted on its own.</p><p class="to">An assistant that drafts and waits</p></div>
+        </div>
+      </div>
+      <div class="block">
+        <h3>In their words</h3>
+        <div class="quotes">
+          <blockquote><p>&ldquo;I forget which bills I've already paid this month. There is no one place that just tells me.&rdquo;</p><cite><b>Meera</b>, homemaker, 45</cite></blockquote>
+          <blockquote><p>&ldquo;I want one screen that says: this is the month, this is the total, press once.&rdquo;</p><cite><b>Rohan</b>, data analyst, 29</cite></blockquote>
+          <blockquote><p>&ldquo;I will automate everything the day I can set a ceiling on it.&rdquo;</p><cite><b>Arohi</b>, product manager, 35</cite></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-name="USERS" id="users">
+      <div class="sec-head">
+        <p class="sec-label"><span>03</span>Who it's for</p>
+        <h2>Three people, three relationships with automation. <b>One household had to hold all three.</b></h2>
+      </div>
+      <div class="people">
+        <div class="person main">
+          <div class="who"><span class="ava" aria-hidden="true">MS</span><div><p>Meera Sharma</p><p>45, homemaker</p></div></div>
+          <p class="q">"Did that payment go through?"</p>
+          <p class="needs"><b>Needs</b>Simple steps, reminders and clear proof that a payment worked.</p>
+        </div>
+        <div class="person">
+          <div class="who"><span class="ava" aria-hidden="true">RV</span><div><p>Rohan Verma</p><p>29, data analyst</p></div></div>
+          <p class="q">"What's due this month, in one place?"</p>
+          <p class="needs"><b>Needs</b>One dashboard for every bill, and one payment for many.</p>
+        </div>
+        <div class="person">
+          <div class="who"><span class="ava" aria-hidden="true">AD</span><div><p>Arohi Das</p><p>35, product manager</p></div></div>
+          <p class="q">"Can I set a ceiling on auto-pay?"</p>
+          <p class="needs"><b>Needs</b>Rules, monthly breakdowns and exports.</p>
+        </div>
+      </div>
+      <p class="pattern"><span class="k">The tension</span>People say they want automation, and feel unsafe handing over control. That tension became the central design problem.</p>
+      <p class="pattern"><span class="k">No roles</span>A household has no manager. Every member can add bills, expenses and splits. A bank connection and its consent belong to the person who gave it.</p>
+    </section>
+
+    <section class="sec" data-name="DECISIONS" id="decisions">
+      <div class="sec-head">
+        <p class="sec-label"><span>04</span>Key decisions</p>
+        <h2>The household is the unit. <b>The assistant suggests, and the user decides.</b></h2>
+      </div>
+
+      <article class="decision wide">
+        <div class="d-text">
+          <span class="k">Decision 01</span>
+          <h3>Make the household the unit</h3>
+          <dl>
+            <div><dt>Instead of</dt><dd>Treating every transaction as one person’s expense</dd></div>
+            <div><dt>I chose</dt><dd class="chose">A household workspace: shared bills, a responsible person for each bill, and expense splits</dd></div>
+            <div><dt>Because</dt><dd>Household finances involve several people. The person who pays is not always the person who owes.</dd></div>
+          </dl>
+        </div>
+        <div class="d-visual">
+          <div class="stage phone-stage">
+<div class="phones two">
+<figure><button class="zoom" data-full="img/trackit2/shared-bills.png" aria-label="Open Shared bills"><img class="shot" src="img/trackit2/shared-bills.png" width="375" height="812" loading="lazy" alt="Shared bills"></button><figcaption><b>Shared bills</b>Recurring bills split the same way every month.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/split-review.png" aria-label="Open Review split"><img class="shot" src="img/trackit2/split-review.png" width="375" height="812" loading="lazy" alt="Review split"></button><figcaption><b>Review split</b>Every person’s share before anything is saved.</figcaption></figure>
+</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="decision wide">
+        <div class="d-text">
+          <span class="k">Decision 02</span>
+          <h3>One monthly payment basket</h3>
+          <dl>
+            <div><dt>Instead of</dt><dd>Opening every bill and every payment app one by one</dd></div>
+            <div><dt>I chose</dt><dd class="chose">A basket of the month’s bills. Pick the ones to pay now, check the total, then pay from a UPI app</dd></div>
+            <div><dt>Because</dt><dd>The monthly cycle is how a household really pays. The basket does not promise one combined payment, and the screens say so.</dd></div>
+          </dl>
+        </div>
+        <div class="d-visual">
+          <div class="stage phone-stage">
+<div class="phones two">
+<figure><button class="zoom" data-full="img/trackit2/basket.png" aria-label="Open Monthly basket"><img class="shot" src="img/trackit2/basket.png" width="375" height="812" loading="lazy" alt="Monthly basket"></button><figcaption><b>Monthly basket</b>Bills are individually selectable.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/upi-app.png" aria-label="Open Choose UPI app"><img class="shot" src="img/trackit2/upi-app.png" width="375" height="812" loading="lazy" alt="Choose UPI app"></button><figcaption><b>Choose UPI app</b>Each payment is approved in the UPI app.</figcaption></figure>
+</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="decision wide">
+        <div class="d-text">
+          <span class="k">Decision 03</span>
+          <h3>Bank data is optional, and checked by the user</h3>
+          <dl>
+            <div><dt>Instead of</dt><dd>Depending on one data source</dd></div>
+            <div><dt>I chose</dt><dd class="chose">Optional bank import with a consent screen, a review of imported categories, manual entry and statement upload</dd></div>
+            <div><dt>Because</dt><dd>Bank descriptions can be ambiguous, and not everyone will connect a bank on day one.</dd></div>
+          </dl>
+        </div>
+        <div class="d-visual">
+          <div class="stage phone-stage">
+<div class="phones two">
+<figure><button class="zoom" data-full="img/trackit2/consent.png" aria-label="Open Review consent"><img class="shot" src="img/trackit2/consent.png" width="375" height="812" loading="lazy" alt="Review consent"></button><figcaption><b>Review consent</b>What is shared, why and for how long.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/categories-review.png" aria-label="Open Review categories"><img class="shot" src="img/trackit2/categories-review.png" width="375" height="812" loading="lazy" alt="Review categories"></button><figcaption><b>Review categories</b>Uncertain and duplicate transactions are flagged.</figcaption></figure>
+</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="decision wide">
+        <div class="d-text">
+          <span class="k">Decision 04</span>
+          <h3>Keep AI advisory, not autonomous</h3>
+          <dl>
+            <div><dt>Instead of</dt><dd>An assistant that decides budgets and splits</dd></div>
+            <div><dt>I chose</dt><dd class="chose">Suggestions the user can read, edit and confirm. Facts from records and suggestions are labelled apart</dd></div>
+            <div><dt>Because</dt><dd>Budgets and splits affect real household money, so a person confirms every one.</dd></div>
+          </dl>
+        </div>
+        <div class="d-visual">
+          <div class="stage phone-stage">
+<div class="phones two">
+<figure><button class="zoom" data-full="img/trackit2/draft.png" aria-label="Open Draft budget"><img class="shot" src="img/trackit2/draft.png" width="375" height="812" loading="lazy" alt="Draft budget"></button><figcaption><b>Draft budget</b>Marked as a draft until it is confirmed.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/where-to-cut.png" aria-label="Open Where to cut"><img class="shot" src="img/trackit2/where-to-cut.png" width="375" height="812" loading="lazy" alt="Where to cut"></button><figcaption><b>Where to cut</b>It says plainly when the cuts are not enough.</figcaption></figure>
+</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="decision wide">
+        <div class="d-text">
+          <span class="k">Decision 05</span>
+          <h3>Explain overspending with triggers, not only totals</h3>
+          <dl>
+            <div><dt>Instead of</dt><dd>A monthly total and a category chart</dd></div>
+            <div><dt>I chose</dt><dd class="chose">Day and time patterns, the exact purchases, and plans to avoid each trigger, all inside Insights</dd></div>
+            <div><dt>Because</dt><dd>A total says what was spent. It does not say when or why.</dd></div>
+          </dl>
+        </div>
+        <div class="d-visual">
+          <div class="stage phone-stage">
+<div class="phones">
+<figure><button class="zoom" data-full="img/trackit2/triggers.png" aria-label="Open Spending triggers"><img class="shot" src="img/trackit2/triggers.png" width="375" height="812" loading="lazy" alt="Spending triggers"></button><figcaption><b>Spending triggers</b>When the household spends most.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/trigger-detail.png" aria-label="Open Late-night online orders"><img class="shot" src="img/trackit2/trigger-detail.png" width="375" height="812" loading="lazy" alt="Late-night online orders"></button><figcaption><b>Trigger detail</b>Each purchase with its date and time.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/plans.png" aria-label="Open Plans to avoid this"><img class="shot" src="img/trackit2/plans.png" width="375" height="812" loading="lazy" alt="Plans to avoid this"></button><figcaption><b>Alternative plans</b>Suggestions. Nothing changes until the user taps.</figcaption></figure>
+</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="sec" data-name="STRUCTURE" id="structure">
+      <div class="sec-head">
+        <p class="sec-label"><span>05</span>Structure and flows</p>
+        <h2>Four tabs, organised by task. <b>Five flows explain the whole product.</b></h2>
+        <p class="body">The structure follows what people do, not the technical modules. I kept four tabs, the same as the first version of the app, and put Splits inside Transactions.</p>
+      </div>
+      <div class="block">
+        <h3>What belongs where</h3>
+        <table class="tbl stack">
+          <thead><tr><th>Area</th><th>Main responsibility</th></tr></thead>
+          <tbody>
+            <tr><td>Home</td><td data-k="Main responsibility">What is due, what is paid and what needs attention</td></tr>
+            <tr><td>Transactions</td><td data-k="Main responsibility">Organising and paying household obligations, and who owes what</td></tr>
+            <tr><td>Insights</td><td data-k="Main responsibility">Understanding spending and planning budgets</td></tr>
+            <tr><td>Profile</td><td data-k="Main responsibility">Bank connections, data consent and preferences</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="block">
+        <h3>Product structure</h3>
+        <p class="body" style="margin-bottom:28px">Payments, budgets and the assistant have no tab of their own. Each sits under the task it belongs to.</p>
+        <div class="tree">
+          <div class="tree-top"><div class="tt-left"><span class="node soft">First launch: household and bank (optional)</span><span class="tree-arrow" aria-hidden="true"></span></div><span class="node root">TrackIt</span><span></span></div>
+          <div class="tree-branches">
+            <div><span class="node">Home</span><ul><li>Monthly overview</li><li>What needs attention</li><li>Pay bills</li><li>Shortcuts</li></ul></div>
+            <div><span class="node">Transactions</span><ul><li>Bills: all, recurring, one-time, details</li><li>Monthly basket and receipts</li><li>Payment history and recovery</li><li>Splits: shared bills, shared expenses, settlements</li></ul></div>
+            <div><span class="node">Insights</span><ul><li>Spending overview</li><li>Spending triggers and plans</li><li>Budgets</li><li>AI Budget Planner</li><li>Ask AI</li></ul></div>
+            <div><span class="node">Profile</span><ul><li>Bank connections</li><li>Data consent</li><li>UPI preferences</li><li>Autopay mandates</li><li>Household settings</li></ul></div>
+          </div>
+          <div class="tree-bar main"><b>The assistant opens in context</b><span><em>Splits: Split with AI</em><em>Insights: Plan with AI</em><em>Insights: Ask AI</em></span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Flow 1: Set up and connect financial data</h3>
+        <p class="body" style="margin-bottom:28px">Users need to understand their finances without typing every transaction. Bank import is optional, and manual entry always works.</p>
+        <div class="scroll-x">
+          <ol class="flow">
+            <li><span class="node">Create or join household</span></li>
+            <li><span class="node">Invite members</span><p class="exit">Skip for now</p></li>
+            <li><span class="node">Connect bank</span><p class="exit">Skip and add bills by hand</p></li>
+            <li><span class="node">Choose bank</span><p class="exit">Bank not supported</p></li>
+            <li><span class="node">Review consent</span><p class="exit">Decline: manual entry still works</p></li>
+            <li><span class="node">Import</span><p class="exit">Consent revoked or import incomplete</p></li>
+            <li><span class="node">Review categories</span><p class="exit">Duplicates and uncertain ones flagged</p></li>
+            <li><span class="node root">Home</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Flow 2: Add and manage household bills</h3>
+        <p class="body" style="margin-bottom:28px">Recurring and variable bills in one organised system, with a person responsible for each.</p>
+        <div class="scroll-x">
+          <ol class="flow">
+            <li><span class="node">Bills</span></li>
+            <li><span class="node">Add bill</span></li>
+            <li><span class="node">Recurring or one-time</span><p class="exit">Possible duplicate warning</p></li>
+            <li><span class="node">Amount and due date</span><p class="exit">Variable amount: confirm each cycle</p></li>
+            <li><span class="node">Who is responsible</span></li>
+            <li><span class="node">Reminder</span></li>
+            <li><span class="node">Save</span></li>
+            <li><span class="node root">Monthly overview</span><p class="exit">Mark as paid, pause or end a bill</p></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Flow 3: Pay the month</h3>
+        <p class="body" style="margin-bottom:28px">The monthly basket. One place to review what is due and track every payment.</p>
+        <div class="scroll-x">
+          <ol class="flow">
+            <li><span class="node">Monthly basket</span></li>
+            <li><span class="node">Select bills</span></li>
+            <li><span class="node">Review total</span></li>
+            <li><span class="node">Choose UPI app</span><p class="exit">App not installed: copy the UPI ID or mark as paid</p></li>
+            <li><span class="node">Pay in the UPI app</span></li>
+            <li><span class="node">Track status</span><p class="exit">Pending: retry locked. Failed: retry when safe. Partial: each bill updates alone</p></li>
+            <li><span class="node root">Receipt</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Flow 4: Shared bills and expenses</h3>
+        <p class="body" style="margin-bottom:28px">Bill responsibility, expense splitting and settlement are kept separate.</p>
+        <div class="scroll-x">
+          <ol class="flow">
+            <li><span class="node">Splits</span></li>
+            <li><span class="node">Shared bill or expense</span></li>
+            <li><span class="node">Amount or receipt</span><p class="exit">Split with AI reads the receipt</p></li>
+            <li><span class="node">Pick members</span><p class="exit">A member can be left out</p></li>
+            <li><span class="node">Choose split</span><p class="exit">Equal by default</p></li>
+            <li><span class="node">Review shares</span><p class="exit">Totals must match to save</p></li>
+            <li><span class="node">Confirm</span></li>
+            <li><span class="node root">Settle</span><p class="exit">Paid outside TrackIt</p></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Flow 5: Understand spending and plan the next month</h3>
+        <p class="body" style="margin-bottom:28px">Imported transactions, manual expenses and upcoming bills together, with triggers and a budget the user confirms.</p>
+        <div class="scroll-x">
+          <ol class="flow">
+            <li><span class="node">Insights</span></li>
+            <li><span class="node">Spending by category</span><p class="exit">Incomplete data is said out loud</p></li>
+            <li><span class="node">Spending triggers</span></li>
+            <li><span class="node">Overspending days</span></li>
+            <li><span class="node">Alternative plans</span></li>
+            <li><span class="node">AI Budget Planner</span><p class="exit">No history: it asks, it does not invent</p></li>
+            <li><span class="node">Review and edit</span><p class="exit">Over available funds: suggest what to cut</p></li>
+            <li><span class="node root">Confirm and save</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-name="PRODUCT" id="product">
+      <div class="sec-head">
+        <p class="sec-label"><span>06</span>The product</p>
+        <h2>One household, <b>from setup to next month's plan.</b></h2>
+        <p class="body">Every screen uses one sample household: a flat in Koramangala, Bengaluru, with Aarav, Riya and Ankit, and bills like rent, BESCOM, Jio, Netflix, Tata Play and Indane gas.</p>
+      </div>
+      <div class="moments">
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">01</span>
+            <div><h3>Set up the household and connect a bank</h3><p class="body" style="font-size:16px">Create a household, invite people, and optionally connect a bank. The purpose is explained before any consent is asked for.</p></div>
+            <div><ul><li>Bank connection is optional and can be skipped</li><li>Consent shows what is shared, why, for how long and that it cannot move money</li><li>Imported categories are reviewed by the user, with duplicates flagged</li></ul></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones five">
+<figure><button class="zoom" data-full="img/trackit2/household.png" aria-label="Open Household setup"><img class="shot" src="img/trackit2/household.png" width="375" height="812" loading="lazy" alt="Household setup"></button><figcaption><span class="n">01</span><b>Household</b>Create one or join with an invite.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/connect.png" aria-label="Open Connect bank"><img class="shot" src="img/trackit2/connect.png" width="375" height="812" loading="lazy" alt="Connect bank"></button><figcaption><span class="n">02</span><b>Connect bank</b>Optional, and clearly marked as a proposed integration.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/consent.png" aria-label="Open Review consent"><img class="shot" src="img/trackit2/consent.png" width="375" height="812" loading="lazy" alt="Review consent"></button><figcaption><span class="n">03</span><b>Consent</b>Read before anything is shared.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/categories-review.png" aria-label="Open Review categories"><img class="shot" src="img/trackit2/categories-review.png" width="375" height="812" loading="lazy" alt="Review categories"></button><figcaption><span class="n">04</span><b>Review</b>Two transactions need a look before they count.</figcaption></figure>
+</div>
+          </div>
+        </div>
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">02</span>
+            <div><h3>Add and manage bills</h3><p class="body" style="font-size:16px">Rent repeats. A repair happens once. Electricity changes every month. The bill form handles all three without piling up fields.</p></div>
+            <div><ul><li>Recurring and one-time are one switch</li><li>A variable bill asks the user to confirm each month’s amount</li><li>A possible duplicate is flagged before saving</li><li>A bill paid outside TrackIt can be marked as paid</li></ul><span class="solves" style="margin-top:14px;display:inline-block">Solves insight 01</span></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones five">
+<figure><button class="zoom" data-full="img/trackit2/all-bills.png" aria-label="Open All bills"><img class="shot" src="img/trackit2/all-bills.png" width="375" height="812" loading="lazy" alt="All bills"></button><figcaption><span class="n">01</span><b>All bills</b>Grouped by status, not a flat list.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/add-bill.png" aria-label="Open Add bill"><img class="shot" src="img/trackit2/add-bill.png" width="375" height="812" loading="lazy" alt="Add bill"></button><figcaption><span class="n">02</span><b>Add bill</b>Responsible person and reminder included.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/bill-details.png" aria-label="Open Bill details"><img class="shot" src="img/trackit2/bill-details.png" width="375" height="812" loading="lazy" alt="Bill details"></button><figcaption><span class="n">03</span><b>Bill details</b>Amount, split and mandate in one place.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/variable.png" aria-label="Open Confirm amount"><img class="shot" src="img/trackit2/variable.png" width="375" height="812" loading="lazy" alt="Confirm amount"></button><figcaption><span class="n">04</span><b>Confirm amount</b>A changed bill is confirmed before it joins the basket.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/mark-paid.png" aria-label="Open Mark as paid"><img class="shot" src="img/trackit2/mark-paid.png" width="375" height="812" loading="lazy" alt="Mark as paid"></button><figcaption><span class="n">05</span><b>Mark as paid</b>Records a payment made elsewhere.</figcaption></figure>
+</div>
+          </div>
+        </div>
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">03</span>
+            <div><h3>Pay the monthly basket</h3><p class="body" style="font-size:16px">The basket is the centre of the product: review what is due, choose what to pay now, and follow each payment to its result.</p></div>
+            <div><ul><li>Each bill is paid in a UPI app the user already trusts</li><li>Waiting for the bank is shown as waiting, never as failed</li><li>One screen per state: success, pending, partial and not installed</li></ul><span class="solves" style="margin-top:14px;display:inline-block">Solves insights 01 and 03</span></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones five">
+<figure><button class="zoom" data-full="img/trackit2/basket.png" aria-label="Open Monthly basket"><img class="shot" src="img/trackit2/basket.png" width="375" height="812" loading="lazy" alt="Monthly basket"></button><figcaption><span class="n">01</span><b>Basket</b>Select the bills to pay now.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/review.png" aria-label="Open Payment review"><img class="shot" src="img/trackit2/review.png" width="375" height="812" loading="lazy" alt="Payment review"></button><figcaption><span class="n">02</span><b>Review</b>Total and payer before anything starts.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/upi-app.png" aria-label="Open Choose UPI app"><img class="shot" src="img/trackit2/upi-app.png" width="375" height="812" loading="lazy" alt="Choose UPI app"></button><figcaption><span class="n">03</span><b>UPI app</b>Handed off, not replaced.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/waiting.png" aria-label="Open Waiting in UPI app"><img class="shot" src="img/trackit2/waiting.png" width="375" height="812" loading="lazy" alt="Waiting in UPI app"></button><figcaption><span class="n">04</span><b>Waiting</b>Come back and the bill updates.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/success.png" aria-label="Open Payment success"><img class="shot" src="img/trackit2/success.png" width="375" height="812" loading="lazy" alt="Payment success"></button><figcaption><span class="n">05</span><b>Success</b>Bill marked paid with its reference.</figcaption></figure>
+</div>
+          </div>
+        </div>
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">04</span>
+            <div><h3>Split shared bills and expenses</h3><p class="body" style="font-size:16px">Rent repeats every month. A dinner happens once. They are split in different places, and a settlement is never counted as spending.</p></div>
+            <div><ul><li>Shared bills and one-time expenses sit under two switches</li><li>Equal is the default. Custom and percentage appear when needed</li><li>Split with AI reads a receipt and asks who had what</li></ul><span class="solves" style="margin-top:14px;display:inline-block">Solves insight 05</span></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones five">
+<figure><button class="zoom" data-full="img/trackit2/splits.png" aria-label="Open Splits overview"><img class="shot" src="img/trackit2/splits.png" width="375" height="812" loading="lazy" alt="Splits overview"></button><figcaption><span class="n">01</span><b>Splits</b>Who owes whom, in one glance.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/shared-bills.png" aria-label="Open Shared bills"><img class="shot" src="img/trackit2/shared-bills.png" width="375" height="812" loading="lazy" alt="Shared bills"></button><figcaption><span class="n">02</span><b>Shared bills</b>Each with its split and who pays.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/add-expense.png" aria-label="Open Add shared expense"><img class="shot" src="img/trackit2/add-expense.png" width="375" height="812" loading="lazy" alt="Add shared expense"></button><figcaption><span class="n">03</span><b>Add expense</b>Amount first, receipt optional.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/method.png" aria-label="Open Split method"><img class="shot" src="img/trackit2/method.png" width="375" height="812" loading="lazy" alt="Split method"></button><figcaption><span class="n">04</span><b>Method</b>Four ways, each with a live hint.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/split-review.png" aria-label="Open Review split"><img class="shot" src="img/trackit2/split-review.png" width="375" height="812" loading="lazy" alt="Review split"></button><figcaption><span class="n">05</span><b>Review</b>Totals must match to save.</figcaption></figure>
+</div>
+          </div>
+        </div>
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">05</span>
+            <div><h3>Split a receipt with AI</h3><p class="body" style="font-size:16px">Scan a receipt, say who shared it in plain words, and review every share. The assistant asks when it cannot know who had an item.</p></div>
+            <div><ul><li>Extraction is a draft the user can correct</li><li>It never assumes who consumed an item</li><li>Shares always add up to the receipt</li></ul><span class="solves" style="margin-top:14px;display:inline-block">Solves insight 06</span></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones two">
+<figure><button class="zoom" data-full="img/trackit2/ai-conversation.png" aria-label="Open Split with AI conversation"><img class="shot" src="img/trackit2/ai-conversation.png" width="375" height="812" loading="lazy" alt="Split with AI conversation"></button><figcaption><b>Conversation</b>It names the snacks and asks about the Coca-Cola.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/who-had-what.png" aria-label="Open Who had what"><img class="shot" src="img/trackit2/who-had-what.png" width="375" height="812" loading="lazy" alt="Who had what"></button><figcaption><b>Who had what</b>Items grouped by who shared them.</figcaption></figure>
+</div>
+          </div>
+        </div>
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">06</span>
+            <div><h3>See when and why spending goes up</h3><p class="body" style="font-size:16px">Insights adds the date and time. A heatmap shows when the household spends most, a calendar shows the days over the daily pace, and each trigger lists its purchases.</p></div>
+            <div><ul><li>Facts from records are tagged apart from suggestions</li><li>Each plan is a suggestion that becomes an ordinary budget setting only when the user taps it</li><li>If only one account is connected, Insights says it is based on partial data</li></ul></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones five">
+<figure><button class="zoom" data-full="img/trackit2/monthly-insights.png" aria-label="Open Monthly insights"><img class="shot" src="img/trackit2/monthly-insights.png" width="375" height="812" loading="lazy" alt="Monthly insights"></button><figcaption><span class="n">01</span><b>Insights</b>Same days compared, never a part month against a whole one.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/triggers.png" aria-label="Open Spending triggers"><img class="shot" src="img/trackit2/triggers.png" width="375" height="812" loading="lazy" alt="Spending triggers"></button><figcaption><span class="n">02</span><b>Triggers</b>Late Friday and Saturday nights stand out.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/days.png" aria-label="Open Overspending days"><img class="shot" src="img/trackit2/days.png" width="375" height="812" loading="lazy" alt="Overspending days"></button><figcaption><span class="n">03</span><b>Days</b>The purchases and times behind a day.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/trigger-detail.png" aria-label="Open Trigger detail"><img class="shot" src="img/trackit2/trigger-detail.png" width="375" height="812" loading="lazy" alt="Trigger detail"></button><figcaption><span class="n">04</span><b>Trigger</b>Three orders after 10:30 pm.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/plans.png" aria-label="Open Alternative plans"><img class="shot" src="img/trackit2/plans.png" width="375" height="812" loading="lazy" alt="Alternative plans"></button><figcaption><span class="n">05</span><b>Plans</b>Wait 24 hours, cap Shopping, pay yourself first.</figcaption></figure>
+</div>
+          </div>
+        </div>
+
+        <div class="moment-wide">
+          <div class="m-text">
+            <span class="m-no">07</span>
+            <div><h3>Plan next month with AI</h3><p class="body" style="font-size:16px">The planner uses real spending, explains each number and lets the user edit it. When a target cannot be met, it offers choices instead of cutting essentials.</p></div>
+            <div><ul><li>Marked as a draft until the user confirms</li><li>When the numbers conflict, one option is Suggest what to cut: shopping, entertainment and dining first</li><li>It says how much is still short, and does not cut groceries to close the gap</li></ul><span class="solves" style="margin-top:14px;display:inline-block">Solves insight 06</span></div>
+          </div>
+          <div class="stage phone-stage rise">
+<div class="phones five">
+<figure><button class="zoom" data-full="img/trackit2/budget.png" aria-label="Open Budget overview"><img class="shot" src="img/trackit2/budget.png" width="375" height="812" loading="lazy" alt="Budget overview"></button><figcaption><span class="n">01</span><b>Budget</b>Safe to spend sets aside bills still due.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/draft.png" aria-label="Open Draft budget"><img class="shot" src="img/trackit2/draft.png" width="375" height="812" loading="lazy" alt="Draft budget"></button><figcaption><span class="n">02</span><b>Draft</b>Facts and suggestions tagged apart.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/conflicting.png" aria-label="Open Conflicting values"><img class="shot" src="img/trackit2/conflicting.png" width="375" height="812" loading="lazy" alt="Conflicting values"></button><figcaption><span class="n">03</span><b>Conflict</b>The brief’s ₹25,000 budget cannot cover fixed costs.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/where-to-cut.png" aria-label="Open Where to cut"><img class="shot" src="img/trackit2/where-to-cut.png" width="375" height="812" loading="lazy" alt="Where to cut"></button><figcaption><span class="n">04</span><b>Where to cut</b>Shopping, entertainment and dining out.</figcaption></figure>
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <h3>Profile: where consent lives</h3>
+        <div class="scope">
+          <div><h4>Bank connections and consent</h4><p>Each connection shows when it last imported and when its consent ends. Revoking stops new imports straight away.</p></div>
+          <div><h4>UPI preferences and mandates</h4><p>A default UPI app, and the autopay mandates. Mandates are changed in the bank app, never by TrackIt.</p></div>
+        </div>
+        <div class="phones two">
+<figure><button class="zoom" data-full="img/trackit2/profile.png" aria-label="Open Profile"><img class="shot" src="img/trackit2/profile.png" width="375" height="812" loading="lazy" alt="Profile"></button><figcaption><b>Profile</b>Households and money settings.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/consent-settings.png" aria-label="Open Data consent"><img class="shot" src="img/trackit2/consent-settings.png" width="375" height="812" loading="lazy" alt="Data consent"></button><figcaption><b>Data consent</b>What is shared, until when, and a way to revoke it.</figcaption></figure>
+</div>
+      </div>
+    </section>
+
+    <section class="sec" data-name="EDGE" id="edge">
+      <div class="sec-head">
+        <p class="sec-label"><span>07</span>Edge cases and trade-offs</p>
+        <h2>An unknown payment is not a failed one. <b>Every state says what happened and what to do.</b></h2>
+        <p class="body">I did not give every edge case its own flow. The important ones sit beside the main flow they belong to.</p>
+      </div>
+      <div class="block">
+        <h3>Edge cases</h3>
+        <table class="tbl stack">
+          <thead><tr><th>Feature</th><th>Edge case</th><th>What the design does</th></tr></thead>
+          <tbody>
+            <tr><td>Bank connection</td><td data-k="Edge case">Consent revoked</td><td data-k="What it does">Stops importing and shows a disconnected state</td></tr>
+            <tr><td>Bank connection</td><td data-k="Edge case">Import incomplete</td><td data-k="What it does">Says which months are missing and marks insights as partial</td></tr>
+            <tr><td>Transactions</td><td data-k="Edge case">Duplicate transaction</td><td data-k="What it does">Flagged before it is added twice</td></tr>
+            <tr><td>Bills</td><td data-k="Edge case">Variable amount</td><td data-k="What it does">Asks the user to confirm the new amount</td></tr>
+            <tr><td>Bills</td><td data-k="Edge case">Duplicate bill</td><td data-k="What it does">Warns before saving</td></tr>
+            <tr><td>Payment</td><td data-k="Edge case">Pending confirmation</td><td data-k="What it does">Locks retry until the status is resolved</td></tr>
+            <tr><td>Payment</td><td data-k="Edge case">Partial failure</td><td data-k="What it does">Updates each bill independently</td></tr>
+            <tr><td>Payment</td><td data-k="Edge case">Paid outside TrackIt</td><td data-k="What it does">Allows a manual status update with the method</td></tr>
+            <tr><td>Splits</td><td data-k="Edge case">Invalid allocation</td><td data-k="What it does">Blocks confirmation until totals match</td></tr>
+            <tr><td>AI budget</td><td data-k="Edge case">No transaction history</td><td data-k="What it does">Asks for manual inputs and does not invent data</td></tr>
+            <tr><td>AI receipt</td><td data-k="Edge case">Uncertain extraction</td><td data-k="What it does">Highlights the field for the user to correct</td></tr>
+          </tbody>
+        </table>
+        <p class="pattern"><span class="k">Why it matters</span>A payment with no confirmation yet could still have been charged. Showing it as failed would invite a second payment. So pending is its own state, and retry stays locked until the bank answers.</p>
+      </div>
+      <div class="block">
+        <h3>The states, on screen</h3>
+        <div class="phones">
+<figure><button class="zoom" data-full="img/trackit2/pending.png" aria-label="Open Payment pending"><img class="shot" src="img/trackit2/pending.png" width="375" height="812" loading="lazy" alt="Payment pending"></button><figcaption><b>Payment pending</b>Waiting for the bank. Retry is locked.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/partial.png" aria-label="Open Partial success"><img class="shot" src="img/trackit2/partial.png" width="375" height="812" loading="lazy" alt="Partial success"></button><figcaption><b>Partial success</b>3 of 5 paid. Each bill has its own result.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/not-installed.png" aria-label="Open UPI app not installed"><img class="shot" src="img/trackit2/not-installed.png" width="375" height="812" loading="lazy" alt="UPI app not installed"></button><figcaption><b>No UPI app</b>Copy the UPI ID or mark as paid.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/duplicate.png" aria-label="Open Duplicate bill warning"><img class="shot" src="img/trackit2/duplicate.png" width="375" height="812" loading="lazy" alt="Duplicate bill warning"></button><figcaption><b>Duplicate bill</b>Flagged before it is counted twice.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/consent-revoked.png" aria-label="Open Consent revoked"><img class="shot" src="img/trackit2/consent-revoked.png" width="375" height="812" loading="lazy" alt="Consent revoked"></button><figcaption><b>Consent revoked</b>Import stops. Past data stays.</figcaption></figure>
+<figure><button class="zoom" data-full="img/trackit2/import-incomplete.png" aria-label="Open Import incomplete"><img class="shot" src="img/trackit2/import-incomplete.png" width="375" height="812" loading="lazy" alt="Import incomplete"></button><figcaption><b>Import incomplete</b>Missing months are named.</figcaption></figure>
+</div>
+      </div>
+      <div class="block">
+        <h3>Trade-offs I made</h3>
+        <div class="cards3" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+          <div><span class="k">Trade-off 01</span><h4>Import or type</h4><p>Importing makes setup easier but depends on supported banks and consent. Manual entry gives control but takes effort. Both stay.</p></div>
+          <div><span class="k">Trade-off 02</span><h4>A basket, not a bulk payment</h4><p>The basket unifies review and tracking. It does not promise one combined UPI payment, because each payment may need its own approval.</p></div>
+          <div><span class="k">Trade-off 03</span><h4>Flexible splits, equal first</h4><p>Real households split unevenly. Equal is the default, and custom or percentage appear only when asked for.</p></div>
+          <div><span class="k">Trade-off 04</span><h4>Confirmation adds steps</h4><p>Asking the user to confirm every AI result adds a tap. It keeps the user in control of real money.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-name="OUTCOME" id="outcome">
+      <div class="sec-head">
+        <p class="sec-label"><span>08</span>Outcome and reflection</p>
+        <h2>A connected household workflow, designed end to end. <b>It still needs testing with real households.</b></h2>
+      </div>
+      <div class="block">
+        <h3>What I delivered</h3>
+        <div class="checks">
+          <div><b>98</b><h4>Screens</h4><p>In TrackIt’s original design language, fitted to one phone height.</p></div>
+          <div><b>5</b><h4>Flows</h4><p>Setup, bills, the monthly basket, shared costs, and spending and planning.</p></div>
+          <div><b>2</b><h4>Proposed integrations</h4><p>Account Aggregator import and UPI handoff, shown as screens.</p></div>
+          <div><b>3</b><h4>AI jobs</h4><p>Plan a budget, split a receipt, and explain spending.</p></div>
+        </div>
+        <div class="honest"><span class="k">What this does not claim</span><p>These are designed and prototyped flows. Nothing is built or tested with households yet, so there are no usability results. Bank import and UPI handoff would need real integrations.</p></div>
+      </div>
+      <div class="block">
+        <h3>What was designed, and what is proposed</h3>
+        <table class="tbl stack">
+          <thead><tr><th>Part</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Bills, basket, splits, insights and budgets</td><td data-k="Status">Designed and prototyped in Figma</td></tr>
+            <tr><td>AI Budget Planner, Split Assistant and Ask AI</td><td data-k="Status">Designed and prototyped, with confirmation on every result</td></tr>
+            <tr><td>Bank data import and consent</td><td data-k="Status">Proposed. Screens only, through an Account Aggregator</td></tr>
+            <tr><td>UPI payment</td><td data-k="Status">Proposed. Handed off to an existing UPI app</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="block">
+        <h3>What I'd test next</h3>
+        <div class="cards3 ask">
+          <div><span class="k">Trust</span><p class="qq">Do households trust connecting a bank, or do they prefer to type?</p></div>
+          <div><span class="k">The basket</span><p class="qq">Do people pay from the basket, or still pay bill by bill?</p></div>
+          <div><span class="k">Triggers</span><p class="qq">Do the plans for each trigger actually change what people spend?</p></div>
+        </div>
+      </div>
+      <div class="block">
+        <h3>What I learned</h3>
+        <ol class="lessons">
+          <li><span class="n" aria-hidden="true">01</span><h4>Start from the household</h4><p>A bank transaction does not say who in the household should bear it.</p></li>
+          <li><span class="n" aria-hidden="true">02</span><h4>Unknown is not failed</h4><p>A payment with no answer yet could still have gone through.</p></li>
+          <li><span class="n" aria-hidden="true">03</span><h4>Say what is proposed</h4><p>Integrations that are not built should be labelled, not implied.</p></li>
+          <li><span class="n" aria-hidden="true">04</span><h4>Totals say what, triggers say when</h4><p>Knowing the day and time of overspending is what makes a plan possible.</p></li>
+        </ol>
+      </div>
+      <blockquote class="closing"><p>&ldquo;A connected household workflow: what it spends, what it owes, how it pays, and the plan for next month.&rdquo;</p><cite>Siddhesha Pawade</cite></blockquote>
+      <div class="short-version">
+        <p><b>That was the short version.</b>The full case study has the research, every flow and all 98 screens.</p>
+        <a class="btn" href="https://behance.net/siddhesha_pawade" target="_blank" rel="noopener">View on Behance <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.7 11.3l6.6-6.6M11.3 10.7V4.7H5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<a class="next-link" data-cursor="project" href="signease.html">
+  <div class="next" data-name="Next project">
+    <div><p class="k">Next project</p><p class="nm">Signease<sup>05</sup></p><p>Bridging communication through Indian Sign Language</p></div>
+    <img src="img/covers/signease-v3.jpg" width="460" height="277" alt="Signease cover" loading="lazy">
+  </div>
+</a>
+
+<footer class="foot">
+  <div><p>Since we have come to the finish line, I believe we should get in touch. Drop me a hi!</p><a class="mail" href="mailto:siddheshapawade3@gmail.com">siddheshapawade3@gmail.com</a></div>
+  <div class="credits">
+    <p>Curated by <b>Siddhesha Pawade</b></p>
+    <p>Powered by coffee, claude and curiosity.</p>
+    <hr>
+    <div class="socials">
+      <a aria-label="LinkedIn" href="https://linkedin.com/in/siddhesha-pawade"><img src="img/v2/linkedin.svg" width="34" height="34" alt=""></a>
+      <a aria-label="Behance" href="https://behance.net/siddhesha_pawade" class="be">Bē</a>
+      <a aria-label="Instagram" href="#"><img src="img/v2/instagram.svg" width="34" height="34" alt=""></a>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+
+<dialog class="viewer" aria-label="Screen, full size">
+  <button type="button" aria-label="Close">&times;</button>
+  <p></p>
+</dialog>
+<div class="cursor" aria-hidden="true"><svg viewBox="0 0 22 24"><path d="M2 1.5l17.5 9.2-7.6 1.9-3.6 7.4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tag">You</span></div>
+<script src="site.js"></script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var rise=[].slice.call(document.querySelectorAll('.rise'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -8% 0px'});
+    rise.forEach(function(el){ io.observe(el); });
+  } else rise.forEach(function(el){ el.classList.add('in'); });
+  var dlg=document.querySelector('.viewer'), cap=dlg.querySelector('p'), big=document.createElement('img');
+  dlg.insertBefore(big,cap);
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button.zoom'); if(!b||!dlg.showModal) return;
+    var img=b.querySelector('img'); big.src=b.dataset.full; big.alt=img.alt; cap.textContent=img.alt; dlg.showModal();
+  });
+  dlg.addEventListener('click',function(e){ if(e.target!==big) dlg.close(); });
+})();
+</script>
+</body>
+</html>
